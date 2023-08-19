@@ -1,0 +1,1682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    android:orientation="vertical"
+    tools:context="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.PlaygWorkSchedulerFragment">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/continue_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <LinearLayout
+            android:id="@+id/const_by_week_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_1_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_1_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/day_1_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_1_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_1_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_1_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_1_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_1_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_1_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_1_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_1_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_1_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_1_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_1_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_1_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_1_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_1_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_1"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_1">
+
+                    <EditText
+                        android:id="@+id/all_day_field_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_2_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day2"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_2_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_2_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_2_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_2_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_2_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_2"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_2" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_2_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_2_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_2_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_2_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_2_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_2_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_2_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_2_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_2" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_2_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_2_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_2_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_2"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_2">
+
+                    <EditText
+                        android:id="@+id/all_day_field_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_3_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day3"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <RadioGroup
+                    android:id="@+id/day_3_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_3_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_3_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_3_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_3_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_3"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_3" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_3_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_3_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_3_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_3_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_3_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_3_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_3_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_3_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_3" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_3_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_3_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_3_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_3"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_3">
+
+                    <EditText
+                        android:id="@+id/all_day_field_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_3" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_4_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day4"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_4_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_4_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_4_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_4_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_4_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_4"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_4" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_4_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_4_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_4_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_4_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_4_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_4_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_4_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_4_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_4" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_4_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_4_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_4_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_4"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_4">
+
+                    <EditText
+                        android:id="@+id/all_day_field_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_4" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_5_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day5"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_5_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_5_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_5_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_5_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_5_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_5"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_5" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_5_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_5_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_5_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_5_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_5_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_5_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_5_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_5_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_5" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_5_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_5_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_5_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_5"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_5">
+
+                    <EditText
+                        android:id="@+id/all_day_field_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_6_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day6"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_6_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_6_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_6_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_6_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_6_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_6"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_6" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_6_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_6_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_6_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_6_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_6_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_6_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_6_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_6_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_6" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_6_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_6_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_6_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_6"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_6">
+
+                    <EditText
+                        android:id="@+id/all_day_field_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_6"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_by_day_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/day_7_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="@string/day7"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioGroup
+                    android:id="@+id/day_7_rbg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/day_7_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_7_tv">
+
+                    <RadioButton
+                        android:id="@+id/day_1_rb_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_gray"
+                        android:checked="true"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/working_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/day_7_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/day_7_tv" />
+
+                    <RadioButton
+                        android:id="@+id/day_2_rb_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:buttonTint="@color/main_gray"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="@string/weekend_day"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/day_1_rb_7"
+                        app:layout_constraintStart_toEndOf="@+id/day_1_rb_7" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/day_7_with_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="с"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_7_rbg"
+                    app:layout_constraintTop_toBottomOf="@+id/day_7_rbg" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/with_mat_сard_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_7_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_7_with_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_7_with_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/with_time_ed_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/day_7_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="по"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_7_with_tv"
+                    app:layout_constraintStart_toEndOf="@+id/with_mat_сard_7" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/by_mat_сard_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/background_for_edittext"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_7_by_tv"
+                    app:layout_constraintStart_toEndOf="@+id/day_7_by_tv"
+                    app:layout_constraintTop_toTopOf="@+id/day_7_by_tv"
+                    app:strokeColor="@color/gray_light"
+                    app:strokeWidth="1dp">
+
+                    <EditText
+                        android:id="@+id/by_field_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:hint="Время"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/all_day_mat_сard_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:cardBackgroundColor="@color/background_black"
+                    app:cardCornerRadius="@dimen/ten"
+                    app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/by_mat_сard_7"
+                    app:layout_constraintTop_toTopOf="@+id/by_mat_сard_7">
+
+                    <EditText
+                        android:id="@+id/all_day_field_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_for_edittext"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/noah_regular"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp"
+                        android:text="Весь день"
+                        android:textColor="@color/text_color_secondary"
+                        android:textColorHint="@color/text_color_secondary"
+                        android:textSize="16sp"
+                        tools:ignore="TextFields" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/view_gray_7"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_7" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/const_by_week_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <TextView
+            android:id="@+id/week_1_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noah_bold"
+            android:text="@string/all_week"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/week_1_rbg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/week_1_tv"
+            app:layout_constraintTop_toBottomOf="@+id/week_1_tv">
+
+            <RadioButton
+                android:id="@+id/week_1_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/main_gray"
+                android:checked="true"
+                android:fontFamily="@font/noah_regular"
+                android:text="@string/working_day"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/week_1_rbg"
+                app:layout_constraintTop_toBottomOf="@+id/week_1_rbg" />
+
+            <RadioButton
+                android:id="@+id/week_2_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:buttonTint="@color/main_gray"
+                android:fontFamily="@font/noah_regular"
+                android:text="@string/weekend_day"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/week_1_rb"
+                app:layout_constraintStart_toEndOf="@+id/week_1_rb"
+                tools:buttonTint="@color/main_orange" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/week_1_with_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noah_regular"
+            android:text="с"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/week_1_rbg"
+            app:layout_constraintTop_toBottomOf="@+id/week_1_rbg" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/with_mat_сard_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/background_for_edittext"
+            app:cardCornerRadius="@dimen/ten"
+            app:layout_constraintBottom_toBottomOf="@+id/week_1_with_tv"
+            app:layout_constraintStart_toEndOf="@+id/week_1_with_tv"
+            app:layout_constraintTop_toTopOf="@+id/week_1_with_tv"
+            app:strokeColor="@color/gray_light"
+            app:strokeWidth="1dp">
+
+            <EditText
+                android:id="@+id/with_time_ed_week"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_for_edittext"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/noah_regular"
+                android:hint="Время"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="10dp"
+                android:textColor="@color/text_color_secondary"
+                android:textColorHint="@color/text_color_secondary"
+                android:textSize="16sp"
+                tools:ignore="TextFields" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/week_1_by_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noah_regular"
+            android:text="по"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/week_1_with_tv"
+            app:layout_constraintStart_toEndOf="@+id/with_mat_сard_week" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/by_mat_сard_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="@color/background_for_edittext"
+            app:cardCornerRadius="@dimen/ten"
+            app:layout_constraintBottom_toBottomOf="@+id/week_1_by_tv"
+            app:layout_constraintStart_toEndOf="@+id/week_1_by_tv"
+            app:layout_constraintTop_toTopOf="@+id/week_1_by_tv"
+            app:strokeColor="@color/gray_light"
+            app:strokeWidth="1dp">
+
+            <EditText
+                android:id="@+id/by_field_week"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_for_edittext"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/noah_regular"
+                android:hint="Время"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="10dp"
+                android:textColor="@color/text_color_secondary"
+                android:textColorHint="@color/text_color_secondary"
+                android:textSize="16sp"
+                tools:ignore="TextFields" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/all_day_mat_сard_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:cardBackgroundColor="@color/background_black"
+            app:cardCornerRadius="@dimen/ten"
+            app:layout_constraintBottom_toBottomOf="@+id/by_mat_сard_week"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/by_mat_сard_week"
+            app:layout_constraintTop_toTopOf="@+id/by_mat_сard_week">
+
+            <EditText
+                android:id="@+id/all_day_field_week"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_for_edittext"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/noah_regular"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="10dp"
+                android:text="Весь день"
+                android:textColor="@color/text_color_secondary"
+                android:textColorHint="@color/text_color_secondary"
+                android:textSize="16sp"
+                tools:ignore="TextFields" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:id="@+id/view_gray_1_week"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/gray_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/with_mat_сard_week" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_arrow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fontFamily="@font/noah_regular_otf"
+            android:text="@string/work_schedule1"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        android:paddingStart="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/by_day_mat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/noah_regular"
+            android:tag="1"
+            android:text="По дням"
+            android:textAllCaps="false"
+            android:textColor="@color/back_color"
+            app:cornerRadius="20dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/by_week_mat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/background_for_edittext"
+            android:fontFamily="@font/noah_regular"
+            android:tag="0"
+            android:text="Вся неделя"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continue_button"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#E65705"
+        android:fontFamily="@font/noah_bold"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/baseline_check_circle"
+        app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

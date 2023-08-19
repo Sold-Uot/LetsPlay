@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_height="match_parent"
+    tools:context="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.fragments.MapsFragment">
+
+    <include
+        android:id="@+id/const_top_bar"
+        layout="@layout/include_const_top_bar_playg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/const_top_bar"
+        tools:context=".presentation.ui.fragments.tabs.playgrounds.fragments.MapsFragment" />
+
+    <ImageView
+        android:id="@+id/my_gps_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_playgrounds_btn"
+        app:srcCompat="@drawable/gps_btn" />
+
+    <ProgressBar
+        android:id="@+id/gps_progress_bar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:visibility="gone"
+        android:layout_marginBottom="3dp"
+        android:indeterminateTint="@color/main_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/my_gps_img"
+        app:layout_constraintEnd_toEndOf="@+id/my_gps_img"
+        app:layout_constraintStart_toStartOf="@+id/my_gps_img"
+        app:layout_constraintTop_toTopOf="@+id/my_gps_img" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/list_playgrounds_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#E65705"
+        android:fontFamily="@font/noah_bold"
+        android:text="Список"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:cornerRadius="9dp"
+        app:icon="@drawable/ic_baseline_format_list_bulleted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/const_top_bar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

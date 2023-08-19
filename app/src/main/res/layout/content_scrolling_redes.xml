@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <!--    tools:showIn="@layout/fragment_playground_info"-->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/back_color"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reviews_mat_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/background_for_edittext"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Отзывы"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="9dp"
+                    app:icon="@drawable/ic_message_center_star_icon"
+                    app:iconTint="#E65705"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginTop="12dp" />
+
+                <TextView
+                    android:id="@+id/title_reviews_count_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_mat_btn"
+                    app:layout_constraintStart_toEndOf="@+id/reviews_mat_btn"
+                    app:layout_constraintTop_toTopOf="@+id/reviews_mat_btn"
+                    tools:text="4.5" />
+
+                <RatingBar
+                    android:id="@+id/rbRatingBar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:stepSize="@integer/material_motion_duration_long_1"
+                    android:theme="@style/MyRatingBar"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_mat_btn"
+                    app:layout_constraintStart_toEndOf="@+id/title_reviews_count_content"
+                    app:layout_constraintTop_toTopOf="@+id/reviews_mat_btn"
+                    tools:rating="3.5" />
+
+                <ImageView
+                    android:id="@+id/null_starts_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviews_mat_btn"
+                    app:layout_constraintStart_toEndOf="@+id/title_reviews_count_content"
+                    app:layout_constraintTop_toTopOf="@+id/reviews_mat_btn"
+                    app:srcCompat="@drawable/ic_null_starts" />
+
+                <TextView
+                    android:id="@+id/count_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/rbRatingBar"
+                    app:layout_constraintStart_toEndOf="@+id/rbRatingBar"
+                    app:layout_constraintTop_toTopOf="@+id/rbRatingBar"
+                    tools:text="(176)" />
+
+                <TextView
+                    android:id="@+id/price_content_scroll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="@+id/reviews_mat_btn"
+                    app:layout_constraintTop_toBottomOf="@+id/reviews_mat_btn"
+                    tools:text="1000 ₽" />
+
+                <TextView
+                    android:id="@+id/content_field_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="37dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/noah_regular"
+                    android:maxLines="1"
+                    android:text="Футбольное поле (Спартак)"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/price_content_scroll"
+                    app:layout_constraintTop_toBottomOf="@+id/price_content_scroll" />
+
+                <View
+                    android:id="@+id/view_gray"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/content_field_address" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Свободные часы"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/small_size"
+                    app:layout_constraintStart_toStartOf="@+id/content_field_address"
+                    app:layout_constraintTop_toBottomOf="@+id/view_gray" />
+
+                <TextView
+                    android:id="@+id/on_today_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="На сегодня"
+                    android:textColor="@color/main_orange"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                    app:layout_constraintStart_toEndOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/bottom_sheet_hours"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:textColor="@color/hint_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/content_field_address"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11"
+                    tools:text="c 09:00 - 09:30 - 10:00 - 10:30 - 11:00 - 11:30 - 12:00 - 12:30 - 13:00 - 13:30 - 14:00 - 14:30 - 15:00 - 15:30 - 16:00 - 16:30 - 17:00 - 17:30 - 18:00 - 18:30 - 19:00 - 19:30 - 20:00 - 20:30 - 21:00 - 21:30" />
+
+                <View
+                    android:id="@+id/view_gray_2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_hours" />
+
+                <ImageView
+                    android:id="@+id/phone_info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/btn_playground_info_shape"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/phone_info_tv"
+                    app:layout_constraintStart_toStartOf="@+id/phone_info_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view_gray_2"
+                    app:srcCompat="@drawable/ic_phone_playground_info" />
+
+                <TextView
+                    android:id="@+id/phone_info_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Позвонить"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintStart_toStartOf="@+id/bottom_sheet_hours"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_info" />
+
+                <ImageView
+                    android:id="@+id/duration_path_info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="72dp"
+                    android:background="@drawable/btn_playground_info_shape"
+                    android:padding="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/phone_info"
+                    app:layout_constraintTop_toTopOf="@+id/phone_info"
+                    app:srcCompat="@drawable/ic_duration_path_map" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Направиться"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/duration_path_info"
+                    app:layout_constraintStart_toStartOf="@+id/duration_path_info"
+                    app:layout_constraintTop_toBottomOf="@+id/duration_path_info" />
+
+                <ImageView
+                    android:id="@+id/share_info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="72dp"
+                    android:background="@drawable/btn_playground_info_shape"
+                    android:padding="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/duration_path_info"
+                    app:layout_constraintTop_toTopOf="@+id/phone_info"
+                    app:srcCompat="@drawable/ic_baseline_share_24" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Поделиться"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/share_info"
+                    app:layout_constraintStart_toStartOf="@+id/share_info"
+                    app:layout_constraintTop_toBottomOf="@+id/share_info" />
+
+                <View
+                    android:id="@+id/view_gray_3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_info_tv" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_lay_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/view_gray_3"
+                    app:layout_constraintStart_toStartOf="@+id/view_gray_3"
+                    app:layout_constraintTop_toBottomOf="@+id/view_gray_3">
+
+                    <ImageView
+                        android:id="@+id/imageView32"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_phone_playg_info_orange" />
+
+                    <TextView
+                        android:id="@+id/number_phone_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:layout_marginEnd="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Неизвестно"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/copy_number_phone"
+                        app:layout_constraintStart_toEndOf="@+id/imageView32"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="+7 (989) 532-11-28" />
+
+                    <ImageView
+                        android:id="@+id/copy_number_phone"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="end | center"
+                        android:layout_marginEnd="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_content_copy_24" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_gray_4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_lay_phone" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_lay_phone2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/view_gray_3"
+                    app:layout_constraintStart_toStartOf="@+id/view_gray_3"
+                    app:layout_constraintTop_toBottomOf="@+id/view_gray_4">
+
+                    <ImageView
+                        android:id="@+id/hours_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_clock_icon" />
+
+                    <TextView
+                        android:id="@+id/show_traffic_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="Посмотреть график"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/hours_icon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_selected_spinner_event_redes" />
+
+                    <ImageView
+                        android:id="@+id/show_traffic_tv_arrow"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/show_traffic_tv"
+                        app:layout_constraintStart_toEndOf="@+id/show_traffic_tv"
+                        app:layout_constraintTop_toTopOf="@+id/show_traffic_tv"
+                        app:srcCompat="@drawable/ic_arrow_bottom" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_gray_5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/gray_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_lay_phone2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/show_traffic_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="47dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/view_gray_5"
+                    app:layout_constraintStart_toStartOf="@+id/view_gray_5"
+                    app:layout_constraintTop_toBottomOf="@+id/view_gray_5"
+                    tools:layout_height="80dp"
+                    tools:listitem="@layout/item_traffic_redes_rv"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/emptyList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Список пуст"
+                    android:textColor="@color/main_gray"
+                    android:textSize="@dimen/small_size"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/show_traffic_rv"
+                    app:layout_constraintEnd_toEndOf="@+id/show_traffic_rv"
+                    app:layout_constraintStart_toStartOf="@+id/view_gray_5"
+                    app:layout_constraintTop_toTopOf="@+id/show_traffic_rv"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/general_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="56dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/noah_bold"
+                    android:maxLines="2"
+                    android:text="Комсомольский просп., 63, г. Махачкала"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/button_textsize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/const_lay_phone2"
+                    app:layout_constraintTop_toBottomOf="@+id/show_traffic_rv" />
+
+                <ImageView
+                    android:id="@+id/copy_address"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/general_address"
+                    app:layout_constraintEnd_toEndOf="@+id/view_gray_4"
+                    app:layout_constraintTop_toTopOf="@+id/general_address"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_baseline_content_copy_24" />
+
+                <fragment
+                    android:id="@+id/map_frag"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/copy_address"
+                    tools:context=".presentation.ui.fragments.tabs.playgrounds.fragments.MapsFragment" />
+
+                <TextView
+                    android:id="@+id/general_info_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="56dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Общая информация"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/button_textsize"
+                    app:layout_constraintStart_toStartOf="@+id/view_gray_5"
+                    app:layout_constraintTop_toBottomOf="@+id/map_frag" />
+
+                <TextView
+                    android:id="@+id/coverage_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Покрытие"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/general_info_tv" />
+
+                <TextView
+                    android:id="@+id/natural_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Натуральное"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/coverage_tv"
+                    app:layout_constraintTop_toTopOf="@+id/coverage_tv" />
+
+                <TextView
+                    android:id="@+id/field_size_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Размер поля"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/coverage_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/coverage_tv" />
+
+                <TextView
+                    android:id="@+id/field_size_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="38 x 20 (5 на 5)"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/field_size_tv"
+                    app:layout_constraintStart_toStartOf="@+id/natural_tv" />
+
+                <TextView
+                    android:id="@+id/balls_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Мячи"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/field_size_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/field_size_tv" />
+
+                <TextView
+                    android:id="@+id/balls_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть (+200 ₽)"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/balls_tv"
+                    app:layout_constraintStart_toStartOf="@+id/field_size_value_tv" />
+
+                <TextView
+                    android:id="@+id/payment_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Оплата картой"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/balls_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/balls_tv" />
+
+                <TextView
+                    android:id="@+id/payment_card_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/payment_card_tv"
+                    app:layout_constraintStart_toStartOf="@+id/balls_value_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/balls_value_tv" />
+
+                <TextView
+                    android:id="@+id/showers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Душевые"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/payment_card_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/payment_card_tv" />
+
+                <TextView
+                    android:id="@+id/showers_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/showers_tv"
+                    app:layout_constraintStart_toStartOf="@+id/payment_card_value_tv" />
+
+                <TextView
+                    android:id="@+id/changing_rooms_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Раздевалки"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/showers_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/showers_tv" />
+
+
+                <TextView
+                    android:id="@+id/changing_rooms_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/changing_rooms_tv"
+                    app:layout_constraintStart_toStartOf="@+id/payment_card_value_tv" />
+
+                <TextView
+                    android:id="@+id/shirt_fronts_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Манишки"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/changing_rooms_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/changing_rooms_tv" />
+
+                <TextView
+                    android:id="@+id/shirt_fronts_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/shirt_fronts_tv"
+                    app:layout_constraintStart_toStartOf="@+id/changing_rooms_value_tv" />
+
+                <TextView
+                    android:id="@+id/lighting_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Освещение"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/shirt_fronts_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/shirt_fronts_tv" />
+
+                <TextView
+                    android:id="@+id/lighting_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Есть"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/lighting_tv"
+                    app:layout_constraintStart_toStartOf="@+id/shirt_fronts_value_tv" />
+
+                <TextView
+                    android:id="@+id/studded_cleats_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Шипованные бутсы"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintStart_toStartOf="@+id/lighting_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/lighting_tv" />
+
+                <TextView
+                    android:id="@+id/studded_cleats_value_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:text="Можно"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/studded_cleats_tv"
+                    app:layout_constraintStart_toStartOf="@+id/lighting_value_tv" />
+
+                <TextView
+                    android:id="@+id/site_reviews_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Отзывы о площадке"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
+                    app:layout_constraintStart_toStartOf="@+id/studded_cleats_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/studded_cleats_tv" />
+
+                <TextView
+                    android:id="@+id/show_all_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Посмотреть все"
+                    android:textColor="@color/main_orange"
+                    android:textSize="@dimen/button_textsize"
+                    app:layout_constraintBottom_toBottomOf="@+id/site_reviews_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/studded_cleats_tv" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/site_reviews_rv"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/create_event"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/site_reviews_tv"
+                    app:layout_constraintVertical_bias="0.321"
+                    tools:listitem="@layout/item_review_redes" />
+
+                <LinearLayout
+                    android:id="@+id/empty_reviews_lin_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/create_event"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/site_reviews_tv">
+
+                    <ImageView
+                        android:id="@+id/empty_reviews_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_empty_reviews" />
+
+                    <TextView
+                        android:id="@+id/empty_reviews_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Пока никто не оставил \nотзывов о данной площадке."
+                        android:textAlignment="center"
+                        android:textColor="#7D7D82"
+                        android:textSize="16sp"
+                        app:srcCompat="@drawable/ic_empty_reviews" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/create_event"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="#E65705"
+                    android:fontFamily="@font/noah_bold"
+                    android:text="Создать событие"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_cup_win_icon"
+                    app:iconGravity="textStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

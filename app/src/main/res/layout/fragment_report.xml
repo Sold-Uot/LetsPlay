@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded_bg">
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="2dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:padding="5dp"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="Причина жалобы"
+        android:textColor="@color/white"
+        android:fontFamily="@font/noah_bold"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <RadioButton
+            android:id="@+id/option_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Оскорбительное сообщение"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="#E7E7E7"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/option_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Постоянный спам"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="#E7E7E7"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/option_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Призыв к экстремизму"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="#E7E7E7"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/option_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Провокационное поведение"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="#E7E7E7"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/option_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Другое"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="#E7E7E7"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/report"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/background_for_edittext"
+        app:cardCornerRadius="@dimen/corner_radius_for_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group"
+        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+        <EditText
+            android:id="@+id/search_fields"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/back_color"
+            android:hint="Что случилось?"
+            android:fontFamily="@font/noah_regular"
+            android:padding="16dp"
+            android:textSize="@dimen/button_textsize"
+            android:textColor="@color/hint_color"
+            android:textColorHint="@color/hint_color"
+            tools:ignore="TextFields" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/button_report"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_button_background"
+            android:foreground="?android:selectableItemBackgroundBorderless">
+
+            <TextView
+                android:id="@+id/report_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:text="ОТПРАВИТЬ"
+                android:fontFamily="@font/noah_bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/buttonProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/report_text"
+                app:layout_constraintEnd_toEndOf="@+id/report_text"
+                app:layout_constraintStart_toStartOf="@+id/report_text"
+                app:layout_constraintTop_toTopOf="@+id/report_text"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

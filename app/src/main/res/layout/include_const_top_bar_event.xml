@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/background_black">
+
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_fields_event"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/noah_regular"
+        android:inputType="textCapSentences"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Поиск"
+        app:searchIcon="@drawable/ic_baseline_search_orange"
+        app:theme="@style/SearchViewStyle" />
+
+    <ImageView
+        android:id="@+id/add_playgrounds_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_addplaygrounds"
+        app:layout_constraintBottom_toBottomOf="@+id/search_fields_event"
+        app:layout_constraintEnd_toStartOf="@+id/search_fields_event"
+        app:layout_constraintTop_toTopOf="@+id/search_fields_event" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/all_people_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/noah_regular"
+        android:text="Все"
+        android:textAllCaps="false"
+        android:textColor="@color/back_color"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/only_one_person_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:backgroundTint="@color/background_for_edittext"
+        android:fontFamily="@font/noah_regular"
+        android:text="Учавствую 1"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/all_people_event"
+        app:layout_constraintEnd_toStartOf="@+id/add_playgrounds_event"
+        app:layout_constraintStart_toEndOf="@+id/all_people_event"
+        app:layout_constraintTop_toTopOf="@+id/all_people_event" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

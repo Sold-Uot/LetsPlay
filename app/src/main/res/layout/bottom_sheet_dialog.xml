@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="360dp"
+    android:background="@color/background_black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="4dp"
+            android:background="#ADADAD" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/materialCardView9"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second_gray">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/noah_regular"
+                android:gravity="center"
+                android:text="@string/no_images_text"
+                android:textColor="#787880"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView30" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_no_images" />
+
+            <ImageView
+                android:id="@+id/event_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/price_content_scroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noah_bold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/verified"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView9"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView9"
+        tools:text="от 1000 ₽" />
+
+    <TextView
+        android:id="@+id/name_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noah_regular"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/verified"
+        app:layout_constraintStart_toStartOf="@+id/price_content_scroll"
+        app:layout_constraintTop_toBottomOf="@+id/price_content_scroll"
+        tools:text="Футбольные поля Редукторный" />
+
+    <RatingBar
+        android:id="@+id/rating_bar_tool_bar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="@integer/material_motion_duration_long_1"
+        android:theme="@style/MyRatingBar"
+        app:layout_constraintStart_toEndOf="@+id/title_reviews_count"
+        app:layout_constraintTop_toTopOf="@+id/title_reviews_count"
+        tools:rating="5" />
+
+    <ImageView
+        android:id="@+id/null_starts_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_reviews_count"
+        app:layout_constraintStart_toEndOf="@+id/title_reviews_count"
+        app:layout_constraintTop_toTopOf="@+id/title_reviews_count"
+        app:srcCompat="@drawable/ic_null_starts" />
+    <TextView
+        android:id="@+id/title_reviews_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noah_bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/name_field"
+        app:layout_constraintTop_toBottomOf="@+id/name_field"
+        tools:text="4.5" />
+
+    <TextView
+        android:id="@+id/count_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/noah_regular"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/rating_bar_tool_bar"
+        app:layout_constraintTop_toTopOf="@+id/rating_bar_tool_bar"
+        tools:text="(176)" />
+
+    <TextView
+        android:id="@+id/botttom_sheet_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noah_regular"
+        android:textColor="@color/hint_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/verified"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView9"
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar_tool_bar"
+        tools:text="Комсомольский просп., 63 г. Махачкала" />
+
+
+    <ImageView
+        android:id="@+id/verified"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/price_content_scroll"
+        app:srcCompat="@drawable/ic_check"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

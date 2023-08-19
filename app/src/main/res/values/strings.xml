@@ -1,0 +1,195 @@
+<resources>
+    <string name="app_name">Lets Play</string>
+    <string name="base_url">letsplay.ru</string>
+    <string name="msg_loading">Загрузка.…</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+    <string name="error_network">Что-то пошло не так. Проблема подключения к интернету</string>
+    <string name="error_server">Ошибка сервера</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_account">Вход в аккаунт</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="registry">Зарегистрироваться</string>
+    <string name="login_or_number_phone">Логин или номер телефона</string>
+    <string name="parol">Пароль</string>
+    <string name="enter">Войти</string>
+    <string name="players">Игроки</string>
+    <string name="position">Позиция</string>
+    <string name="create_account">Создание аккаунта</string>
+    <string name="you_already_registrate">Вы уже зарегестрированы?</string>
+    <string name="registration_enter">Войти</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="gender">Пол</string>
+    <string name="man">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="birth_year">Дата рождения</string>
+    <string name="number_phone">Номер телефона</string>
+    <string name="email">Электронная почта</string>
+    <string name="code_in_email">Код с почты</string>
+    <string name="confirm_action">Подтверждение действия</string>
+    <string name="cancel_action">Отменить</string>
+    <string name="complete_action">Завершить</string>
+    <string name="profile_player">Профиль игрока</string>
+    <string name="add_friend">Добавить в друзья</string>
+    <string name="add_friend_send">Заявка отправлена</string>
+    <string name="allow">Принимаю условия <font color='#D7772E'><u>пользовательского соглашения</u></font> и даю согласие на обработку моих персональных данных</string>
+    <string name="continue_registry">Продолжить</string>
+    <string name="confirm_registration">Подтверждение регистрации</string>
+    <string name="info_confirm_registration">Для защиты вашего профиля мы\nотправили сообщение с кодом на\nуказанный номер</string>
+    <string name="change_number">Изменить номер</string>
+    <string name="send_code_again">ОТПРАВИТЬ КОД ЗАНОВО</string>
+    <string name="send_code">Отправить код</string>
+    <string name="change_password">Смена пароля</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="input_number_or_mail">Введите номер телефона или почту</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="refresh">Восстановить</string>
+    <string name="back">Назад</string>
+    <string name="access_recovery">Восстановление доступа</string>
+    <string name="info_access_recovery">На указанный номер телефона был отправлен смс код. Введите его чтобы получить доступ к аккаунту</string>
+    <string name="input_code_from_mail">Введите код</string>
+    <string name="we_send_code">Мы отправили Вам письмо с кодом на почту</string>
+    <string name="we_send_code_email">Письмо с кодом отправлено к Вам на почту</string>
+    <string name="add_playgrounds">Добавить площадку</string>
+    <string name="notifications">Уведомления</string>
+    <string name="list">Список</string>
+    <string name="map">Карта</string>
+    <string name="search">Поиск</string>
+    <string name="retry">Повторить</string>
+    <string name="no_results">Нет площадок с таким названием</string>
+    <string name="rating">Рейтинг</string>
+    <string name="create_event">СОЗДАТЬ СОБЫТИЕ</string>
+    <string name="show_more"><u>Показать весь</u></string>
+    <string name="general_coverage">Покрытие:</string>
+    <string name="field_phone">Телефон:</string>
+    <string name="general_field_price">Стоимость</string>
+    <string name="general_field_price_hour">Стоимость за час</string>
+    <string name="confirm_new_password">Подтвердите новый пароль</string>
+    <string name="show_all"><u>Посмотреть всех</u></string>
+    <string name="settings">Настройки</string>
+    <string name="settings_profile">Настройки профиля</string>
+    <string name="edit">Редактировать профиль</string>
+    <string name="black_list">Черный список</string>
+    <string name="list_participants">Список участников</string>
+    <string name="exit_from_profile">Выйти из профиля</string>
+    <string name="exit">Выйти</string>
+    <string name="okay">Понятно</string>
+    <string name="was_change_number">Номер был изменен</string>
+    <string name="was_change_email">Адрес эл. почты был изменен</string>
+    <string name="old_number_change_to_new">Старый номер телефона был успешно\nизменен на новый.</string>
+    <string name="old_email_change_to_new">Старый адрес электронной почты был\nуспешно изменен на новый.</string>
+    <string name="notifications_settings">Настройки уведомлений</string>
+    <string name="invites">Приглашения</string>
+    <string name="history_active">История активности</string>
+    <string name="events">События</string>
+    <string name="messages_from_chat">Сообщения из чата</string>
+    <string name="add_to_friends">Добавления в друзья</string>
+    <string name="create_team">Создание команды</string>
+    <string name="add_images_etc">Добавьте изображения, которое будет отображаться на профиле команды.</string>
+    <string name="profile_edit">Редактировать</string>
+    <string name="login_team">\@bsa63</string>
+    <string name="barcelona_lenina"><font color="#97979B">Название:</font> <font color="#D6D6DE">Barcelona_Lenina</font></string>
+    <string name="add_more"><u>+Добавить ещё</u></string>
+    <string name="edit_profile">Редактирование профиля</string>
+    <string name="profile_add_images">Добавьте изображение, которое будет отображаться на странице профиля.</string>
+    <string name="creation_team">СОЗДАТЬ КОМАНДУ</string>
+    <string name="edit_profile_hint"><font color="#97979B">Имя: </font> <font color="#D6D6DE">Магомед</font></string>
+    <string name="edit_profile_surname_hint"><font color="#97979B">Фамилия: </font> <font color="#D6D6DE">Вердиев</font></string>
+    <string name="edit_profile_post_hint"><font color="#97979B">Почта:</font> <font color="#D6D6DE">Verdievmaga1997@mail.ru</font></string>
+    <string name="edit_profile_change_password_hint"><font color="#D6D6DE">Сменить пароль</font></string>
+    <string name="edit_profile_position"><font color="#97979B">Позиция: </font> <font color="#D6D6DE">Нападающий</font></string>
+    <string name="edit_profile_position_defender"><font color="#97979B">Позиция: </font> <font color="#D6D6DE">Защитник</font></string>
+    <string name="edit_profile_position_goalkeeper"><font color="#97979B">Позиция: </font> <font color="#D6D6DE">Вратарь</font></string>
+    <string name="edit_profile_sex_hint"><font color="#97979B">Пол: </font> <font color="#D6D6DE">Мужской</font></string>
+    <string name="edit_profile_sex_hint_woman"><font color="#97979B">Пол: </font> <font color="#D6D6DE">Женский</font></string>
+    <string name="edit_profile_weight"><font color="#97979B">Вес: </font> <font color="#D6D6DE">74 кг</font></string>
+    <string name="edit_profile_height"><font color="#97979B">Рост: </font> <font color="#D6D6DE">178 см</font></string>
+    <string name="edit_profile_birthday"><font color="#97979B">Дата рождения: </font> <font color="#D6D6DE">12.08.1996г.</font></string>
+    <string name="change_password_dialog">Сменить пароль</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="save_changes">СОХРАНИТЬ ИЗМЕНЕНИЯ</string>
+    <string name="save">Сохранить</string>
+    <string name="black_list_search_player">Имя или фамилия игрока</string>
+    <string name="black_list_founded_4">Найдено: 4</string>
+    <string name="list_friends">Список друзей</string>
+    <string name="find_friend">В поисках друга</string>
+    <string name="settings_save">Настройки безопасности</string>
+    <string name="settings_security">Безопасность</string>
+    <string name="send_message">Написать сообщение</string>
+    <string name="write">Написать</string>
+    <string name="invite_event">Пригласить на событие</string>
+    <string name="invite_in_team">Пригласить в команду</string>
+    <string name="report">Пожаловаться на пользователя</string>
+    <string name="add_black_list">Добавить в черный список</string>
+    <string name="delete_from_friends">Удалить из списка друзей</string>
+    <string name="close">ЗАКРЫТЬ</string>
+    <string name="no_images_text">Изображение не найдено</string>
+    <string name="found">Найдено:</string>
+    <string name="list_events">Список событий</string>
+    <string name="list_players">Список игроков</string>
+    <string name="list_command">Список команд</string>
+    <string name="event_description">Описание события</string>
+    <string name="championship">Чемпионат по футболу</string>
+    <string name="field_descr">Футбольное поле (Спартак)</string>
+    <string name="comment_creator">Комментарий создателя</string>
+    <string name="goalkeeper">Вратарь</string>
+    <string name="name_field">Название поля</string>
+    <string name="name_site">Название площадки</string>
+    <string name="address">Местоположение</string>
+    <string name="hint_for_create_playground">Добавьте изображения, для Вашего поля. Максимальное количество фотографий: 10</string>
+    <string name="description_playground">Описание площадки</string>
+    <string name="contact_number">Контактный номер</string>
+    <string name="contact_phone">Контактный телефон</string>
+    <string name="coverage"><font color="#A1A1A8">Покрытие </font></string>
+    <string name="level_game"><font color="#C6C6CE">Продвинутый</font></string>
+    <string name="level_game_1"><font color="#C6C6CE">Любительский</font></string>
+    <string name="level_game_2"><font color="#C6C6CE">Начинающий</font></string>
+    <string name="create_playground_shoes"><font color="#A1A1A8">Шипованные бутсы </font></string>
+    <string name="game_status"><font color="#C6C6CE">Открытый</font></string>
+    <string name="game_status_private"><font color="#C6C6CE">Закрытый</font></string>
+    <string name="create_playground_pay"><font color="#A1A1A8">Оплата переводом </font></string>
+    <string name="work_schedule1">График работы</string>
+    <string name="balls_is"><font color="#A1A1A8">Мячи </font></string>
+    <string name="change_clothes_is"><font color="#A1A1A8">Раздевалки </font></string>
+    <string name="shirts_is"><font color="#A1A1A8">Манишики </font></string>
+    <string name="light_is"><font color="#A1A1A8">Освещение </font></string>
+    <string name="show_more_fields">Показать дополнительные поля</string>
+    <string name="confirm_address">ПОДТВЕРДИТЬ АДРЕС</string>
+    <string name="cancel">Отмена</string>
+    <string name="day1">Понедельник</string>
+    <string name="day2">Вторник</string>
+    <string name="day3">Среда</string>
+    <string name="day4">Четверг</string>
+    <string name="day5">Пятница</string>
+    <string name="day6">Суббота</string>
+    <string name="day7">Воскресенье</string>
+    <string name="all_week">Вся неделя</string>
+    <string name="working_day">Рабочий день</string>
+    <string name="weekend_day">Выходной день</string>
+    <string name="zero_players">0 игроков</string>
+    <string name="hide_fields">Скрыть дополнительные поля</string>
+    <string name="list_chats">Список чатов</string>
+    <string name="enter_your_message">Введите свое сообщение</string>
+    <string name="choice_date">Выбор даты проведения</string>
+    <string name="choice_date_event">Выбор даты события</string>
+    <string name="create_chat">СОЗДАТЬ ЧАТ</string>
+    <string name="event_title">Название события</string>
+    <string name="beginning_event">Начало события: завтра (19:00)</string>
+    <string name="not_require_for_edit">Необязательно для заполнения*</string>
+    <string name="choicen">Выбрано</string>
+    <string name="choicen_double_point">Выбрано:</string>
+    <string name="friends">Друзья</string>
+    <string name="teams">Команды</string>
+    <string name="list_members">Список участников</string>
+    <string name="share_event">https://play.google.com/store/apps/details?id=ru.radixit.letsplay</string>
+    <string name="enter_number_phone_or_email">Введите номер телефона или почту</string>
+    <string name="enter_hint_code">Ввод</string>
+    <string name="site_equipment">Оснащение площадки</string>
+    <string name="continue_registry_all_caps">Продолжить</string>
+    <string name="create_playg_tv">Создать площадку</string>
+    <string name="create_event_tv">Создать событие</string>
+</resources>

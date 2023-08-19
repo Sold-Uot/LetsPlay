@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/back_color"
+    android:layout_marginStart="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_playing_cv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:id="@+id/item_avatar_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_black"
+            app:srcCompat="@drawable/ic_no_images"
+            tools:src="@drawable/profile_photo" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/title_event_tv"
+        android:layout_width="wrap_content"
+        android:maxWidth="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noah_regular"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/item_playing_cv"
+        app:layout_constraintStart_toStartOf="@+id/item_playing_cv"
+        app:layout_constraintTop_toBottomOf="@+id/item_playing_cv"
+        tools:text="Team_Dagestan" />
+</androidx.constraintlayout.widget.ConstraintLayout>

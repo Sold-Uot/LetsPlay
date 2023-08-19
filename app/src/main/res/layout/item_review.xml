@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/corner_radius_for_edittext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#262626">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView10"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvCreatedBy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/noah_bold"
+                android:text="Неизвестно"
+                android:textColor="@color/white"
+                android:textSize="@dimen/small_size"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView10"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView10" />
+
+            <RatingBar
+                android:id="@+id/rbRatingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="@integer/material_motion_duration_long_1"
+                android:theme="@style/MyRatingBar"
+                app:layout_constraintBottom_toBottomOf="@+id/materialCardView10"
+                app:layout_constraintStart_toStartOf="@+id/tvCreatedBy"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreatedBy"
+                app:layout_constraintVertical_bias="1.0" />
+            <ImageView
+                android:id="@+id/null_starts_img"
+                android:layout_width="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_null_starts"
+                app:layout_constraintBottom_toBottomOf="@+id/materialCardView10"
+                app:layout_constraintStart_toStartOf="@+id/tvCreatedBy"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreatedBy"/>
+
+            <TextView
+                android:id="@+id/tvCreatedAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="4 часа назад"
+                android:textColor="#878787"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCreatedBy"
+                app:layout_constraintStart_toEndOf="@+id/tvCreatedBy"
+                app:layout_constraintTop_toTopOf="@+id/tvCreatedBy" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/noah_regular"
+                android:text="Неизвестно"
+                android:textColor="#C6C6CE"
+                android:textSize="@dimen/small_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView10"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView10" />
+
+            <TextView
+                android:id="@+id/item_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/noah_regular"
+                android:text="Пожаловаться"
+                android:textColor="#878787"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/materialCardView10"
+                app:layout_constraintTop_toBottomOf="@+id/tvText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

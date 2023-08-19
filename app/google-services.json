@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "889655829553",
+    "project_id": "let-s-play-4f1b6",
+    "storage_bucket": "let-s-play-4f1b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889655829553:android:1e746d87e4a4ccc296a110",
+        "android_client_info": {
+          "package_name": "ru.radixit.letsplay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889655829553-l9p0k5gt64tsit7vt0sfk50603g62iqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHqoLaqKKn8UAWk2R0gsAaVFlKN6fqCmc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889655829553-l9p0k5gt64tsit7vt0sfk50603g62iqk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "889655829553-2h8r3c1halp5ugml5il4pantrsdqfvdq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.steilyug.lets-play"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

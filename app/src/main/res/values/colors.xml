@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#1D1D1D</color>
+    <color name="black_gray">#262626</color>
+    <color name="back_color">#19191A</color>
+    <color name="white">#FFFEFF</color>
+    <color name="hint_color">#A5A5A5</color>
+    <color name="background_black">#232325</color>
+    <color name="clicked_text_color">#FA6C19</color>
+    <color name="second_black">#1C1C1F</color>
+    <color name="second_gray">#323235</color>
+    <color name="main_gray">#B0B0B5</color>
+    <color name="main_orange">#FA6C19</color>
+    <color name="second_orange">#E65705</color>
+    <color name="gray_view">#45454A</color>
+    <color name="not_account">#CCCCCC</color>
+    <color name="black_total">#99000000</color>
+    <color name="background_for_edittext">#313135</color>
+    <color name="gray_light">#5F5F65</color>
+    <color name="secondary_text_color">#CBCBCB</color>
+    <color name="color_stroke">#62666B</color>
+    <color name="text_color_secondary">#C6C6CE</color>
+    <color name="red">#CA0F0F</color>
+    <color name="violet">#604681</color>
+    <color name="text_color_secondary1">#D7772E</color>
+    <color name="secondary_clicked_text_color">#D7772E</color>
+    <color name="weekend_color">#4D4D4D</color>
+    <color name="calendar_selection">#FFF57A0E</color>
+    <color name="green_check">#42BE65</color>
+    <color name="red_error">#CF6679</color>
+</resources>

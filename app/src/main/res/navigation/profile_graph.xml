@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_graph"
+    app:startDestination="@id/profileRedesignFrag">
+
+    <dialog
+        android:id="@+id/listPlayingFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.ListPlayingFrag"
+        android:label="frag_list_playing"
+        tools:layout="@layout/frag_list_playing">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/eventDescRedesignFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.EventDescRedesignFrag"
+        android:label="frag_list_playing"
+        tools:layout="@layout/frag_event_desc_redesign">
+        <action
+            android:id="@+id/action_eventDescRedesignFrag_to_itemListPlaying"
+            app:destination="@id/listPlayingFrag" />
+        <argument
+            android:name="event"
+            app:argType="ru.radixit.letsplay.data.model.Event"
+            app:nullable="true" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/findFriendFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.findFriend.FindFriendFragment"
+        android:label="FindFriendFragment"
+        tools:layout="@layout/fragment_find_friend">
+        <action
+            android:id="@+id/action_findFriendFragment_to_userInBlackListDialogFragment"
+            app:destination="@id/userInBlackListDialogFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/userInBlackListDialogFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.UserInBlackListDialogFragment"
+        android:label="fragment_user_in_black_list_dialog"
+        tools:layout="@layout/fragment_user_in_black_list_dialog">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/userChatFragment2"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.UserChatFragment"
+        android:label="UserChatFragment"
+        tools:layout="@layout/fragment_user_chat">
+        <argument
+            android:name="chatType"
+            app:argType="integer" />
+        <argument
+            android:name="receiverId"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/userReportFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.UserReportFragment"
+        android:label="UserReportFragment"
+        tools:layout="@layout/fragment_report">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/removeFromFriendsFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.RemoveFromFriendsFragment"
+        android:label="fragment_remove_from_friends"
+        tools:layout="@layout/fragment_remove_from_friends">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/UserFriendsFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.UserFriendsFragment"
+        android:label="fragment_user_friends"
+        tools:layout="@layout/fragment_user_friends">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileRedesignFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.ProfileRedesignFrag"
+        android:label="frag_profile_redesign"
+        tools:layout="@layout/frag_profile_redesign">
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_settingsRedesignFrag"
+            app:destination="@id/settingsRedesignFrag" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_editProfileRedesFrag"
+            app:destination="@id/editProfileRedesFrag" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_friendProfileInfoFragment"
+            app:destination="@id/friendProfileInfoFragment" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_listFriendsRedesFrag"
+            app:destination="@id/listFriendsRedesFrag" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_listEventsProfRedesFrag"
+            app:destination="@id/listEventsProfRedesFrag" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_listTeamsRedesFrag"
+            app:destination="@id/listTeamsRedesFrag" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_eventDescRedesignFrag"
+            app:destination="@id/eventDescRedesignFrag" />
+    </fragment>
+    <dialog
+        android:id="@+id/settingsRedesignFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.SettingsRedesignFrag"
+        android:label="frag_settings_redesign"
+        tools:layout="@layout/frag_settings_redesign" >
+        <action
+            android:id="@+id/action_settingsRedesignFrag_to_notifSettingRedesFrag"
+            app:destination="@id/notifSettingRedesFrag" />
+        <action
+            android:id="@+id/action_settingsRedesignFrag_to_editProfileRedesFrag"
+            app:destination="@id/editProfileRedesFrag" />
+        <action
+            android:id="@+id/action_settingsRedesignFrag_to_settingsSaveRedesFrag"
+            app:destination="@id/settingsSaveRedesFrag" />
+        <action
+            android:id="@+id/action_settingsRedesignFrag_to_blackListRedesFrag"
+            app:destination="@id/blackListRedesFrag" />
+    </dialog>
+    <fragment
+        android:id="@+id/editProfileRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.editProfile.EditProfileRedesFrag"
+        android:label="EditProfileRedesFrag"
+        tools:layout="@layout/frag_edit_profile_redesign" />
+    <fragment
+        android:id="@+id/friendProfileInfoFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.ProfilePlayerFrag"
+        android:label="FriendProfileInfoFragment"
+        tools:layout="@layout/frag_profile_player_redes">
+        <argument
+            android:name="id"
+
+            app:argType="string" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_userReportFragment"
+            app:destination="@id/userReportFragment" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_userChatFragment2"
+            app:destination="@id/userChatFragment2" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_listEventsProfRedesFrag"
+            app:destination="@id/listEventsProfRedesFrag" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_listTeamsRedesFrag"
+            app:destination="@id/listTeamsRedesFrag" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_listFriendsRedesFrag"
+            app:destination="@id/listFriendsRedesFrag" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_notifSettingRedesFrag"
+            app:destination="@id/notifSettingRedesFrag" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_self"
+            app:destination="@id/friendProfileInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFriendsRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.ListFriendsRedesFrag"
+        android:label="ListFriendsRedesFrag"
+        tools:layout="@layout/frag_list_friends_redesign">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/listEventsProfRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.events.ListEventsProfRedesFrag"
+        android:label="listEventsProfRedesFrag"
+        tools:layout="@layout/frag_list_events_redesign">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_listEventsProfRedesFrag_to_eventDescRedesignFrag"
+            app:destination="@id/eventDescRedesignFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/listTeamsRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.ListTeamsRedesFrag"
+        android:label="ListTeamsRedesFrag"
+        tools:layout="@layout/frag_list_teams_redes">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <dialog
+        android:id="@+id/notifSettingRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.notifications.NotifSettingRedesFrag"
+        android:label="NotifSettingRedesFrag"
+        tools:layout="@layout/frag_setting_notification_redes"  />
+    <fragment
+        android:id="@+id/settingsSaveRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.SettingsSaveRedesFrag"
+        android:label="frag_settings_save_redes"
+        tools:layout="@layout/frag_settings_save_redes" >
+        <action
+            android:id="@+id/action_settingsSaveRedesFrag_to_ChangeNumberRedesFrag"
+            app:destination="@id/changeNumberRedesFrag" />
+        <action
+            android:id="@+id/action_settingsSaveRedesFrag_to_changeEmailRedesFrag"
+            app:destination="@id/changeEmailRedesFrag" />
+        <action
+            android:id="@+id/action_settingsSaveRedesFrag_to_changePasswordRedesFrag"
+            app:destination="@id/changePasswordRedesFrag" />
+        <action
+            android:id="@+id/action_settingsSaveRedesFrag_to_historyActiveFrag"
+            app:destination="@id/historyActiveFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeNumberRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.change_number.ChangeNumberRedesFrag"
+        android:label="frag_settings_save_redes"
+        tools:layout="@layout/frag_change_number_phone_redes" >
+        <action
+            android:id="@+id/action_changeNumberRedesFrag_to_confirmNumberRedesFrag"
+            app:destination="@id/confirmNumberRedesFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmNumberRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.change_number.ConfirmNumberRedesFrag"
+        android:label="frag_settings_save_redes"
+        tools:layout="@layout/frag_confirm_code_number_redes" />
+    <dialog
+        android:id="@+id/blackListRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.blackList.BlackListRedesFrag"
+        android:label="BlackListRedesFrag"
+        tools:layout="@layout/frag_black_list_redes" >
+        <action
+            android:id="@+id/action_blackListRedesFrag_to_userInBlackListDialogFragment"
+            app:destination="@id/userInBlackListDialogFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/changeEmailRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.change_email.ChangeEmailRedesFrag"
+        android:label="changeEmailRedesFrag"
+        tools:layout="@layout/frag_change_email_redes" >
+        <action
+            android:id="@+id/action_changeEmailRedesFrag_to_confirmCodeEmailFrag"
+            app:destination="@id/confirmCodeEmailFrag" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmCodeEmailFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.change_email.ConfirmCodeEmailFrag"
+        android:label="confirmCodeEmailFrag"
+        tools:layout="@layout/frag_confirm_code_email_redes" />
+    <fragment
+        android:id="@+id/changePasswordRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.changePassword.ChangePasswordRedesFrag"
+        android:label="changePasswordRedesFrag"
+        tools:layout="@layout/frag_change_password_redes" >
+        <action
+            android:id="@+id/action_changePasswordRedesFrag_to_confirmPasswordRedesFrag"
+            app:destination="@id/confirmPasswordRedesFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmPasswordRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.settings.changePassword.ConfirmPasswordRedesFrag"
+        android:label="confirmPasswordRedesFrag"
+        tools:layout="@layout/frag_confirm_password_redes" >
+    </fragment>
+    <fragment
+        android:id="@+id/historyActiveFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.HistoryActiveFrag"
+        android:label="frag_history_active"
+        tools:layout="@layout/frag_history_active" />
+
+</navigation>

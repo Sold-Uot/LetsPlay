@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="26dp"
+    android:background="@color/back_color">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageView19"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/second_gray">
+
+
+            <ImageView
+                android:id="@+id/img_not_found_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_no_images" />
+
+            <TextView
+                android:id="@+id/img_not_found_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/noah_regular"
+                android:gravity="center"
+                android:text="@string/no_images_text"
+                android:textColor="#787880"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_not_found_img" />
+
+            <ImageView
+                android:id="@+id/event_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/event_bottom_shadow_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/event_bottom_shadow_img" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/imageView19"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toBottomOf="@+id/imageView19">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/avatar_cv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="3dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/avatar_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_no_images"
+                tools:background="@color/second_gray" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/star_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_mine_star" />
+
+        <TextView
+            android:id="@+id/title_event_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_clock_icon_event"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/noah_bold"
+            android:text="Чемпионат по футболу"
+            android:textColor="#D6D6DE"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/avatar_cv"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_cv" />
+
+        <TextView
+            android:id="@+id/name_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noah_regular"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar_cv"
+            app:layout_constraintStart_toEndOf="@+id/avatar_cv"
+            app:layout_constraintTop_toTopOf="@+id/avatar_cv"
+            tools:text="Магомед Вердиев" />
+
+        <TextView
+            android:id="@+id/place_event_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_location_icon_event"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/noah_regular"
+            android:text="Футбольное поле (Спартак)"
+            android:textColor="#ADADAD"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_event_tv" />
+
+        <TextView
+            android:id="@+id/count_players"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:drawableStart="@drawable/ic_people_icon_item"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/noah_regular"
+            android:text="9/12"
+            android:textColor="#ADADAD"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/level_game_mat_btn"
+            app:layout_constraintStart_toEndOf="@+id/level_game_mat_btn"
+            app:layout_constraintTop_toTopOf="@+id/level_game_mat_btn" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/level_game_mat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#A062BC"
+            android:fontFamily="@font/noah_regular_otf"
+            android:text="Продвинутый"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:cornerRadius="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/place_event_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

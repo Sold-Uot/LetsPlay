@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playgrounds_graph"
+    app:startDestination="@id/listPlaygroundsFragment">
+
+    <fragment
+        android:id="@+id/listPlaygroundsFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.fragments.ListPlaygroundsFragment"
+        tools:layout="@layout/fragment_list_playgrounds"
+        android:label="ListPlaygroundsFragment" >
+        <action
+            android:id="@+id/action_listPlaygroundsFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_listPlaygroundsFragment_to_notificationsFragment3"
+            app:destination="@id/notificationsFragment3" />
+        <action
+            android:id="@+id/action_listPlaygroundsFragment_to_createPlaygRedesFrag"
+            app:destination="@id/createPlaygRedesFrag" />
+        <action
+            android:id="@+id/action_listPlaygroundsFragment_to_playgInfoRedesignFrag"
+            app:destination="@id/playgInfoRedesignFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationsFragment3"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.notifications.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <dialog
+        android:id="@+id/playgroundAddressFragment"
+        tools:layout="@layout/fragment_playground_address"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.PlaygroundAddressFragment"
+        android:label="PlaygroundAddressFragment" >
+        <action
+            android:id="@+id/action_playgroundAddressFragment_to_searchAddressFragment"
+            app:destination="@id/searchAddressFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/searchAddressFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.SearchAddressFragment"
+        android:label="fragment_search_address"
+        tools:layout="@layout/fragment_search_address" />
+    <dialog
+        android:id="@+id/playgWorkSchedulerFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.PlaygWorkSchedulerFragment"
+        android:label="work_schedule"
+        tools:layout="@layout/work_schedule_redes_frag" />
+    <dialog
+        android:id="@+id/createEventRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.CreateEventRedesFrag"
+        android:label="frag_create_event_redes"
+        tools:layout="@layout/frag_create_event_redes" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/eventInDetailRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.EventInDetailRedesFrag"
+        android:label="frag_event_in_detail_redes"
+        tools:layout="@layout/frag_event_in_detail_redes" >
+        <argument
+            android:name="latLng"
+            app:nullable="true"
+            app:argType="com.google.android.gms.maps.model.LatLng" />
+        <argument
+            android:name="addressTitle"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="playgId"
+            app:nullable="true"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_playersEventRedesFrag"
+            app:destination="@id/playersEventRedesFrag" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_listMapsRedesFrag"
+            app:destination="@id/listMapsRedesFrag" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFragPlayg_to_createEventRedesFrag"
+            app:destination="@id/createEventRedesFrag" />
+    </fragment>
+    <dialog
+        android:id="@+id/playersEventRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.PlayersEventRedesFrag"
+        android:label="frag_list_players_redes"
+        tools:layout="@layout/frag_list_players_redes" >
+    </dialog>
+    <dialog
+        android:id="@+id/listMapsRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.play_list.ListMapsRedesFrag"
+        tools:layout="@layout/frag_list_maps_redes"
+        android:label="frag_list_maps_redes" >
+        <action
+            android:id="@+id/action_listMapsRedesFrag_to_eventInDetailRedesFrag"
+            app:destination="@id/eventInDetailRedesFrag2" />
+        <action
+            android:id="@+id/action_listMapsRedesFrag_to_listPlaygRedesFrag"
+            app:destination="@id/listPlaygRedesFrag"
+            app:popUpTo="@id/listMapsRedesFrag"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/listPlaygRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.play_list.ListPlaygRedesFrag"
+        tools:layout="@layout/frag_list_playgs_redes"
+        android:label="frag_list_playgs_redes" >
+        <action
+            android:id="@+id/action_listPlaygRedesFrag_to_eventInDetailRedesFrag"
+            app:destination="@id/eventInDetailRedesFrag2" />
+        <action
+            android:id="@+id/action_listPlaygRedesFrag_to_listMapsRedesFrag"
+            app:destination="@id/listMapsRedesFrag"
+            app:popUpTo="@id/listPlaygRedesFrag"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.fragments.MapsFragment"
+        android:label="MapsFragment" >
+        <action
+            android:id="@+id/action_mapsFragment_to_notificationsFragment3"
+            app:destination="@id/notificationsFragment3" />
+        <action
+            android:id="@+id/action_mapsFragment_to_listPlaygroundsFragment"
+            app:destination="@id/listPlaygroundsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_playgInfoRedesignFrag"
+            app:destination="@id/playgInfoRedesignFrag" />
+        <action
+            android:id="@+id/action_mapsFragment_to_createPlaygRedesFrag"
+            app:destination="@id/createPlaygRedesFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/playgInfoFullScreenFrag"
+        tools:layout="@layout/playg_info_image_full_screen"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.PlaygInfoFullScreenFrag"
+        android:label="PlaygInfoFullScreenFrag" >
+        <argument
+            android:name="id"
+            app:argType="string"/>
+        <argument
+            android:name="Photo"
+            app:argType="ru.radixit.letsplay.data.model.PlaygroundInDetail$Photo[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFullScreenRedesFrag"
+        tools:layout="@layout/review_full_screen_redes_frag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.ReviewFullScreenRedesFrag"
+        android:label="SiteAreaScreen">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/playgInfoRedesignFrag"
+        tools:layout="@layout/fragment_playground_info_redesign"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.PlaygInfoRedesignFrag"
+        android:label="PlaygInfoRedesignFrag" >
+
+        <argument
+            android:name="latLng"
+            app:nullable="true"
+            app:argType="com.google.android.gms.maps.model.LatLng" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_playgroundInfoFragment_to_playgInfoFullScreenFrag"
+            app:destination="@id/playgInfoFullScreenFrag" />
+        <action
+            android:id="@+id/action_playgInfoRedesignFrag_to_reviewFullScreenRedesFrag"
+            app:destination="@id/reviewFullScreenRedesFrag" />
+
+        <action
+            android:id="@+id/action_playgInfoRedesignFrag_to_eventInDetailRedesFrag2"
+            app:destination="@id/eventInDetailRedesFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPlaygRedesFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.CreatePlaygRedesFrag"
+        android:label="CreatePlaygRedesFrag"
+        tools:layout="@layout/frag_create_playg_redesign" >
+        <action
+            android:id="@+id/action_createPlaygRedesFrag_to_playgWorkSchedulerFragment"
+            app:destination="@id/playgWorkSchedulerFragment" />
+        <action
+            android:id="@+id/action_createPlaygRedesFrag_to_playgroundAddressFragment"
+            app:destination="@id/playgroundAddressFragment" />
+    </fragment>
+</navigation>

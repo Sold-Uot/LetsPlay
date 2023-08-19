@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mob_nav"
+    app:startDestination="@id/playgrounds_graph">
+
+    <include app:graph="@navigation/chat_graph" />
+    <include app:graph="@navigation/playgrounds_graph" />
+    <include app:graph="@navigation/event_graph" />
+    <include app:graph="@navigation/profile_graph" />
+</navigation>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/background_black">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_fields_playg"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/background_search_view"
+        android:fontFamily="@font/noah_regular"
+        android:inputType="textCapSentences"
+        android:paddingEnd="6dp"
+        app:closeIcon="@drawable/ic_baseline_close_24"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_playgrounds_playg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="Поиск"
+        app:searchIcon="@drawable/ic_baseline_search"
+        app:theme="@style/SearchViewStyle" />
+
+    <ImageView
+        android:id="@+id/add_playgrounds_playg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:src="@drawable/ic_addplaygrounds"
+        app:layout_constraintBottom_toBottomOf="@+id/notif_bell_const_playg"
+        app:layout_constraintEnd_toStartOf="@+id/notif_bell_const_playg"
+        app:layout_constraintTop_toTopOf="@+id/notif_bell_const_playg" />
+
+    <ImageView
+        android:id="@+id/notif_bell_const_playg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="26dp"
+        android:src="@drawable/ic_notification_bell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notif_count_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/notif_bell_const_playg"
+        app:layout_constraintTop_toTopOf="@+id/notif_bell_const_playg">
+
+        <TextView
+            android:id="@+id/notif_count_tv_playg"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:background="#E65705"
+            android:visibility="gone"
+            android:fontFamily="@font/noah_regular"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:text="0"
+            tools:text="1" />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

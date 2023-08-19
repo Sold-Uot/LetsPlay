@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.ReviewFullScreenRedesFrag">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_for_edittext"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:orientation="vertical"
+        app:navigationIcon="@drawable/ic_back_arrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+            <TextView
+                android:id="@+id/title_tool_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noah_regular"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="Отзывы о площадке"
+                android:textSize="16sp"
+                android:layout_gravity="start"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/title_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:fontFamily="@font/noah_bold"
+        android:layout_marginTop="12dp"
+        android:text="Общая оценка"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <TextView
+        android:id="@+id/title_prog_bar_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/noah_regular"
+        android:text="5"
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/prog_bar_5"
+        app:layout_constraintStart_toStartOf="@+id/title_reviews"
+        app:layout_constraintTop_toBottomOf="@+id/title_reviews" />
+
+
+    <ProgressBar
+        android:id="@+id/prog_bar_5"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/prog_bar_rating_shape"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="106dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_prog_bar_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_prog_bar_5"
+        app:layout_constraintTop_toTopOf="@+id/title_prog_bar_5"
+        android:progress="90" />
+
+    <TextView
+        android:id="@+id/title_prog_bar_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noah_regular"
+        android:text="4"
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/title_prog_bar_5"
+        app:layout_constraintStart_toStartOf="@+id/title_prog_bar_5"
+        app:layout_constraintTop_toBottomOf="@+id/title_prog_bar_5" />
+
+    <ProgressBar
+        android:id="@+id/prog_bar_4"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/prog_bar_rating_shape"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_prog_bar_4"
+        app:layout_constraintEnd_toEndOf="@+id/prog_bar_5"
+        app:layout_constraintStart_toStartOf="@+id/prog_bar_5"
+        app:layout_constraintTop_toTopOf="@+id/title_prog_bar_4"
+        android:progress="50" />
+    <TextView
+        android:id="@+id/title_prog_bar_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noah_regular"
+        android:text="3"
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/title_prog_bar_4"
+        app:layout_constraintStart_toStartOf="@+id/title_prog_bar_4"
+        app:layout_constraintTop_toBottomOf="@+id/title_prog_bar_4" />
+
+    <ProgressBar
+        android:id="@+id/prog_bar_3"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/prog_bar_rating_shape"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:progress="30"
+        app:layout_constraintEnd_toEndOf="@+id/prog_bar_4"
+        app:layout_constraintStart_toStartOf="@+id/prog_bar_5"
+        app:layout_constraintTop_toTopOf="@+id/title_prog_bar_3"
+        app:layout_constraintBottom_toBottomOf="@+id/title_prog_bar_3"/>
+    <TextView
+        android:id="@+id/title_prog_bar_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noah_regular"
+        android:text="2"
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/title_prog_bar_3"
+        app:layout_constraintStart_toStartOf="@+id/title_prog_bar_3"
+        app:layout_constraintTop_toBottomOf="@+id/title_prog_bar_3" />
+
+    <ProgressBar
+        android:id="@+id/prog_bar_2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/prog_bar_rating_shape"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:progress="20"
+        app:layout_constraintEnd_toEndOf="@+id/prog_bar_3"
+        app:layout_constraintStart_toStartOf="@+id/prog_bar_5"
+        app:layout_constraintTop_toTopOf="@+id/title_prog_bar_2"
+        app:layout_constraintBottom_toBottomOf="@+id/title_prog_bar_2"/>
+    <TextView
+        android:id="@+id/title_prog_bar_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/noah_regular"
+        android:textSize="16sp"
+        android:text="1"
+        android:textColor="@color/main_gray"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/title_prog_bar_2"
+        app:layout_constraintStart_toStartOf="@+id/title_prog_bar_2"
+        app:layout_constraintTop_toBottomOf="@+id/title_prog_bar_2" />
+
+    <ProgressBar
+        android:id="@+id/prog_bar_1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/prog_bar_rating_shape"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_prog_bar_1"
+        app:layout_constraintEnd_toEndOf="@+id/prog_bar_2"
+        app:layout_constraintStart_toStartOf="@+id/prog_bar_5"
+        app:layout_constraintTop_toTopOf="@+id/title_prog_bar_1"
+        android:progress="10" />
+
+    <TextView
+        android:id="@+id/title_reviews_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/noah_bold"
+        android:textColor="@color/white"
+        android:textSize="46sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prog_bar_5"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        tools:text="4.5" />
+
+    <RatingBar
+        android:id="@+id/rating_bar_site"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="@integer/material_motion_duration_long_1"
+        android:theme="@style/MyRatingBar"
+        app:layout_constraintEnd_toEndOf="@+id/title_reviews_count"
+        app:layout_constraintStart_toStartOf="@+id/title_reviews_count"
+        app:layout_constraintTop_toBottomOf="@+id/title_reviews_count"
+        tools:rating="4" />
+    <ImageView
+        android:id="@+id/null_starts_img"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_null_starts"
+        app:layout_constraintTop_toBottomOf="@+id/title_reviews_count"
+        app:layout_constraintEnd_toEndOf="@+id/title_reviews_count"
+        app:layout_constraintStart_toStartOf="@+id/title_reviews_count"/>
+
+    <TextView
+        android:id="@+id/count_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/noah_regular"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/title_reviews_count"
+        app:layout_constraintStart_toStartOf="@+id/title_reviews_count"
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar_site"
+        app:layout_goneMarginTop="20dp"
+        tools:text="(176)" />
+
+    <View
+        android:id="@+id/view_gray"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="36dp"
+        android:background="@color/gray_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prog_bar_1"/>
+
+    <TextView
+        android:id="@+id/desc_reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/noah_bold"
+        android:text="Отзывы"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_gray" />
+
+    <TextView
+        android:id="@+id/desc_reviews_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/noah_regular"
+        tools:text="176"
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/desc_reviews"
+        app:layout_constraintStart_toEndOf="@+id/desc_reviews" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/site_reviews_rv"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_reviews"
+        tools:listitem="@layout/item_review_redes" />
+
+    <LinearLayout
+        android:id="@+id/empty_reviews_lin_lay"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desc_reviews"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ImageView
+            android:id="@+id/empty_reviews_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_empty_reviews"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/empty_reviews_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/noah_regular"
+            android:text="Пока никто не оставил \nотзывов о данной площадке."
+            android:textAlignment="center"
+            android:textColor="#7D7D82"
+            android:textSize="16sp"
+            app:srcCompat="@drawable/ic_empty_reviews" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

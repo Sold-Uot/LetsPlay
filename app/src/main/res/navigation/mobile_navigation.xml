@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.login.LoginFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth_login">
+        <action
+            android:id="@+id/action_authFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_authFragment_to_rootFragment"
+            app:destination="@id/rootFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_auth_registration">
+        <action
+            android:id="@+id/action_registrationFragment_to_confirmRegistrationFragment"
+            app:destination="@id/confirmRegistrationFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmRegistrationFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.registration.ConfirmRegistrationFragment"
+        android:label="fragment_confirm_registration"
+        tools:layout="@layout/fragment_auth_registration_confirm">
+        <argument
+            android:name="numberPhone"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotNewPasswordFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.forgot.ForgotNewPasswordFragment"
+        android:label="fragment_forgot_pass_word"
+        tools:layout="@layout/fragment_auth_forgot_new_password">
+        <action
+            android:id="@+id/action_forgotNewPasswordFragment_to_rootFragment"
+            app:destination="@id/rootFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.forgot.ForgotFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_auth_forgot">
+        <action
+            android:id="@+id/action_forgotFragment_to_forgotCodeConfirmationMailFragment"
+            app:destination="@id/forgotCodeConfirmationMailFragment"
+            app:popUpTo="@id/forgotFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_forgotFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_forgotFragment_to_confirmRegistrationFragment"
+            app:destination="@id/confirmRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotCodeConfirmationMailFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.auth.forgot.ForgotCodeConfirmationMailFragment"
+        android:label="fragment_code_from_mail"
+        tools:layout="@layout/fragment_auth_forgot_code_confirmation_mail">
+        <action
+            android:id="@+id/action_forgotCodeConfirmationMailFragment_to_forgotNewPasswordFragment"
+            app:destination="@id/forgotNewPasswordFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/rootFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.root.RootFragment"
+        tools:layout="@layout/fragment_root"
+        android:label="RootFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_rootFragment"
+            app:destination="@id/rootFragment" />
+    </fragment>
+</navigation>

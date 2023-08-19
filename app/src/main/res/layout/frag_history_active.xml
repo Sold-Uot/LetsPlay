@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.HistoryActiveFrag">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_arrow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/history_active"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/replace_mail_desc_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/noah_regular"
+        android:text="История активности показывает информацию о том, с каких устройств и в какое время вы входили в приложение."
+        android:textColor="@color/main_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+
+    <TextView
+        android:id="@+id/finish_activate_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/noah_bold"
+        android:text="Завершить все сеансы"
+        android:textColor="@color/main_orange"
+        app:layout_constraintStart_toStartOf="@+id/replace_mail_desc_tv"
+        app:layout_constraintTop_toBottomOf="@+id/replace_mail_desc_tv" />
+
+    <View
+        android:id="@+id/view_gray"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_view"
+        app:layout_constraintEnd_toEndOf="@+id/replace_mail_desc_tv"
+        app:layout_constraintStart_toStartOf="@+id/replace_mail_desc_tv"
+        app:layout_constraintTop_toBottomOf="@+id/finish_activate_tv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/last_activate_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/back_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_gray"
+        tools:listitem="@layout/item_history_active_rv" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:background="@color/back_color">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_playing_cv"
+        android:layout_width="104dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/back_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_avatar_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_black"
+            app:srcCompat="@drawable/ic_no_images" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/title_event_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/noah_bold"
+        android:textAlignment="textStart"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/item_playing_cv"
+        app:layout_constraintStart_toStartOf="@+id/item_playing_cv"
+        app:layout_constraintTop_toBottomOf="@+id/item_playing_cv"
+        tools:text="Чемпионат по футболлу" />
+
+    <TextView
+        android:id="@+id/date_event_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noah_regular"
+        android:textAlignment="textStart"
+        android:textColor="@color/main_gray"
+        app:layout_constraintEnd_toEndOf="@+id/item_playing_cv"
+        app:layout_constraintStart_toStartOf="@+id/item_playing_cv"
+        app:layout_constraintTop_toBottomOf="@+id/title_event_tv"
+        tools:text="Апрель 12 2022, 11:00" />
+</androidx.constraintlayout.widget.ConstraintLayout>

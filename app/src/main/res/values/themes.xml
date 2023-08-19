@@ -1,0 +1,138 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.LetsPlay" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/clicked_text_color</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColorHint">#AAAAB3</item>
+        <item name="android:textColor">#AAAAB3</item>
+        <item name="android:fontFamily">@font/noah_regular</item>
+    </style>
+    <style name="Widget.App.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="android:textAppearance">@style/TextAppearance.App.Tooltip</item>
+        <item name="backgroundTint">@color/main_orange</item>
+    </style>
+    <style name="TextAppearance.App.Tooltip" parent="TextAppearance.MaterialComponents.Tooltip">
+        <item name="android:textColor">#ffffff</item>
+        <item name="fontFamily">@font/noah_regular</item>
+        <item name="android:fontFamily">@font/noah_regular</item>
+    </style>
+
+
+    <style name="SplashScreen" parent="Theme.LetsPlay">
+        <item name="android:windowBackground">@drawable/ic_splash_background</item>
+    </style>
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/noah_bold</item>
+
+    </style>
+
+    <style name="Toolbar.TitleText_Regular" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">21sp</item>
+        <item name="android:fontFamily">@font/noah_regular</item>
+        <item name="android:textColor">#C6C6CE</item>
+
+    </style>
+
+    <style name="Toolbar.TitleText2" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="collapsedTitleTextAppearance">@style/CollapsedAppBar</item>
+        <item name="expandedTitleTextAppearance">@style/ExpandedAppBar</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/noah_bold</item>
+    </style>
+
+    <style name="MyRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">#FFCF55</item>
+    </style>
+
+    <style name="Widget.App.BottomNavBar" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item_selector</item>
+        <item name="itemTextAppearance">@style/TextAppearance.App.BottomNavBar</item>
+        <item name="itemTextColor">@color/bottom_nav_item_selector</item>
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.App.BottomNavBar" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/noah_regular</item>
+    </style>
+
+    <!-- set the rounded drawable as background to your bottom sheet -->
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">40dp</item>
+        <item name="cornerSizeTopLeft">40dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="SpinnerTimePicker" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
+
+    <style name="ClockTimePicker" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
+
+    <style name="CalenderViewCustom">
+        <item name="headerColor">@color/background_black</item>
+        <item name="headerLabelColor">@color/white</item>
+        <item name="abbreviationsBarColor">@color/background_black</item>
+        <item name="abbreviationsLabelsColor">@color/white</item>
+        <item name="pagesColor">@color/background_black</item>
+        <item name="daysLabelsColor">@color/white</item>
+        <item name="disabledDaysLabelsColor">#69696E</item>
+        <item name="anotherMonthsDaysLabelsColor">#69696E</item>
+        <item name="todayLabelColor">#FFFFFF</item>
+        <item name="selectionColor">@color/main_orange</item>
+    </style>
+
+    <style name="FullScreenDialogStyle" parent="Theme.LetsPlay">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+</resources>

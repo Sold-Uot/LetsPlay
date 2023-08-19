@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F0F10"
+    tools:context=".presentation.ui.fragments.tabs.profile.ProfilePlayerFrag">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_arrow">
+
+        <TextView
+            android:id="@+id/title_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/profile_player"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+        <ImageView
+            android:id="@+id/more_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="19dp"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_more_vert" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/lin_lay_prof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_first_shape"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/const_bottom_corners_shape"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/profile_mat_card"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="@color/violet"
+                        app:cardCornerRadius="40dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:id="@+id/name_on_avatar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/profile_mat_card"
+                            app:layout_constraintEnd_toEndOf="@+id/profile_mat_card"
+                            app:layout_constraintStart_toStartOf="@+id/profile_mat_card"
+                            app:layout_constraintTop_toTopOf="@+id/profile_mat_card"
+                            tools:text="m" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:text="Имя"
+                        app:layout_constraintStart_toEndOf="@+id/profile_mat_card"
+                        app:layout_constraintTop_toTopOf="@+id/profile_mat_card"
+                        tools:text="Махмуд Гунашев" />
+
+                    <TextView
+                        android:id="@+id/sport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noah_medium"
+                        android:textColor="@color/main_gray"
+                        app:layout_constraintStart_toStartOf="@+id/profile_name"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                        tools:text="был вчера в 20:41" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/add_friend_mat_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:maxLines="1"
+                        android:minHeight="50dp"
+                        android:text="@string/add_friend"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@color/main_orange"
+                        app:cornerRadius="9dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/write_mat_btn"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_mat_card" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/write_mat_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:drawablePadding="10dp"
+                        android:minWidth="159dp"
+                        android:minHeight="50dp"
+                        android:text="@string/write"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@color/background_for_edittext"
+                        app:cornerRadius="9dp"
+                        app:icon="@drawable/ic_message_white_icon"
+                        app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/add_friend_mat_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_mat_card" />
+
+
+                    <TextView
+                        android:id="@+id/city_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:drawableStart="@drawable/ic_home_icon"
+                        android:drawablePadding="15dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Город: "
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/profile_mat_card"
+                        app:layout_constraintTop_toBottomOf="@+id/write_mat_btn" />
+
+                    <TextView
+                        android:id="@+id/city_value_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Неизвестно"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/city_title_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/city_title_tv"
+                        app:layout_constraintTop_toTopOf="@+id/city_title_tv"
+                        tools:text="Махачкала" />
+
+                    <TextView
+                        android:id="@+id/pos_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="34dp"
+                        android:drawableStart="@drawable/ic_pos_dask_icon"
+                        android:drawablePadding="15dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Позиция: "
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/city_title_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/city_title_tv" />
+
+                    <TextView
+                        android:id="@+id/pos_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Неизвестно"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/pos_title_tv"
+                        app:layout_constraintTop_toTopOf="@+id/pos_title_tv"
+                        tools:text="Нападающий" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/played_img_card"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="12dp"
+                        app:cardBackgroundColor="@color/violet"
+                        app:cardCornerRadius="40dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/matches_played_value_tv"
+                        app:layout_constraintStart_toEndOf="@+id/matches_played_value_tv"
+                        app:layout_constraintTop_toTopOf="@+id/matches_played_value_tv">
+
+                        <TextView
+                            android:id="@+id/played_count_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            tools:text="7" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/missed_games_img_card"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        app:cardBackgroundColor="@color/violet"
+                        app:cardCornerRadius="40dp"
+                        app:layout_constraintStart_toEndOf="@+id/played_img_card"
+                        app:layout_constraintTop_toTopOf="@+id/played_img_card">
+
+                        <TextView
+                            android:id="@+id/missed_games_count_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            tools:text="99+" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/matches_played_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="34dp"
+                        android:drawableStart="@drawable/ic_matches_played_icon"
+                        android:drawablePadding="15dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Сыграно матчей: "
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/pos_title_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/pos_title_tv" />
+
+                    <TextView
+                        android:id="@+id/matches_played_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="Неизвестно"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/matches_played_title_tv"
+                        app:layout_constraintTop_toTopOf="@+id/matches_played_title_tv"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/all_inform_prof_play_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:drawableStart="@drawable/ic_all_inform_icon"
+                        android:drawablePadding="12dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="Подробная информация"
+                        android:textAlignment="center"
+                        android:textColor="@color/main_orange"
+                        app:layout_constraintStart_toStartOf="@+id/matches_played_title_tv"
+                        app:layout_constraintTop_toBottomOf="@+id/matches_played_title_tv" />
+
+                    <View
+                        android:id="@+id/friend_profile_view"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="26dp"
+                        android:background="@color/gray_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/all_inform_prof_play_tv" />
+
+                    <TextView
+                        android:id="@+id/friend_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="Друзья"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/friend_profile_view"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_profile_view" />
+
+                    <TextView
+                        android:id="@+id/friend_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="0"
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/friend_tv"
+                        app:layout_constraintStart_toEndOf="@+id/friend_tv"
+                        tools:text="28" />
+
+                    <ImageView
+                        android:id="@+id/friend_arrow_end_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="22dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/friend_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/friend_tv"
+                        app:srcCompat="@drawable/arrow_end" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/friends_rv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_tv"
+                        tools:listitem="@layout/item_friends_prof_rv_redes" />
+
+                    <TextView
+                        android:id="@+id/empty_list_friend_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Список друзей пуст"
+                        android:textAlignment="center"
+                        android:textColor="#7D7D82"
+                        android:textSize="@dimen/small_size"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="@+id/friends_rv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_tv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_second_shape"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/const_top_corners_shape"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/const_first_shape">
+
+                    <TextView
+                        android:id="@+id/events_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="События"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_goneMarginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/events_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="0"
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/events_tv"
+                        app:layout_constraintStart_toEndOf="@+id/events_tv"
+                        tools:text="4" />
+
+                    <ImageView
+                        android:id="@+id/events_arrow_end_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="22dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/events_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/events_tv"
+                        app:srcCompat="@drawable/arrow_end" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/events_rv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/events_tv"
+                        tools:listitem="@layout/item_events_prof_redes_rv" />
+
+                    <TextView
+                        android:id="@+id/empty_list_events_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Список событий пуст"
+                        android:textAlignment="center"
+                        android:textColor="#7D7D82"
+                        android:textSize="@dimen/small_size"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="@+id/events_rv"
+                        app:layout_constraintEnd_toEndOf="@+id/events_rv"
+                        app:layout_constraintStart_toStartOf="@+id/events_rv"
+                        app:layout_constraintTop_toTopOf="@+id/events_rv" />
+
+                    <View
+                        android:id="@+id/events_prof_play_view"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/gray_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/events_rv" />
+
+                    <TextView
+                        android:id="@+id/teams_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_bold"
+                        android:text="@string/teams"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/events_prof_play_view"
+                        app:layout_goneMarginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/teams_count_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="0"
+                        android:textColor="@color/main_gray"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/teams_tv"
+                        app:layout_constraintStart_toEndOf="@+id/teams_tv"
+                        tools:text="4" />
+
+                    <ImageView
+                        android:id="@+id/teams_arrow_end_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="22dp"
+                        android:padding="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/teams_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/teams_tv"
+                        app:srcCompat="@drawable/arrow_end" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/teams_rv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/teams_tv"
+                        tools:listitem="@layout/item_command_prof_rv_redes" />
+                    <TextView
+                        android:id="@+id/empty_list_teams_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/noah_regular"
+                        android:text="Список команд пуст"
+                        android:textAlignment="center"
+                        android:textColor="#7D7D82"
+                        android:visibility="gone"
+                        android:textSize="@dimen/small_size"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="@+id/teams_rv"
+                        app:layout_constraintEnd_toEndOf="@+id/teams_rv"
+                        app:layout_constraintStart_toStartOf="@+id/teams_rv"
+                        app:layout_constraintTop_toTopOf="@+id/teams_rv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/info_progress_bar"
+        layout="@layout/loading_progress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

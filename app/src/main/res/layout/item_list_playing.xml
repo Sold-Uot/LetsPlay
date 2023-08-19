@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="34dp"
+    android:background="@color/back_color">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        app:cardBackgroundColor="@color/background_black"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_no_images" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/name_list_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/noah_medium"
+        tools:text="Магомед Вердиев"
+        android:text="Имя Фамилия"
+        android:textColor="@color/text_color_secondary"
+        app:layout_constraintStart_toEndOf="@+id/materialCardView"
+        app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+
+    <TextView
+        android:id="@+id/pos_list_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noah_regular"
+        tools:text="Нападающий"
+        android:text="Позиция"
+        android:textColor="@color/main_gray"
+        app:layout_constraintStart_toStartOf="@+id/name_list_play"
+        app:layout_constraintTop_toBottomOf="@+id/name_list_play" />
+</androidx.constraintlayout.widget.ConstraintLayout>

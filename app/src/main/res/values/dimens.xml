@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_size">16sp</dimen>
+    <dimen name="big_size">31sp</dimen>
+    <dimen name="primary_margin">23dp</dimen>
+    <dimen name="ten">12dp</dimen>
+    <dimen name="corner_radius_for_edittext">12dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="button_textsize">18sp</dimen>
+</resources>

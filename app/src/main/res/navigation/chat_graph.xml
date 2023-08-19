@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_graph"
+    app:startDestination="@id/fragChatRedes">
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.ChatFragment"
+        tools:layout="@layout/fragment_chat"
+        android:label="fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_userChatFragment"
+            app:destination="@id/userChatFragment" />
+        <action
+             android:id="@+id/action_chatFragment_to_groupChatFragment"
+            app:destination="@id/groupChatFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_createChatFragment"
+            app:destination="@id/createChatFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragChatRedes"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.FragChatRedes"
+        tools:layout="@layout/frag_chat_redes"
+        android:label="frag_chat_redes" >
+        <action
+            android:id="@+id/action_chatFragment_to_userChatFragment"
+            app:destination="@id/userChatFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_groupChatFragment"
+            app:destination="@id/groupChatFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_createChatFragment"
+            app:destination="@id/createChatFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/userChatFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.UserChatFragment"
+        android:label="fragment_user_chat"
+        tools:layout="@layout/fragment_user_chat">
+        <argument
+            android:name="chatType"
+            app:argType="integer" />
+        <argument
+            android:name="receiverId"
+            app:argType="integer" />
+<!--        <deepLink-->
+<!--            android:id="@+id/deepLink"-->
+<!--            android:autoVerify="true"-->
+<!--            app:action="ACTION_SEND_MULTIPLE"-->
+<!--            app:mimeType="*/*"-->
+<!--            app:uri="www.letsplay.com/user_chat/{chatType}/{receiverId}" />-->
+    </dialog>
+    <dialog
+        android:id="@+id/groupChatFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.GroupChatFragment"
+        android:label="fragment_group_chat"
+        tools:layout="@layout/fragment_group_chat" >
+        <argument
+            android:name="isShowAvatar"
+            app:argType="boolean" />
+        <argument
+            android:name="chatType"
+            app:argType="integer" />
+        <argument
+            android:name="receiverId"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/createChatFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.CreateChatFragment"
+        android:label="fragment_create_chat"
+        tools:layout="@layout/fragment_create_chat" >
+        <action
+            android:id="@+id/action_createChatFragment_to_choiceUsersForEventFragment2"
+            app:destination="@id/choiceUsersForEventFragment2" />
+    </dialog>
+    <dialog
+        android:id="@+id/choiceUsersForEventFragment2"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.ChoiceUsersForEventFragment"
+        android:label="fragment_choice_users_for_event"
+        tools:layout="@layout/fragment_choice_users_for_event" />
+</navigation>

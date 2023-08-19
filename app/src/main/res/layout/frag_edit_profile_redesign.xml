@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    tools:context=".presentation.ui.fragments.tabs.profile.settings.editProfile.EditProfileRedesFrag">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_arrow">
+
+        <TextView
+            android:id="@+id/title_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/edit_profile"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+        <ImageView
+            android:id="@+id/check_save_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="13dp"
+            android:padding="6dp"
+            app:srcCompat="@drawable/ic_check_mark_icon" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_load"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/setting_mat_card"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/violet"
+                app:cardCornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/name_on_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_mat_card"
+                    app:layout_constraintEnd_toEndOf="@+id/profile_mat_card"
+                    app:layout_constraintStart_toStartOf="@+id/profile_mat_card"
+                    app:layout_constraintTop_toTopOf="@+id/profile_mat_card"
+                    tools:text="m" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/add_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noah_medium"
+                android:text="Поменять фотографию"
+                android:textColor="#E65705"
+                app:layout_constraintEnd_toEndOf="@+id/setting_mat_card"
+                app:layout_constraintStart_toStartOf="@+id/setting_mat_card"
+                app:layout_constraintTop_toBottomOf="@+id/setting_mat_card" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_user_lay_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:textColorHint="@color/main_gray"
+                app:boxBackgroundColor="@color/background_for_edittext"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_photo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_user_ed_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_for_edittext"
+                    android:fontFamily="@font/noah_regular"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName|textCapWords"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_color_secondary"
+                    android:textSize="@dimen/button_textsize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/surname_user_lay_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:textColorHint="@color/main_gray"
+                app:boxBackgroundColor="@color/background_for_edittext"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_user_lay_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/surname_user_ed_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_for_edittext"
+                    android:fontFamily="@font/noah_regular"
+                    android:hint="@string/surname"
+                    android:inputType="textPersonName|textCapWords"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_color_secondary"
+                    android:textSize="@dimen/button_textsize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/day_1_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="23dp"
+                android:fontFamily="@font/noah_regular"
+                android:text="@string/gender"
+                android:textColor="@color/main_gray"
+                app:layout_constraintStart_toStartOf="@+id/surname_user_lay_tv"
+                app:layout_constraintTop_toBottomOf="@+id/surname_user_lay_tv" />
+
+            <RadioGroup
+                android:id="@+id/day_1_rbg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/day_1_tv"
+                app:layout_constraintTop_toBottomOf="@+id/day_1_tv">
+
+                <RadioButton
+                    android:id="@+id/day_1_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:fontFamily="@font/noah_regular"
+                    android:padding="14dp"
+                    android:text="@string/man"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/day_1_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/day_1_tv"
+                    tools:buttonTint="@color/main_orange" />
+
+                <RadioButton
+                    android:id="@+id/day_2_rb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noah_regular"
+                    android:padding="14dp"
+                    android:text="@string/female"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/day_1_rb"
+                    app:layout_constraintStart_toEndOf="@+id/day_1_rb" />
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/position_spinner"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:paddingHorizontal="0dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/text_edit_playg_shape"
+                tools:listitem="@layout/item_selected_spinner"
+                android:dropDownVerticalOffset="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/day_1_rbg" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/position_rv"
+                android:layout_width="0dp"
+                tools:listitem="@layout/item_drop_down_create_playg_spinner"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/position_spinner"
+                app:layout_constraintStart_toStartOf="@+id/position_spinner"
+                app:layout_constraintTop_toBottomOf="@+id/position_spinner"
+                tools:layout_height="20dp"
+                tools:visibility="visible" />
+            <ImageView
+                android:id="@+id/show_traffic_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end | center"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/position_spinner"
+                app:layout_constraintEnd_toEndOf="@+id/position_spinner"
+                app:layout_constraintTop_toTopOf="@+id/position_spinner"
+                app:srcCompat="@drawable/ic_create_playg_field_arrow" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/materialCardView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:textColorHint="#686868"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconDrawable="@drawable/baseline_calendar_month"
+                app:endIconMode="custom"
+                app:endIconTint="@color/main_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/position_rv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/birth_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/text_edit_shape"
+                    android:fontFamily="@font/noah_regular"
+                    android:hint="@string/birth_year"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/main_gray"
+                    android:textSize="@dimen/small_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/height_person_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="54dp"
+                android:fontFamily="@font/noah_medium"
+                android:text="Рост, см"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/height_slider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/main_orange"
+                android:contentDescription="Рост, см"
+                android:value="0"
+                android:valueFrom="0"
+                android:valueTo="210"
+                app:labelStyle="@style/Widget.App.Tooltip"
+                app:layout_constraintBottom_toBottomOf="@+id/height_person_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/height_person_tv"
+                app:layout_constraintTop_toTopOf="@+id/height_person_tv"
+                app:thumbColor="@color/main_orange"
+                app:trackColorActive="@color/main_orange"
+                app:trackColorInactive="@color/background_for_edittext" />
+
+            <TextView
+                android:id="@+id/weight_person_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/noah_medium"
+                android:text="Вес, кг"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/height_person_tv" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/weight_slider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/main_orange"
+                android:contentDescription="Рост, см"
+                android:value="0"
+                android:valueFrom="0"
+                android:valueTo="130"
+                app:labelStyle="@style/Widget.App.Tooltip"
+                app:layout_constraintBottom_toBottomOf="@+id/weight_person_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/height_person_tv"
+                app:layout_constraintTop_toTopOf="@+id/weight_person_tv"
+                app:thumbColor="@color/main_orange"
+                app:trackColorActive="@color/main_orange"
+                app:trackColorInactive="@color/background_for_edittext" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

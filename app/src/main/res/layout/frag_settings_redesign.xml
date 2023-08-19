@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    android:orientation="vertical"
+    tools:context=".presentation.ui.fragments.tabs.profile.settings.SettingsRedesignFrag">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_black"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_arrow">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/settings_profile"
+            android:textColor="@color/white"
+            android:textSize="21sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/title_user_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Настройки пользователя"
+        android:fontFamily="@font/noah_medium"
+        android:textSize="12sp"
+        android:textColor="@color/main_gray"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/const_top_setting_shape"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/edit_profile_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:drawableStart="@drawable/ic_edit_pencil_icon"
+            android:drawablePadding="18dp"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/edit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <ImageView
+            android:id="@+id/edit_profile_arrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/arrow_up"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_profile_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edit_profile_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/black_list_const"
+        android:layout_width="match_parent"
+        android:background="@color/background_black"
+        android:layout_height="56dp">
+        <View
+            android:id="@+id/black_list_top_view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/gray_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/black_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:drawableStart="@drawable/ic_baseline_list"
+            android:drawablePadding="18dp"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/black_list"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/arrow_up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/exit_from_profile"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/const_bott_setting_shape">
+        <View
+            android:id="@+id/exit_from_top_view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/gray_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:drawableStart="@drawable/ic_door_exit_icon"
+            android:drawablePadding="18dp"
+            android:fontFamily="@font/noah_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/exit_from_profile"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/arrow_up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/title_security_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Настройки безопасности"
+        android:fontFamily="@font/noah_medium"
+        android:textSize="12sp"
+        android:textColor="@color/main_gray"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/save_settings"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/const_all_setting_shape">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:drawableStart="@drawable/ic_security_orange_icon"
+            android:drawablePadding="18dp"
+            android:fontFamily="@font/noah_medium"
+            android:text="@string/settings_security"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/arrow_up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/title_app_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Настройки приложения"
+        android:fontFamily="@font/noah_medium"
+        android:textSize="12sp"
+        android:textColor="@color/main_gray"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notifications"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/const_all_setting_shape">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:drawableStart="@drawable/ic_bell_orange_icon"
+            android:drawablePadding="18dp"
+            android:fontFamily="@font/noah_regular"
+            android:text="@string/notifications"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            tools:ignore="UseCompatTextViewDrawableXml" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notif_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/arrow_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
