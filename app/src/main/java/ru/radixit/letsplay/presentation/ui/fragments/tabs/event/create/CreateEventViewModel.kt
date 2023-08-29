@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -209,7 +210,7 @@ class CreateEventViewModel @Inject constructor(
 
     fun createEvent(request: CreateEventRequest,res:(Boolean,Int?)->Unit) {
         viewModelScope.launch {
-            try {
+           /* try {
                 val response = playgroundRepository.createEvent(request)
                 if (response.isSuccessful) {
                     response.body()?.let{
@@ -227,7 +228,24 @@ class CreateEventViewModel @Inject constructor(
             } catch (e: Exception) {
                 errorHandler.proceed(e) {
                 }
-            }
+            }*/
+
+            val response = playgroundRepository.createEvent(request)
+            Log.v(this.javaClass.name,response.body()!!.eventId.toString())
+            if (response.isSuccessful) {
+                response.body()?.let{
+                    res.invoke(true,it.eventId)
+                }
+            } /*else {
+                res.invoke(false,null)
+                context.showToast(
+                    Gson().fromJson(
+                        response.errorBody()?.charStream(),
+                        CreateEventResponse::class.java
+                    ).errors[0].message
+                )
+            }*/
+
         }
     }
 

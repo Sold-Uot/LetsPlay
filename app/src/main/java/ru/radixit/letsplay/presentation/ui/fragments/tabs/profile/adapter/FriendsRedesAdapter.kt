@@ -37,7 +37,7 @@ class FriendsRedesAdapter :
         fun bind(
             friend: User,
             selectItemOnClickListener: SelectItemOnClickListener,
-            showActionsOnClickListener: ShowActionsOnClickListener
+
         ) {
             binding.playerNameTv.text = friend.name ?: "Не указано"
 //            binding.playerPosition.text = (friend.userType ?: "Не указано").toString()
@@ -80,7 +80,7 @@ class FriendsRedesAdapter :
     }
 
     override fun onBindViewHolder(holder: FriendRedesViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, selectItemOnClickListener!!, showActionsOnClickListener!!)
+        holder.bind(getItem(position)!!, selectItemOnClickListener!!)
     }
 
 

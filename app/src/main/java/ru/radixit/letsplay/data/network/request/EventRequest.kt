@@ -9,6 +9,7 @@ data class CreateEventRequest(
     val endKey: Int,
     val offlinePlayers: Int,
     val players: Int,
+    val privacy : Boolean,
     val status: Int,
     val title: String
 )

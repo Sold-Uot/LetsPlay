@@ -32,7 +32,7 @@ data class ProfileResponse(
     val birthday: String? = null,
     val email: Any? = null,
     val friendsRandom: List<User>,
-    val friends: Int? = null,
+    val friends: List<User>,
     val gender: Gender? = null,
     val height: Int? = null,
     val id: Int,

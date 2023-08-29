@@ -150,11 +150,12 @@ class ProfileRedesignFrag : BaseFragment() {
             )
         }
         val recyclerView = binding.eventsRv
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val adapter = EventsRedesAdapter()
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.events.collectLatest {
                 adapter.submitData(it)
@@ -174,10 +175,12 @@ class ProfileRedesignFrag : BaseFragment() {
 
     private fun setupRecyclerview(id: Int) {
         val recyclerView = binding.friendsRv
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.setHasFixedSize(true)
         val adapter = FriendsRedesAdapter()
         recyclerView.adapter = adapter
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchUsers(userId = id.toString()).collect {
                 adapter.submitData(it)

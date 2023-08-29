@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
@@ -193,7 +194,9 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                             players = binding.allCountPlayers.text.toString().toInt(),
                             status = gameStatus,
                             title = binding.nameField.text.toString(),
-                            date = viewModel.date.value.toString()
+                            date = viewModel.date.value.toString(),
+                            privacy = true
+
                         )
                     ) { isResult, eventId ->
 //                        if (isResult) {
@@ -202,6 +205,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                         lifecycleScope.launch(Dispatchers.IO) {
                             withContext(Dispatchers.Main) {
                                 dialogCustom?.dismiss()
+                                Log.v(this.javaClass.name,isResult.toString())
                                 if (isResult) {
                                     context?.showToast("ОК")
                                     if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
