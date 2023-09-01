@@ -326,6 +326,9 @@ class CreatePlaygRedesFrag : Fragment(), OnMapReadyCallback {
             }
         })
         binding.shirtsSpinner.setSelection(0)
+
+
+
         binding.lightRv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         binding.lightRv.setHasFixedSize(true)
         val adapterLight = DropDownRvRedesAdapter(true){obj,pos,str->
@@ -356,6 +359,47 @@ class CreatePlaygRedesFrag : Fragment(), OnMapReadyCallback {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         })
+
+        binding.showerRoomRv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
+        binding.showerRoomRv.setHasFixedSize(true)
+        val adapterCheap = DropDownRvRedesAdapter(true){
+            obj,pos,str ->
+            obj.updateData()
+            binding.showerroomSpinner.setSelection(pos)
+            binding.showerRoomRv.gone()
+            if(!str.equals("")){
+                hideKeyboard()
+                viewModel.setShower(pos,str)
+
+            }
+            else{
+                viewModel.setShower(pos ,null) }
+
+        }
+
+        binding.showerRoomRv.adapter = adapterCheap
+        adapterCheap.submitList(list)
+
+
+
+        val adapterSpinnerCeaproom = SpinnerCreatePlaygAdapter(requireContext(),list,"Душевая",true){
+            binding.showerRoomRv.isVisible = !binding.showerRoomRv.isVisible
+        }
+        binding.showerroomSpinner.adapter = adapterSpinnerCeaproom
+        binding.showerroomSpinner.setOnItemSelectedListener(object  :
+            AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        })
+
+
+
+
+
         binding.lightSpinner.setSelection(0)
         binding.contactNumber.maskForNumberPhone()
         binding.continueButton.setOnClickListener {

@@ -236,7 +236,7 @@ class CreateEventViewModel @Inject constructor(
                 response.body()?.let{
                     res.invoke(true,it.eventId)
                 }
-            } /*else {
+            } else {
                 res.invoke(false,null)
                 context.showToast(
                     Gson().fromJson(
@@ -244,7 +244,7 @@ class CreateEventViewModel @Inject constructor(
                         CreateEventResponse::class.java
                     ).errors[0].message
                 )
-            }*/
+            }
 
         }
     }

@@ -195,7 +195,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                             status = gameStatus,
                             title = binding.nameField.text.toString(),
                             date = viewModel.date.value.toString(),
-                            privacy = true
+                            privacy = false
 
                         )
                     ) { isResult, eventId ->

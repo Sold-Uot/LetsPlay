@@ -72,13 +72,13 @@ class ProfileRedesignFrag : BaseFragment() {
                 infoProgressBar.loadingProgressLayout.isVisible = it
             }
             viewModel.profile.observe(viewLifecycleOwner) {
-                if(it.name !=  null && it.surname != null){
+                if (it.name != null && it.surname != null) {
                     profileName.text = "${it.name} ${it.surname}"
-                }else if(it.name !=  null && it.surname == null){
+                } else if (it.name != null && it.surname == null) {
                     profileName.text = "${it.name}"
-                }else if(it.name ==  null && it.surname != null){
+                } else if (it.name == null && it.surname != null) {
                     profileName.text = "${it.surname}"
-                }else{
+                } else {
                     profileName.text = "Не указано"
                 }
 
@@ -107,7 +107,7 @@ class ProfileRedesignFrag : BaseFragment() {
                 }
                 matchesPlayedTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
-                setupRecyclerview(it.id)
+                setupFriends(it.id)
                 setupTeams(it.id)
                 setupEvents(it.id)
             }
@@ -151,7 +151,8 @@ class ProfileRedesignFrag : BaseFragment() {
         }
         val recyclerView = binding.eventsRv
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val adapter = EventsRedesAdapter()
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
@@ -173,16 +174,18 @@ class ProfileRedesignFrag : BaseFragment() {
         }
     }
 
-    private fun setupRecyclerview(id: Int) {
+    private fun setupFriends(id: Int) {
         val recyclerView = binding.friendsRv
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.setHasFixedSize(true)
         val adapter = FriendsRedesAdapter()
         recyclerView.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchUsers(userId = id.toString()).collect {
+
                 adapter.submitData(it)
             }
         }

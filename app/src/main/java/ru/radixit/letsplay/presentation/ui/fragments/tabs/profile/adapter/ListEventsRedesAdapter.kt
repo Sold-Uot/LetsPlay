@@ -34,15 +34,14 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
         fun bind(event: Event) {
             Log.d("list","eventuuuuuu = ${event}")
             with(binding) {
+                Log.e(this.javaClass.name,event.title + "" + event.createdBy!!.photo + " " + event.createdBy.name)
                 if (event.preview != null) {
                     imgNotFoundImg.gone()
-                    imgNotFoundTv.gone()
                     eventPhoto.isVisible = true
                     eventBottomShadowImg.isVisible = true
                     Glide.with(root).load(event.preview.url).into(eventPhoto)
                 } else {
                     imgNotFoundImg.visible()
-                    imgNotFoundTv.visible()
                     eventPhoto.isVisible = false
                     eventBottomShadowImg.isVisible = false
                 }
@@ -55,6 +54,10 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                 builder.append(str1)
                 countPlayers.text = str1
                 nameEvent.text = event.createdBy?.name
+
+                Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)
+
+
                 root.setOnClickListener {
                     click(event)
                     Log.d("event","event = ${event}")

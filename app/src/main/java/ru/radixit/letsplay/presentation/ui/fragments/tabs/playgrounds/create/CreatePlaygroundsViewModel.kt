@@ -46,6 +46,7 @@ class CreatePlaygroundsViewModel @Inject constructor(
     private val _availabilityChanging = MutableLiveData<String>()
     private val _availabilityShirts = MutableLiveData<String>()
     private val _availabilityLights = MutableLiveData<String>()
+    private val _availabilityShower = MutableLiveData<String>()
     private val _address = MutableLiveData<String>()
     val address: LiveData<String> = _address
     private val _latLng = MutableLiveData<String>()
@@ -142,7 +143,10 @@ class CreatePlaygroundsViewModel @Inject constructor(
 
     fun createPlayground(title: String, phoneNumber: String, price: String) {
         viewModelScope.launch {
+
             try {
+
+
                 val request = CreatePlaygroundRequest(
                     _availabilityBalls.value,
                     _availabilityChanging.value,
@@ -153,9 +157,10 @@ class CreatePlaygroundsViewModel @Inject constructor(
                     _availabilityShirts.value,
                     _payment.value,
                     phoneNumber,
+
                     price,
                     _scheduler.value?.filterNot { it?.timeEnd == null || it.timeStart == null },
-                    _availabilityChanging.value,
+                    _availabilityShower.value,
                     studdedCleats = _shoes.value,
                     title = title
                 )
@@ -184,19 +189,23 @@ class CreatePlaygroundsViewModel @Inject constructor(
                         }
 
                     }
+
                 } else {
                     context.showToast(
                         Gson().fromJson(
                             response.errorBody()?.charStream(),
                             CreatePlaygroundResponse::class.java
-                        ).errors.message
+                        ).error.last().message
                     )
                 }
-            } catch (e: Exception) {
-                errorHandler.proceed(e) { context.showToast(it) }
+            } catch (ex: Exception) {
+                errorHandler.proceed(ex) { context.showToast(it) }
             }
+
+
         }
     }
+
 
     fun saveMondayStart(graphic: String?) {
         sessionManager.saveMondayStart(graphic)
@@ -320,9 +329,11 @@ class CreatePlaygroundsViewModel @Inject constructor(
             avail[1] == "0" -> {
                 "Нет"
             }
+
             avail[1] == "1" -> {
                 "Бесплатные"
             }
+
             else -> {
                 "Ecть(+${avail[2]} р)"
             }
@@ -334,51 +345,62 @@ class CreatePlaygroundsViewModel @Inject constructor(
                     avail[1] == "0" -> {
                         "no"
                     }
+
                     avail[1] == "1" -> {
                         "yes"
                     }
+
                     else -> {
                         avail[2].toInt()
                     }
                 }
                 _availabilityBalls.value = balls.toString()
             }
+
             "Раздевалки" -> {
                 val changing = when {
                     avail[1] == "0" -> {
                         "no"
                     }
+
                     avail[1] == "1" -> {
                         "yes"
                     }
+
                     else -> {
                         avail[2].toInt()
                     }
                 }
                 _availabilityChanging.value = changing.toString()
             }
+
             "Освещение" -> {
                 val lights = when {
                     avail[1] == "0" -> {
                         "no"
                     }
+
                     avail[1] == "1" -> {
                         "yes"
                     }
+
                     else -> {
                         avail[2].toInt()
                     }
                 }
                 _availabilityLights.value = lights.toString()
             }
+
             "Манишики" -> {
                 val shirts = when {
                     avail[1] == "0" -> {
                         "no"
                     }
+
                     avail[1] == "1" -> {
                         "yes"
                     }
+
                     else -> {
                         avail[2].toInt()
                     }
@@ -389,13 +411,15 @@ class CreatePlaygroundsViewModel @Inject constructor(
     }
 
     fun setLights(position: Int, price: String?) {
-        val lights = when(position) {
+        val lights = when (position) {
             0 -> {
                 "no"
             }
+
             1 -> {
                 "yes"
             }
+
             else -> {
                 price ?: "0"
             }
@@ -408,9 +432,11 @@ class CreatePlaygroundsViewModel @Inject constructor(
             0 -> {
                 "no"
             }
+
             1 -> {
                 "yes"
             }
+
             else -> {
                 price ?: "0"
             }
@@ -418,14 +444,34 @@ class CreatePlaygroundsViewModel @Inject constructor(
         _availabilityBalls.value = balls
     }
 
-    fun setShirts(position: Int, price: String?) {
-        val balls = when(position) {
+    fun setShower(pos: Int, price: String?) {
+        val balls = when (pos) {
             0 -> {
                 "no"
             }
+
             1 -> {
                 "yes"
             }
+
+            else -> {
+                price ?: "0"
+            }
+
+        }
+        _availabilityShower.value = balls
+    }
+
+    fun setShirts(position: Int, price: String?) {
+        val balls = when (position) {
+            0 -> {
+                "no"
+            }
+
+            1 -> {
+                "yes"
+            }
+
             else -> {
                 price ?: "0"
             }
@@ -434,13 +480,15 @@ class CreatePlaygroundsViewModel @Inject constructor(
     }
 
     fun setChanging(position: Int, price: String?) {
-        val balls: String = when(position) {
+        val balls: String = when (position) {
             0 -> {
                 "no"
             }
+
             1 -> {
                 "yes"
             }
+
             else -> {
                 price ?: "0"
             }

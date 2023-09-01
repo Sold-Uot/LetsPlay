@@ -78,7 +78,7 @@ data class CreatePlaygroundResponse(
     val id: Int,
     val message: String,
     val status: String,
-    val errors: Error
+    val error: List<Error>
 )
 
 data class HoursFreeResponse(

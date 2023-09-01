@@ -79,34 +79,17 @@
                     android:layout_height="200dp"
                     android:background="@color/black">
 
-                    <TextView
-                        android:id="@+id/text1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="11dp"
-                        android:layout_marginEnd="10dp"
-                        android:fontFamily="@font/noah_regular"
-                        android:gravity="center"
-                        android:text="@string/no_images_text"
-                        android:textColor="#787880"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView30" />
-
                     <ImageView
                         android:id="@+id/imageView30"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:layout_marginStart="35dp"
                         android:layout_marginTop="50dp"
                         android:layout_marginEnd="35dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_no_images" />
+                        app:srcCompat="@drawable/not_found_preiview_image" />
 
                     <ImageView
                         android:id="@+id/image_field"

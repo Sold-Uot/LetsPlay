@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.Event
+import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.network.request.JoinEventRequest
 import ru.radixit.letsplay.data.network.request.ListRequest
 import ru.radixit.letsplay.data.network.response.ProfileResponse
@@ -45,6 +46,9 @@ class EventViewModel @Inject constructor(
     private val _textPosition = MutableLiveData<String>()
     val textPosition: LiveData<String> = _textPosition
 
+    private val _photo = MutableLiveData<Photo?>()
+    val photo: LiveData<Photo?> = _photo
+
     private val _textMessage = MutableLiveData<String>()
     val textMessage: LiveData<String> = _textMessage
 
@@ -55,6 +59,7 @@ class EventViewModel @Inject constructor(
         return repository.listEvents(ListRequest(search = query))
             .map { pagingData -> pagingData.map { it } }.cachedIn(viewModelScope)
     }
+
 
     fun events(request: Int): Flow<PagingData<Event>> {
         return Pager(PagingConfig(pageSize = 1)) {
@@ -68,6 +73,7 @@ class EventViewModel @Inject constructor(
                 val response = profileRep.getProfile(id)
                 if (response.isSuccessful) {
                     _profile.value = response.body()
+
                 }
 
             } catch (e: Exception) {

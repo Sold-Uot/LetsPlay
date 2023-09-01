@@ -170,7 +170,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getMondayStart() != null && viewModel.getMondayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "0",
+                            weekDay = 0,
                             timeStart = viewModel.getMondayStart(),
                             timeEnd = viewModel.getMondayEnd()
                         )
@@ -178,7 +178,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getTuesdayStart() != null && viewModel.getTuesdayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "1",
+                            weekDay = 1,
                             timeStart = viewModel.getTuesdayStart(),
                             timeEnd = viewModel.getTuesdayEnd()
                         )
@@ -186,7 +186,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getWednesdayStart() != null && viewModel.getWednesdayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "2",
+                            weekDay = 2,
                             timeStart = viewModel.getWednesdayStart(),
                             timeEnd = viewModel.getWednesdayEnd()
                         )
@@ -194,7 +194,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getThursdayStart() != null && viewModel.getThursdayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "3",
+                            weekDay = 3,
                             timeStart = viewModel.getThursdayStart(),
                             timeEnd = viewModel.getThursdayEnd()
                         )
@@ -202,7 +202,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getFridayStart() != null && viewModel.getFridayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "4",
+                            weekDay = 4,
                             timeStart = viewModel.getFridayStart(),
                             timeEnd = viewModel.getFridayEnd()
                         )
@@ -210,7 +210,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getSaturdayStart() != null && viewModel.getSaturdayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "5",
+                            weekDay = 5,
                             timeStart = viewModel.getSaturdayStart(),
                             timeEnd = viewModel.getSaturdayEnd()
                         )
@@ -218,7 +218,7 @@ class PlaygWorkSchedulerFragment : DialogFragment() {
                 if (viewModel.getSundayStart() != null && viewModel.getSundayEnd() != null)
                     list.add(
                         Schedule(
-                            weekDay = "6",
+                            weekDay = 6,
                             timeStart = viewModel.getSundayStart(),
                             timeEnd = viewModel.getSundayEnd()
                         )

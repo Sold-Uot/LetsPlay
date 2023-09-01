@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/back_color"
     android:layout_marginStart="26dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/back_color">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/playing_mar_card"
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:strokeColor="@color/second_gray"
         app:strokeWidth="2dp">
 
@@ -34,13 +34,14 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/main_orange"
         app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/playing_mar_card"
-        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="2dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card" />
+
     <TextView
         android:id="@+id/name_on_avatar"
         android:layout_width="wrap_content"

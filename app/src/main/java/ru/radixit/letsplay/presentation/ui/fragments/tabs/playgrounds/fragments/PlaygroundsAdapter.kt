@@ -49,11 +49,9 @@ class PlaygroundsAdapter : PagingDataAdapter<Playground, ViewHolder>(UIMODEL_COM
             if (playground.photos.isEmpty()) {
                 imageField.isVisible = false
                 itemView.imageView30.visibility = View.VISIBLE
-                itemView.text1.visibility = View.VISIBLE
             } else {
                 imageField.isVisible = true
                 itemView.imageView30.visibility = View.GONE
-                itemView.text1.visibility = View.GONE
                 Glide.with(itemView).load(playground.photos[0].url).into(imageField)
             }
 

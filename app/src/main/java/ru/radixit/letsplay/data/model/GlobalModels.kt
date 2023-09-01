@@ -16,7 +16,8 @@ data class Error(
 data class CreatedBy(
     val id: Int,
     val name: String,
-    val surname: String?
+    val surname: String?,
+    val photo: Photo
 ):Parcelable
 
 @Parcelize
@@ -30,10 +31,11 @@ data class Gender(
     val value: String
 )
 
+@Parcelize
 data class Photo(
     val id: Int,
     val url: String? = null
-)
+):Parcelable
 
 data class AvatarResponse(
     val message: String,
@@ -67,10 +69,13 @@ data class Geocode(
 )
 
 data class Schedule(
-    val step: String = "30",
+
+
+    val step: Int = 30,
     val timeEnd: String?,
     val timeStart: String?,
-    val weekDay: String
+    val weekDay: Int
+
 )
 
 data class Member(

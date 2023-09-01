@@ -23,6 +23,7 @@ import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.PlaygroundInDetail
 import ru.radixit.letsplay.databinding.ItemDropDownCreatePlaygSpinnerBinding
 import ru.radixit.letsplay.databinding.ItemTrafficRedesRvBinding
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.create.CreatePlaygroundsViewModel
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
 import java.time.LocalDate
@@ -58,6 +59,7 @@ class DropDownRvRedesAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(model: String) {
+
             with(binding) {
                 Log.d("posArgs","posArgs = ${positionSelected}")
                 radioBtn.setOnCheckedChangeListener(null)
