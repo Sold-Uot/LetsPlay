@@ -34,7 +34,6 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
         fun bind(event: Event) {
             Log.d("list","eventuuuuuu = ${event}")
             with(binding) {
-                Log.e(this.javaClass.name,event.title + "" + event.createdBy!!.photo + " " + event.createdBy.name)
                 if (event.preview != null) {
                     imgNotFoundImg.gone()
                     eventPhoto.isVisible = true
@@ -56,7 +55,8 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                 nameEvent.text = event.createdBy?.name
 
 
-                 if (event.createdBy.photo != null){
+                Log.w("123", event.createdBy?.photo?.url ?: "lollll")
+                 if (event.createdBy?.photo != null){
                 Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)}
 
 

@@ -81,7 +81,8 @@ class ListEventsRedesFrag : BaseFragment() {
         searchEvents()
         lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
-                val isListEmpty = loadState.source.refresh is LoadState.NotLoading && adapter.itemCount == 0
+                val isListEmpty =
+                    loadState.source.refresh is LoadState.NotLoading && adapter.itemCount == 0
                 binding.emptyEventsLinLay.isVisible = isListEmpty
                 recyclerView.isVisible =
                     loadState.source.refresh is LoadState.NotLoading

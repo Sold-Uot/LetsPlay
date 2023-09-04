@@ -20,7 +20,7 @@ class FriendsRedesAdapter :
     PagingDataAdapter<User, FriendsRedesAdapter.FriendRedesViewHolder>(FriendComparator) {
 
     private var selectItemOnClickListener: SelectItemOnClickListener? = null
-    private var showActionsOnClickListener: ShowActionsOnClickListener? = null
+
 
     class FriendRedesViewHolder(private val binding: ItemFriendsProfRvRedesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -36,7 +36,7 @@ class FriendsRedesAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(
             friend: User,
-            selectItemOnClickListener: SelectItemOnClickListener,
+
 
         ) {
             binding.playerNameTv.text = friend.name ?: "Не указано"
@@ -58,7 +58,7 @@ class FriendsRedesAdapter :
                 Glide.with(binding.root).load(friend.photo.url).into(binding.itemAvatarImg)
             }
             itemView.setOnClickListener {
-                selectItemOnClickListener.invoke(friend)
+
             }
 
 //            binding.showActions.setOnClickListener {
@@ -71,16 +71,14 @@ class FriendsRedesAdapter :
         selectItemOnClickListener = listener
     }
 
-    fun showActions(listener: ShowActionsOnClickListener?) {
-        showActionsOnClickListener = listener
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendRedesViewHolder {
         return FriendRedesViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: FriendRedesViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, selectItemOnClickListener!!)
+        holder.bind(getItem(position)!!)
     }
 
 

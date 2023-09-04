@@ -18,7 +18,7 @@ data class CreatedBy(
     val id: Int,
     val name: String,
     val surname: String?,
-    val photo: Photo
+    val photo: Photo?
 ):Parcelable
 
 @Parcelize
@@ -35,7 +35,7 @@ data class Gender(
 @Parcelize
 data class Photo(
     val id: Int,
-    val url: String? = null
+    val url: String
 ):Parcelable
 
 data class AvatarResponse(

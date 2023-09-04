@@ -33,6 +33,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_pointer.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragEventDescRedesignBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.CreateEventViewModel
@@ -110,10 +112,15 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
 
     @SuppressLint("ResourceType")
     private fun settingView() {
+        Log.w("id_event",id.toString())
 
         settingAppBar()
         id?.let { id ->
+/*
             viewModel.getEvent(id)
+*/
+            viewModel.newGetEventDesc(id)
+            Log.w("start_newGetEv",id.toString())
             binding.include.apply {
                 binding.include.shareTv.setOnClickListener {
 //                    val intent = Intent(Intent.ACTION_SEND)
@@ -159,7 +166,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
             viewModel.successLoading.observe(viewLifecycleOwner) {
                 binding.infoProgressBar.loadingProgressLayout.isVisible = it
             }
-            viewModel.eventDescription.observe(viewLifecycleOwner) {
+            viewModel.newEventDescription.observe(viewLifecycleOwner) {
                 it.playgroundId?.let {
                     setMarkerInMap(it)
                 }
@@ -189,10 +196,19 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
             }
         }
         with(binding) {
-            args.event?.let {
+
+/*
+            viewModel.getEvent(args.event!!.id.toString())
+*/
+            viewModel.newGetEventDesc(args.event!!.id.toString())
+
+            viewModel.newEventDescription.observe(viewLifecycleOwner){
+
                 it.createdBy?.photo?.let {
+                    Log.w("photo",it.url.toString())
                     Glide.with(root).load(it.url).into(avatarEvent)
                 }
+
                 it.createdBy?.surname?.let { surname ->
                     nameAvatarEvent.text = "${it.createdBy?.name} ${surname}"
                 } ?: run {
@@ -200,7 +216,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
                 }
                 it.preview?.let {
                     if(it.url !== "" || !it.url.isEmpty())
-                    Glide.with(root).load(it.url).into(bigImgEvent)
+                        Glide.with(root).load(it.url).into(bigImgEvent)
                     else{
                         binding.bigImgEvent.gone()
                         binding.notFdImgEvent.visible()
@@ -209,10 +225,8 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
                     bigImgEvent.gone()
                     notFdImgEvent.visible()
                 }
-
-
-
             }
+
         }
     }
     private fun setMarkerInMap(id: Int) {
@@ -226,6 +240,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
             }
         }
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         googleMap.clear()

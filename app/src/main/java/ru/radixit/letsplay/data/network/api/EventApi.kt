@@ -20,8 +20,11 @@ interface EventApi {
     @GET("/event/v1/get/{ID}/members")
     suspend fun listEventsMembers(@Path("ID") id: String): Response<EventMembersResp>
 
+
     @GET("/event/v1/get/{ID}")
-    suspend fun getEvent(@Path("ID") id: String): Response<EventDescriptionResponse>
+    suspend fun getEvent(@Path("ID") id: String): Response<NewEventDescriptionResponse>
+
+
 
     /**
      * Возвращает список событии на карте

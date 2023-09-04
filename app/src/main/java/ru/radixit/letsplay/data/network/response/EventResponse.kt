@@ -1,8 +1,10 @@
 package ru.radixit.letsplay.data.network.response
 
+import ru.radixit.letsplay.data.model.CreatedBy
 import ru.radixit.letsplay.data.model.Error
+import ru.radixit.letsplay.data.model.Preview
 
-data class EventDescriptionResponse(
+/*data class EventDescriptionResponse(
     val address: String? = null,
     val comment: String? = null,
     val gameLevel: String? = null,
@@ -15,6 +17,25 @@ data class EventDescriptionResponse(
     val title: String? = null,
     val isOwner: Boolean? = null,
     val isRequestSended: Boolean? = null
+)*/
+
+
+data class NewEventDescriptionResponse(
+    val address: String? = null,
+    val comment: String? = null,
+    val gameLevel: String? = null,
+    val id: Int? = null,
+    val players: String? = null,
+    val playgroundId: Int? = null,
+    val playgroundTitle: String? = null,
+    val start: String? = null,
+    val status: String? = null,
+    val title: String? = null,
+    val isOwner: Boolean? = null,
+    val isRequestSended: Boolean? = null,
+    val createdBy: CreatedBy? = null,
+    val preview: Preview? = null
+
 )
 
 data class EventForMap(
