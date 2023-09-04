@@ -282,6 +282,7 @@ class ProfilePlayerFrag : Fragment() {
         }
         adapter.selectItem {
             findNavController().navigate(
+
                 ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(
                     it.id.toString()
                 )

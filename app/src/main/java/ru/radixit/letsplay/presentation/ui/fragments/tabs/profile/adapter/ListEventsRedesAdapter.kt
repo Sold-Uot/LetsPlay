@@ -55,7 +55,9 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                 countPlayers.text = str1
                 nameEvent.text = event.createdBy?.name
 
-                Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)
+
+                 if (event.createdBy.photo != null){
+                Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)}
 
 
                 root.setOnClickListener {

@@ -1,7 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +36,10 @@ class FriendsRedesAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(
             friend: User,
-           /* selectItemOnClickListener: SelectItemOnClickListener,*/
+            selectItemOnClickListener: SelectItemOnClickListener,
 
         ) {
-            Log.v("123",friend.name + "/" + friend.username.toString())
-
             binding.playerNameTv.text = friend.name ?: "Не указано"
-
 //            binding.playerPosition.text = (friend.userType ?: "Не указано").toString()
             if (friend.photo == null) {
                 binding.itemAvatarImg.visibility = View.GONE
@@ -62,8 +58,7 @@ class FriendsRedesAdapter :
                 Glide.with(binding.root).load(friend.photo.url).into(binding.itemAvatarImg)
             }
             itemView.setOnClickListener {
-                /*selectItemOnClickListener.invoke(friend)*/
-                Log.v("clickUser", friend.name?: "null")
+                selectItemOnClickListener.invoke(friend)
             }
 
 //            binding.showActions.setOnClickListener {
@@ -85,7 +80,7 @@ class FriendsRedesAdapter :
     }
 
     override fun onBindViewHolder(holder: FriendRedesViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        holder.bind(getItem(position)!!, selectItemOnClickListener!!)
     }
 
 

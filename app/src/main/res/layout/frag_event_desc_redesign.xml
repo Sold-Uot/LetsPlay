@@ -28,15 +28,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="true">
 
-            <ImageView
-                android:id="@+id/big_img_event"
-                android:layout_width="match_parent"
-                android:layout_height="390dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_no_images" />
-
 
             <ImageView
                 android:id="@+id/event_top_shadow_img"
@@ -48,6 +39,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/ic_event_top_shadow_img" />
+
+            <ImageView
+                android:id="@+id/big_img_event"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/not_found_preview_event" />
+
+            <ImageView
+                android:id="@+id/not_fd_img_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/not_found_event_preview_image" />
 
             <ImageView
                 android:id="@+id/event_bottom_shadow_img"
@@ -77,6 +89,7 @@
                     android:id="@+id/avatar_event"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

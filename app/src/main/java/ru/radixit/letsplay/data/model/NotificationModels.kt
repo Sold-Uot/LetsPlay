@@ -9,7 +9,7 @@ data class NotificationModel(
 data class Notification(
     val createdAt: String,
     val id: Int,
-    val photo: String?,
+    val photo: Photo?,
     val time: String,
     val title: String?,
     val type: Type

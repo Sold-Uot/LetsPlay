@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.data.model
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize

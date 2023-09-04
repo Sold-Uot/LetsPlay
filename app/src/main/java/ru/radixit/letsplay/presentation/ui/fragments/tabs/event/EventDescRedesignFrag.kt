@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.event
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -107,6 +108,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
         settingView()
     }
 
+    @SuppressLint("ResourceType")
     private fun settingView() {
 
         settingAppBar()
@@ -188,14 +190,28 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
         }
         with(binding) {
             args.event?.let {
+                it.createdBy?.photo?.let {
+                    Glide.with(root).load(it.url).into(avatarEvent)
+                }
                 it.createdBy?.surname?.let { surname ->
                     nameAvatarEvent.text = "${it.createdBy?.name} ${surname}"
                 } ?: run {
                     nameAvatarEvent.text = "${it.createdBy?.name}"
                 }
                 it.preview?.let {
-                    Glide.with(root).load(it).into(bigImgEvent)
+                    if(it.url !== "" || !it.url.isEmpty())
+                    Glide.with(root).load(it.url).into(bigImgEvent)
+                    else{
+                        binding.bigImgEvent.gone()
+                        binding.notFdImgEvent.visible()
+                    }
+                }?: run {
+                    bigImgEvent.gone()
+                    notFdImgEvent.visible()
                 }
+
+
+
             }
         }
     }

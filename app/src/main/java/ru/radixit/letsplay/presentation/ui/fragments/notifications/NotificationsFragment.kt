@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentNotificationsBinding
+
 
 /**
  * Экран уведомление
@@ -58,6 +60,7 @@ class NotificationsFragment : Fragment() {
         }
         lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
+                Log.w("Notification", loadState.source.refresh.toString())
                 val isListEmpty =
                     loadState.source.refresh is LoadState.NotLoading && adapter.itemCount == 0
                 binding.emptyList.isVisible = isListEmpty
@@ -111,6 +114,7 @@ class NotificationsFragment : Fragment() {
             title.text = _it.title
             typeLabel.text = desc(_it.type.value.toString())
             acceptBtn.setOnClickListener {
+
                 if (_it.type.value == 7) {
                     viewModel.acceptFriend(_it.id.toString())
                 }
