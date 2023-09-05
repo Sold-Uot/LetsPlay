@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragListFriendsRedesignBinding
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.EventInDetailRedesFragDirections
 import ru.radixit.letsplay.utils.*
 
 @AndroidEntryPoint
@@ -45,6 +47,10 @@ class ListFriendsRedesFrag : Fragment() {
         onBack()
         binding.swipeToRefresh.setOnRefreshListener{
             setupRecyclerview()
+        }
+        binding.openAddFriend.setOnClickListener {
+            Log.w("click", "wow its click")
+            findNavController().navigate(ListFriendsRedesFragDirections.actionListFriendsRedesFragToFindFriendFragment())
         }
         setupRecyclerview()
 //        binding.addFriend.setOnClickListener {
