@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,24 +31,27 @@ class FriendsRedesAdapter(private val selectItemOnClickListener: SelectItemOnCli
         ) {
             binding.playerNameTv.text = friend.name ?: "Не указано"
 //            binding.playerPosition.text = (friend.userType ?: "Не указано").toString()
+            Log.w("friends" , friend.toString())
             if (friend.photo == null) {
+                binding.playingMarCard.visibility = View.VISIBLE
                 binding.itemAvatarImg.visibility = View.GONE
                 binding.nameOnAvatar.visibility = View.VISIBLE
-                binding.nameOnAvatar.text = "${friend.name.toString()[0]}"
-                binding.playingMarCard.visibility = View.VISIBLE
+
+                binding.nameOnAvatar.text = "${friend.name.toString().uppercase()[0]}"
                 val cardColor = ContextCompat.getColor(
                     itemView.context,
                     R.color.violet
                 )
                 binding.playingMarCard.setCardBackgroundColor(cardColor)
             } else {
+
                 binding.itemAvatarImg.visibility = View.VISIBLE
                 binding.nameOnAvatar.visibility = View.GONE
-                binding.playingMarCard.visibility = View.GONE
+                binding.playingMarCard.visibility = View.VISIBLE
                 Glide.with(binding.root).load(friend.photo.url).into(binding.itemAvatarImg)
             }
             itemView.setOnClickListener {
-                selectItemOnClickListener(friend)
+                selectItemOnClickListener.invoke(friend)
             }
 
 //            binding.showActions.setOnClickListener {

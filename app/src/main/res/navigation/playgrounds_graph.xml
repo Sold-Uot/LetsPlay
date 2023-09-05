@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_eventInDetailRedesFragPlayg_to_createEventRedesFrag"
             app:destination="@id/createEventRedesFrag" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_createEventRedes"
+            app:destination="@id/createEventRedesFrag" />
     </fragment>
     <dialog
         android:id="@+id/playersEventRedesFrag"

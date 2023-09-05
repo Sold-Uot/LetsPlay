@@ -290,7 +290,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
     private fun createEventCalendarPlayg() {
         if (binding.addressMapTv.text.toString() != "") {
             findNavController().navigate(
-                EventInDetailRedesFragDirections.actionEventInDetailRedesFragPlaygToCreateEventRedesFrag(
+                EventInDetailRedesFragDirections.actionEventInDetailRedesFragToCreateEventRedes(
                     playgId.toString()
                 )
             )

@@ -182,6 +182,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_listFriendsRedesFrag_to_findFriendFragment"
+            app:destination="@id/findFriendFragment" />
     </fragment>
     <fragment
         android:id="@+id/listEventsProfRedesFrag"

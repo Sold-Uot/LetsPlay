@@ -44,7 +44,7 @@ class ListEventsProfRedesFrag : Fragment() {
         ListEventsRedesAdapter { event ->
             findNavController().navigate(
                 ListEventsProfRedesFragDirections.actionListEventsProfRedesFragToEventDescRedesignFrag(
-                    event, null
+                    event, event.id.toString()
                 )
             )
         }

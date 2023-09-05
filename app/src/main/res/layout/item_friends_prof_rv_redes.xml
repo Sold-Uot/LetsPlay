@@ -19,11 +19,24 @@
         app:strokeWidth="2dp">
 
 
+        <TextView
+            android:id="@+id/name_on_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textColor="#FFFFFF"
+            android:textSize="21sp"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
         <ImageView
             android:id="@+id/item_avatar_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_black"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
             app:srcCompat="@drawable/ic_no_images"
             tools:src="@drawable/profile_photo" />
 
@@ -33,26 +46,13 @@
         android:id="@+id/friend_is_online_mat_card"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/main_orange"
         app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/playing_mar_card"
-        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="2dp"/>
-    <TextView
-        android:id="@+id/name_on_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="21sp"
-        app:layout_constraintBottom_toBottomOf="@+id/playing_mar_card"
-        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card"
-        app:layout_constraintStart_toStartOf="@+id/playing_mar_card"
-        app:layout_constraintTop_toTopOf="@+id/playing_mar_card"
-        tools:visibility="gone" />
+        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card" />
 
     <TextView
         android:id="@+id/player_name_tv"

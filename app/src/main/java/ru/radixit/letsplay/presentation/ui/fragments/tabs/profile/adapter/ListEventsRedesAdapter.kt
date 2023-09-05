@@ -8,12 +8,14 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.databinding.ItemEventRvRedesBinding
 import ru.radixit.letsplay.utils.gone
@@ -57,7 +59,23 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
 
                 Log.w("123", event.createdBy?.photo?.url ?: "lollll")
                  if (event.createdBy?.photo != null){
-                Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)}
+                     binding.avatarImg.visible()
+                     binding.nameOnAvatar.gone()
+
+                     Glide.with(root).load(event.createdBy.photo.url ).into(avatarImg)}
+                else{
+                     binding.avatarImg.gone()
+                     binding.nameOnAvatar.visible()
+
+
+                     binding.nameOnAvatar.text = "${event.createdBy?.name.toString().uppercase()[0]}"
+                     val cardColor = ContextCompat.getColor(
+                         itemView.context,
+                         R.color.violet
+                     )
+                     binding.avatarCv.setCardBackgroundColor(cardColor)
+
+                 }
 
 
                 root.setOnClickListener {

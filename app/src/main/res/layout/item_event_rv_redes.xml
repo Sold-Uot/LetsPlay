@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView19"
         app:layout_constraintTop_toBottomOf="@+id/imageView19">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/avatar_cv"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -83,6 +83,17 @@
             app:cardCornerRadius="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/name_on_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:visibility="gone"
+                tools:visibility="gone" />
+
 
             <ImageView
                 android:id="@+id/avatar_img"
@@ -92,7 +103,7 @@
                 app:srcCompat="@drawable/ic_no_images"
                 tools:background="@color/second_gray" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <ImageView
             android:id="@+id/star_img"

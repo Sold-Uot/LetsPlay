@@ -334,7 +334,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/friends_rv"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_tv" />
+                    app:layout_constraintTop_toBottomOf="@+id/friend_tv"
+                    tools:visibility="gone" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

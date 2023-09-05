@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_black"
-            app:srcCompat="@drawable/ic_no_images" />
+            app:srcCompat="@drawable/not_found_event_preview_image" />
 
     </com.google.android.material.card.MaterialCardView>
 

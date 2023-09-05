@@ -242,7 +242,7 @@ class ProfilePlayerFrag : Fragment() {
         }
         val teamRecyclerView = binding.teamsRv
         teamRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val adapter = ListTeamProfileRedesAdapter()
         viewModel.listTeams(id)
         viewModel.teams.observe(viewLifecycleOwner) {
@@ -266,7 +266,7 @@ class ProfilePlayerFrag : Fragment() {
         }
         val recyclerView = binding.eventsRv
         recyclerView.layoutManager =
-            LinearLayoutManager(requireContext())
+            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val adapter = EventsRedesAdapter()
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
@@ -284,17 +284,17 @@ class ProfilePlayerFrag : Fragment() {
 
     private fun setupFriends(id: Int) {
         val recyclerView = binding.friendsRv
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.setHasFixedSize(true)
         val adapter = friendAdapter
         recyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchUsers(userId = id.toString()).collect {
-                val size = adapter.snapshot().size
-                binding.friendCountTv.text = "${size}"
-                if (size == 0) {
+                /*val size = adapter.snapshot().size
+                binding.friendCountTv.text = "${size}"*/
+                /*if (size == 0) {
                     binding.emptyListFriendTv.visible()
-                }
+                }*/
                 adapter.submitData(it)
             }
         }
