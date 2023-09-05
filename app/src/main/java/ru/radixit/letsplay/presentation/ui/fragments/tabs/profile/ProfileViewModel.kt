@@ -86,6 +86,7 @@ class ProfileViewModel @Inject constructor(
                         _gender.value = it.body()?.gender
                         _photo.value = it.body()?.photo
 
+
                     }
                 }
 
