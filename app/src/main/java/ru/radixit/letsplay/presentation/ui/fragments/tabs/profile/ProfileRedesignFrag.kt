@@ -34,6 +34,12 @@ class ProfileRedesignFrag : BaseFragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: ProfileViewModel
 
+    private val friendAdapter by lazy {
+        FriendsRedesAdapter {
+            findNavController().navigate(ProfileRedesignFragDirections.actionProfileRedesignFragToFriendProfileInfoFragment(it.id.toString()))
+        }
+    }
+
     @Inject
     lateinit var sessionManager: SessionManager
 
@@ -67,7 +73,8 @@ class ProfileRedesignFrag : BaseFragment() {
 
     private fun getProfileData() {
         with(binding) {
-            viewModel.fetchProfile(sessionManager.fetchToken())
+            viewModel.getProfileData(sessionManager.fetchToken())
+
             viewModel.loading.observe(viewLifecycleOwner) {
                 infoProgressBar.loadingProgressLayout.isVisible = it
             }
@@ -178,7 +185,7 @@ class ProfileRedesignFrag : BaseFragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.setHasFixedSize(true)
-        val adapter = FriendsRedesAdapter()
+        val adapter = friendAdapter
         recyclerView.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -196,13 +203,13 @@ class ProfileRedesignFrag : BaseFragment() {
                     loadState.source.refresh is LoadState.NotLoading
             }
         }
-        adapter.selectItem {
+        /*adapter.selectItem {
             findNavController().navigate(
                 ProfileRedesignFragDirections.actionProfileRedesignFragToFriendProfileInfoFragment(
                     it.id.toString()
                 )
             )
-        }
+        }*/
         binding.friendArrowEndImg.setOnClickListener {
             viewModel.profile.observe(viewLifecycleOwner) {
                 findNavController().navigate(

@@ -26,14 +26,14 @@ class EventDescriptionViewModel @Inject constructor(
     private val _eventMember = MutableLiveData<EventMembersResp>()
     val eventMember: LiveData<EventMembersResp> = _eventMember
 
-    private val _newEventDescription = MutableLiveData<NewEventDescriptionResponse>()
-    val newEventDescription: LiveData<NewEventDescriptionResponse> = _newEventDescription
+    private val _eventDescription = MutableLiveData<NewEventDescriptionResponse>()
+    val eventDescription: LiveData<NewEventDescriptionResponse> = _eventDescription
 
 
     private val _successLoading = MutableLiveData<Boolean>()
     val successLoading: LiveData<Boolean> = _successLoading
 
-    fun newGetEventDesc(id :String){
+    fun getEventDesc(id :String){
         viewModelScope.launch {
 
 
@@ -44,7 +44,7 @@ class EventDescriptionViewModel @Inject constructor(
 
                     if (it.isSuccessful) {
                         Log.w(this.javaClass.name,it.body().toString())
-                        _newEventDescription.value = it.body()
+                        _eventDescription.value = it.body()
                     }
                     else {
                         Log.w("NEW_EVENT_CLASSES" , it.body().toString())

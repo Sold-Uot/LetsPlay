@@ -16,28 +16,17 @@ import ru.radixit.letsplay.databinding.ItemFriendsProfRvRedesBinding
 typealias SelectItemOnClickListener = ((User) -> Unit)
 typealias ShowActionsOnClickListener = ((String) -> Unit)
 
-class FriendsRedesAdapter :
+class FriendsRedesAdapter(private val selectItemOnClickListener: SelectItemOnClickListener) :
     PagingDataAdapter<User, FriendsRedesAdapter.FriendRedesViewHolder>(FriendComparator) {
 
-    private var selectItemOnClickListener: SelectItemOnClickListener? = null
 
-
-    class FriendRedesViewHolder(private val binding: ItemFriendsProfRvRedesBinding) :
+    inner class FriendRedesViewHolder(private val binding: ItemFriendsProfRvRedesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        companion object {
-            fun from(parent: ViewGroup): FriendRedesViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemFriendsProfRvRedesBinding.inflate(layoutInflater, parent, false)
-                return FriendRedesViewHolder(binding)
-            }
-        }
 
         @SuppressLint("SetTextI18n")
         fun bind(
             friend: User,
-
-
         ) {
             binding.playerNameTv.text = friend.name ?: "Не указано"
 //            binding.playerPosition.text = (friend.userType ?: "Не указано").toString()
@@ -58,7 +47,7 @@ class FriendsRedesAdapter :
                 Glide.with(binding.root).load(friend.photo.url).into(binding.itemAvatarImg)
             }
             itemView.setOnClickListener {
-
+                selectItemOnClickListener(friend)
             }
 
 //            binding.showActions.setOnClickListener {
@@ -67,14 +56,14 @@ class FriendsRedesAdapter :
         }
     }
 
-    fun selectItem(listener: SelectItemOnClickListener?) {
-        selectItemOnClickListener = listener
-    }
+
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendRedesViewHolder {
-        return FriendRedesViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemFriendsProfRvRedesBinding.inflate(layoutInflater, parent, false)
+        return FriendRedesViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FriendRedesViewHolder, position: Int) {

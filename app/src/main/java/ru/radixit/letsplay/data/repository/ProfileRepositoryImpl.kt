@@ -1,8 +1,13 @@
 package ru.radixit.letsplay.data.repository
 
 import androidx.paging.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import okhttp3.Dispatcher
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.AvatarResponse
 import ru.radixit.letsplay.data.model.User
@@ -28,6 +33,14 @@ class ProfileRepositoryImpl @Inject constructor(
     override suspend fun getProfile(id: Int): Response<ProfileResponse> {
         return userApi.getProfile(id)
     }
+
+
+    override fun getProfileData(id: Int): Flow<Response<ProfileResponse>>  = flow {
+        emit(userApi.getProfile(id))
+    }.flowOn(Dispatchers.IO)
+
+
+
 
     override suspend fun uploadAvatar(
         base64File: String

@@ -16,6 +16,8 @@ interface ProfileRepository {
 
     suspend fun getProfile(id: Int): Response<ProfileResponse>
 
+    fun getProfileData(id : Int) : Flow<Response<ProfileResponse>>
+
     suspend fun eventsList(
         request: Int,
         pageSize: String,

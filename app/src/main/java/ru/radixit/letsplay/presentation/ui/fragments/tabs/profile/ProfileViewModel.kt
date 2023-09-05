@@ -76,7 +76,36 @@ class ProfileViewModel @Inject constructor(
             }
         }
     }
-    fun fetchProfile(id: Int) {
+    fun getProfileData(id: Int){
+        viewModelScope.launch {
+            try {
+                _loading.value = true
+                val response = repository.getProfileData(id)
+                response.collect{
+                        _profile.value = it.body()
+                        _gender.value = it.body()?.gender
+                        _photo.value = it.body()?.photo
+
+                    }
+                }
+
+
+            catch (ex:Exception) {
+                errorHandler.proceed(ex) { msg ->
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+            }
+            finally {
+                _loading.value = false
+            }
+
+
+        }}
+
+
+    // старый способо тянуть данные профиля
+
+    /*fun fetchProfile(id: Int) {
         viewModelScope.launch {
             try {
                 _loading.value = true
@@ -96,7 +125,7 @@ class ProfileViewModel @Inject constructor(
             }
 
         }
-    }
+    }*/
 
     fun addToFriends(userId: String) {
         viewModelScope.launch {

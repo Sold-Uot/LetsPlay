@@ -3,6 +3,7 @@ package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -35,7 +37,23 @@ import javax.inject.Inject
 class ProfilePlayerFrag : Fragment() {
     private lateinit var binding: FragProfilePlayerRedesBinding
     private lateinit var viewModel: ProfileViewModel
+    private val args by navArgs<ProfilePlayerFragArgs>()
 
+    private val id by lazy {
+        Log.d("id =", " id = ${args.id}")
+        if (args.id != null) {
+            args.id.toString()
+        } else {
+            args.id
+        }
+    }
+
+
+    private val friendAdapter by lazy {
+        FriendsRedesAdapter {
+            findNavController().navigate(ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(it.id.toString()))
+        }
+    }
     @Inject
     lateinit var sessionManager: SessionManager
     override fun onCreateView(
@@ -66,7 +84,7 @@ class ProfilePlayerFrag : Fragment() {
 
     private fun getProfileData() {
         with(binding) {
-            viewModel.fetchProfile(sessionManager.fetchToken())
+            viewModel.getProfileData(id.toInt())
             viewModel.loading.observe(viewLifecycleOwner) {
                 infoProgressBar.loadingProgressLayout.isVisible = it
             }
@@ -268,7 +286,7 @@ class ProfilePlayerFrag : Fragment() {
         val recyclerView = binding.friendsRv
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        val adapter = FriendsRedesAdapter()
+        val adapter = friendAdapter
         recyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchUsers(userId = id.toString()).collect {
@@ -280,13 +298,13 @@ class ProfilePlayerFrag : Fragment() {
                 adapter.submitData(it)
             }
         }
-        adapter.selectItem {
+        /*adapter.selectItem {
             findNavController().navigate(
 
                 ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(
                     it.id.toString()
                 )
             )
-        }
+        }*/
     }
 }

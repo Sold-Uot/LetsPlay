@@ -150,6 +150,7 @@
             android:name="id"
 
             app:argType="string" />
+
         <action
             android:id="@+id/action_friendProfileInfoFragment_to_userReportFragment"
             app:destination="@id/userReportFragment" />

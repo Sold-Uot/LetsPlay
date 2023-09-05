@@ -50,7 +50,7 @@ class EventRepositoryImpl @Inject constructor(
     override fun getEvent(id: String): Flow<Response<NewEventDescriptionResponse>> = flow<Response<NewEventDescriptionResponse>> {
 
         emit(service.getEvent(id = id))
-    }.flowOn(Dispatchers.Unconfined)
+    }.flowOn(Dispatchers.IO)
 
 
 

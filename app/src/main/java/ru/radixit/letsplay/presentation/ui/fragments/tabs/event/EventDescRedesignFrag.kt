@@ -1,7 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.event
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -11,12 +10,9 @@ import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,8 +29,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_pointer.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragEventDescRedesignBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.CreateEventViewModel
@@ -119,7 +113,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
 /*
             viewModel.getEvent(id)
 */
-            viewModel.newGetEventDesc(id)
+            viewModel.getEventDesc(id)
             Log.w("start_newGetEv",id.toString())
             binding.include.apply {
                 binding.include.shareTv.setOnClickListener {
@@ -166,7 +160,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
             viewModel.successLoading.observe(viewLifecycleOwner) {
                 binding.infoProgressBar.loadingProgressLayout.isVisible = it
             }
-            viewModel.newEventDescription.observe(viewLifecycleOwner) {
+            viewModel.eventDescription.observe(viewLifecycleOwner) {
                 it.playgroundId?.let {
                     setMarkerInMap(it)
                 }
@@ -200,9 +194,9 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
 /*
             viewModel.getEvent(args.event!!.id.toString())
 */
-            viewModel.newGetEventDesc(args.event!!.id.toString())
+            viewModel.getEventDesc(args.event!!.id.toString())
 
-            viewModel.newEventDescription.observe(viewLifecycleOwner){
+            viewModel.eventDescription.observe(viewLifecycleOwner){
 
                 it.createdBy?.photo?.let {
                     Log.w("photo",it.url.toString())

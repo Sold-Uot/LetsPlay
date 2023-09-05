@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -21,11 +19,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.frag_list_events_redesign.recyclerViewCurrent
-import kotlinx.android.synthetic.main.fragment_playground_address.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -84,7 +80,7 @@ class ListEventsProfRedesFrag : Fragment() {
             binding.emptyEventsLinLay.gone()
         }
 
-        viewModel.fetchProfile(args.id)
+        viewModel.getProfileData(args.id)
         viewModel.profile.observe(viewLifecycleOwner) {
             if (it.name.equals("")) {
                 binding.nameEventsTv.gone()
