@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,11 +15,16 @@ import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.databinding.ItemFindFriendRecyclerBinding
 
 typealias SelectItemOnClickListener = ((User) -> Unit)
+typealias OnClickAddFriend = ((User) -> Unit)
 
 class FindFriendAdapter :
     PagingDataAdapter<User, FindFriendAdapter.FindFriendViewHolder>(FindFriendComparator) {
 
+
+
+
     private var selectItemOnClickListener: SelectItemOnClickListener? = null
+    private var onClickAddFriend :OnClickAddFriend? = null
 
     class FindFriendViewHolder(private val binding: ItemFindFriendRecyclerBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,13 +41,14 @@ class FindFriendAdapter :
         fun bind(
             user: User,
             selectItemOnClickListener: SelectItemOnClickListener,
+            onClickAddFriend: OnClickAddFriend
         ) {
             binding.playerName.text = user.name ?: "Не указано"
             binding.playerPosition.text = (user.userType ?: "Не указано").toString()
             if (user.photo == null) {
                 binding.photo.visibility = View.GONE
                 binding.nameOnAvatar.visibility = View.VISIBLE
-                binding.nameOnAvatar.text = "${user.name.toString()[0]}"
+                binding.nameOnAvatar.text = "${user.name.toString().uppercase()[0]}"
                 binding.constraint.visibility = View.VISIBLE
                 binding.constraint.setBackgroundColor(
                     ContextCompat.getColor(
@@ -54,6 +61,12 @@ class FindFriendAdapter :
                 binding.nameOnAvatar.visibility = View.GONE
                 binding.constraint.visibility = View.GONE
                 Glide.with(binding.root).load(user.photo.url).into(binding.photo)
+
+            }
+            binding.addFriendBtn.setOnClickListener {
+                onClickAddFriend.invoke(user)
+                it.visibility = View.GONE
+
             }
             itemView.setOnClickListener {
                 selectItemOnClickListener.invoke(user)
@@ -69,7 +82,11 @@ class FindFriendAdapter :
     }
 
     override fun onBindViewHolder(holder: FindFriendViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, selectItemOnClickListener!!)
+        holder.bind(getItem(position)!!, selectItemOnClickListener!!,onClickAddFriend!!)
+    }
+
+    fun clickAddFriends( listener: OnClickAddFriend?){
+        onClickAddFriend = listener
     }
 
     fun selectItem(listener: SelectItemOnClickListener?) {

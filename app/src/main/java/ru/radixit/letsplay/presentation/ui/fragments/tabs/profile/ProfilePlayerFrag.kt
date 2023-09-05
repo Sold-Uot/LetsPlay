@@ -29,6 +29,7 @@ import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.Events
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.FriendsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
 import ru.radixit.letsplay.utils.SpaceItemDecoration
+import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.showSnackBar
 import ru.radixit.letsplay.utils.visible
 import javax.inject.Inject
@@ -89,6 +90,7 @@ class ProfilePlayerFrag : Fragment() {
                 infoProgressBar.loadingProgressLayout.isVisible = it
             }
             viewModel.profile.observe(viewLifecycleOwner) {
+                friendCountTv.text = it.friends.size.toString()
                 if(it.name !=  null && it.surname != null){
                     profileName.text = "${it.name} ${it.surname}"
                 }else if(it.name !=  null && it.surname == null){
@@ -97,6 +99,11 @@ class ProfilePlayerFrag : Fragment() {
                     profileName.text = "${it.surname}"
                 }else{
                     profileName.text = "Не указано"
+                }
+
+                if (it.stateFriend != null){
+                    binding.addFriendMatBtn.gone()
+
                 }
 
                 missedGamesCountTv.text =
@@ -133,6 +140,7 @@ class ProfilePlayerFrag : Fragment() {
                 if (it) {
                     binding.addFriendMatBtn.text = resources.getString(R.string.add_friend_send)
                     binding.addFriendMatBtn.isEnabled = false
+
                 } else {
                     binding.addFriendMatBtn.text = resources.getString(R.string.add_friend)
                     binding.addFriendMatBtn.isEnabled = true

@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_findFriendFragment_to_userInBlackListDialogFragment"
             app:destination="@id/userInBlackListDialogFragment" />
+        <action
+            android:id="@+id/action_findFriendFragment_to_friendProfileInfoFragment"
+            app:destination="@id/friendProfileInfoFragment" />
     </dialog>
     <dialog
         android:id="@+id/userInBlackListDialogFragment"

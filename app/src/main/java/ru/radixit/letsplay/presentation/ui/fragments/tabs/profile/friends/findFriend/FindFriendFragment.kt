@@ -2,6 +2,7 @@ package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.findF
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,15 +106,12 @@ class FindFriendFragment : DialogFragment() {
             adapter.refresh()
         }
 
+        adapter.clickAddFriends {
+            viewModel.addFriend(it.id.toString())
+        }
 
         adapter.selectItem {
-            if (findNavController().currentDestination?.id == R.id.findFriendFragment) {
-//                findNavController().navigate(
-//                    FindFriendFragmentDirections.actionFindFriendFragmentToUserProfileFragment(
-//                        it.id.toString()
-//                    )
-//                )
-            }
+            findNavController().navigate(FindFriendFragmentDirections.actionFindFriendFragmentToFriendProfileInfoFragment(it.id.toString()))
         }
         recyclerView.setOnTouchListener { view, _ ->
             requireContext().hideKeyboardOnScroll(view)
