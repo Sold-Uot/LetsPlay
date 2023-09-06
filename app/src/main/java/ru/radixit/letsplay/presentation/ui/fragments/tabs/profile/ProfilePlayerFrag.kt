@@ -48,6 +48,8 @@ class ProfilePlayerFrag : Fragment() {
             args.id.toString()
         } else {
             args.id
+
+
         }
     }
 
