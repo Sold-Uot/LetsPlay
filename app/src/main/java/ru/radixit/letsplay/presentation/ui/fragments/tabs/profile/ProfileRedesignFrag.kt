@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,6 +74,7 @@ class ProfileRedesignFrag : BaseFragment() {
 
     private fun getProfileData() {
         with(binding) {
+            viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getProfileData(sessionManager.fetchToken())
 
             viewModel.loading.observe(viewLifecycleOwner) {
@@ -114,14 +116,16 @@ class ProfileRedesignFrag : BaseFragment() {
                 }
                 matchesPlayedTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
+
+                setupEvents(it.id)
                 setupRecyclerview(it.id)
                 setupTeams(it.id)
-                setupEvents(it.id)
+                Log.w("пришел " , "id  ${it.id }")
             }
             if (swipeToRefresh.isRefreshing) {
                 swipeToRefresh.isRefreshing = false
             }
-        }
+        }}
     }
 
     private fun setupTeams(id: Int) {
@@ -140,7 +144,7 @@ class ProfileRedesignFrag : BaseFragment() {
         viewModel.teams.observe(viewLifecycleOwner) {
             adapter.setData(it)
             binding.teamsCountTv.text = "${it.size}"
-            if (it.isEmpty()) {
+            if (it.size == 0) {
                 binding.emptyListTeamsTv.visible()
             }
         }
@@ -162,8 +166,9 @@ class ProfileRedesignFrag : BaseFragment() {
         val adapter = EventsRedesAdapter()
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
-
+        Log.w("di"  , id.toString())
         viewLifecycleOwner.lifecycleScope.launch {
+            Log.w("did"  , id.toString())
             viewModel.events.collectLatest {
                 adapter.submitData(it)
             }
@@ -221,6 +226,10 @@ class ProfileRedesignFrag : BaseFragment() {
         }
     }
 
+    override fun onPause() {
+        _binding = null
+        super.onPause()
+    }
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

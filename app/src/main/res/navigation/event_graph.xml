@@ -36,6 +36,9 @@
             app:destination="@id/eventDescRedesignFrag"
             app:popUpTo="@id/eventInDetailRedesFrag2"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag2_to_listEventsRedesFrag"
+            app:destination="@id/listEventsRedesFrag" />
     </fragment>
     <dialog
         android:id="@+id/playersEventRedesFrag"

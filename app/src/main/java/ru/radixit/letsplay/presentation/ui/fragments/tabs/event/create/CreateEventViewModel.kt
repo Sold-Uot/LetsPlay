@@ -231,7 +231,6 @@ class CreateEventViewModel @Inject constructor(
             }*/
 
             val response = playgroundRepository.createEvent(request)
-            Log.v(this.javaClass.name,response.body()!!.eventId.toString())
             if (response.isSuccessful) {
                 response.body()?.let{
                     res.invoke(true,it.eventId)

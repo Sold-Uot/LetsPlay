@@ -47,6 +47,9 @@ class ProfileViewModel @Inject constructor(
     private val _photo = MutableLiveData<Photo?>()
     val photo: LiveData<Photo?> = _photo
 
+    private val _request = MutableLiveData<Int>()
+    val request : LiveData<Int> = _request
+
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> = _teams
 
@@ -75,6 +78,9 @@ class ProfileViewModel @Inject constructor(
                 }
             }
         }
+    }
+    fun getRequest(id : Int) {
+        _request.value = id
     }
     fun getProfileData(id: Int){
         viewModelScope.launch {
@@ -150,6 +156,10 @@ class ProfileViewModel @Inject constructor(
     }.flow
         .cachedIn(viewModelScope)
 
+    val getUserEvents : Flow<PagingData<Event>> = Pager(PagingConfig(pageSize = 1)) {
+        EventPagingSource(repository,request.value!! )
+    }.flow
+        .cachedIn(viewModelScope)
     val archiveEvents: Flow<PagingData<Event>> = Pager(PagingConfig(pageSize = 1)) {
         ArchiveEventPagingSource(repository, sessionManager.fetchToken())
     }.flow

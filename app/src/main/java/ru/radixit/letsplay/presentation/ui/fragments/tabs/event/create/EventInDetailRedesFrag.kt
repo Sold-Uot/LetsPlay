@@ -207,13 +207,13 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                                 dialogCustom?.dismiss()
                                 Log.v(this.javaClass.name,isResult.toString())
                                 if (isResult) {
-                                    context?.showToast("ОК")
+                                    context?.showToast("Событие успешно создано")
                                     if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
                                         val bundle = Bundle()
                                         bundle.putString("event", null)
                                         bundle.putString("id", eventId.toString())
                                         findNavController().navigate(
-                                            R.id.action_eventInDetailRedesFrag2_to_eventDescRedesignFrag,
+                                            R.id.action_eventInDetailRedesFrag2_to_listEventsRedesFrag,
                                             bundle
                                         )
                                     }
@@ -290,7 +290,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
     private fun createEventCalendarPlayg() {
         if (binding.addressMapTv.text.toString() != "") {
             findNavController().navigate(
-                EventInDetailRedesFragDirections.actionEventInDetailRedesFragToCreateEventRedes(
+                EventInDetailRedesFragDirections.actionEventInDetailRedesFragToCreateEventRedesFrag4(
                     playgId.toString()
                 )
             )

@@ -488,13 +488,14 @@
                     android:text="Список команд пуст"
                     android:textAlignment="center"
                     android:textColor="#7D7D82"
-                    android:visibility="gone"
                     android:textSize="@dimen/small_size"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="@+id/teams_rv"
                     app:layout_constraintEnd_toEndOf="@+id/teams_rv"
                     app:layout_constraintStart_toStartOf="@+id/teams_rv"
-                    app:layout_constraintTop_toTopOf="@+id/teams_rv" />
+                    app:layout_constraintTop_toTopOf="@+id/teams_rv"
+                    tools:visibility="gone" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

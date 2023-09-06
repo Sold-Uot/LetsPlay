@@ -80,10 +80,7 @@
             android:id="@+id/action_eventInDetailRedesFrag_to_listMapsRedesFrag"
             app:destination="@id/listMapsRedesFrag" />
         <action
-            android:id="@+id/action_eventInDetailRedesFragPlayg_to_createEventRedesFrag"
-            app:destination="@id/createEventRedesFrag" />
-        <action
-            android:id="@+id/action_eventInDetailRedesFrag_to_createEventRedes"
+            android:id="@+id/action_eventInDetailRedesFrag_to_createEventRedesFrag4"
             app:destination="@id/createEventRedesFrag" />
     </fragment>
     <dialog

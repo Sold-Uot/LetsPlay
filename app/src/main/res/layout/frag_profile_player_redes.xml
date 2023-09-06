@@ -438,8 +438,8 @@
                         android:id="@+id/events_rv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:layout_marginTop="18dp"
+                        android:layout_marginStart="8dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -456,8 +456,8 @@
                         android:text="Список событий пуст"
                         android:textAlignment="center"
                         android:textColor="#7D7D82"
-                        android:textSize="@dimen/small_size"
                         android:visibility="gone"
+                        android:textSize="@dimen/small_size"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="@+id/events_rv"
                         app:layout_constraintEnd_toEndOf="@+id/events_rv"
@@ -465,16 +465,15 @@
                         app:layout_constraintTop_toTopOf="@+id/events_rv" />
 
                     <View
-                        android:id="@+id/events_prof_play_view"
+                        android:id="@+id/events_profile_view"
                         android:layout_width="0dp"
-                        android:layout_height="2dp"
+                        android:layout_height="1dp"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
                         android:background="@color/gray_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/events_rv" />
-
                     <TextView
                         android:id="@+id/teams_tv"
                         android:layout_width="wrap_content"
@@ -486,7 +485,7 @@
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/events_prof_play_view"
+                        app:layout_constraintTop_toBottomOf="@+id/events_profile_view"
                         app:layout_goneMarginTop="16dp" />
 
                     <TextView
@@ -513,19 +512,19 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/teams_tv"
                         app:srcCompat="@drawable/arrow_end" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/teams_rv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
                         android:layout_marginTop="18dp"
+                        android:layout_marginStart="6dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/teams_tv"
                         tools:listitem="@layout/item_command_prof_rv_redes" />
+
                     <TextView
                         android:id="@+id/empty_list_teams_tv"
                         android:layout_width="wrap_content"
@@ -535,13 +534,14 @@
                         android:text="Список команд пуст"
                         android:textAlignment="center"
                         android:textColor="#7D7D82"
-                        android:visibility="gone"
                         android:textSize="@dimen/small_size"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="@+id/teams_rv"
                         app:layout_constraintEnd_toEndOf="@+id/teams_rv"
                         app:layout_constraintStart_toStartOf="@+id/teams_rv"
-                        app:layout_constraintTop_toTopOf="@+id/teams_rv" />
+                        app:layout_constraintTop_toTopOf="@+id/teams_rv"
+                        tools:visibility="gone" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

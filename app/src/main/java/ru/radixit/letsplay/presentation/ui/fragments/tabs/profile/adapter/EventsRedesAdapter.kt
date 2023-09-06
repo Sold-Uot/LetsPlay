@@ -33,7 +33,8 @@ class EventsRedesAdapter : PagingDataAdapter<Event, EventsRedesAdapter.EventsVie
                     Glide.with(root).load(event.preview.url).into(itemAvatarImg)
                 }else{
                     itemAvatarImg.setPadding(10,10,10,10)
-                    Glide.with(root).load(R.drawable.ic_no_images).into(itemAvatarImg)
+                    itemAvatarImg.gone()
+                    itemAvatarImg2.visible()
                 }
                 titleEventTv.text = event.title
 

@@ -25,13 +25,15 @@ class FriendsRedesAdapter(private val selectItemOnClickListener: SelectItemOnCli
         RecyclerView.ViewHolder(binding.root) {
 
 
+
+
         @SuppressLint("SetTextI18n")
         fun bind(
             friend: User,
         ) {
             binding.playerNameTv.text = friend.name ?: "Не указано"
 //            binding.playerPosition.text = (friend.userType ?: "Не указано").toString()
-            Log.w("friends" , friend.toString())
+
             if (friend.photo == null) {
                 binding.playingMarCard.visibility = View.VISIBLE
                 binding.itemAvatarImg.visibility = View.GONE

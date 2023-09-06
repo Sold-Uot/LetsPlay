@@ -16,10 +16,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
@@ -132,9 +134,9 @@ class ProfilePlayerFrag : Fragment() {
                 matchesPlayedValueTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
                 clickViews(it.id)
+                setupEvents(it.id)
                 setupFriends(it.id)
                 setupTeams(it.id)
-                setupEvents(it.id)
             }
             viewModel.successAddToFriends.observe(viewLifecycleOwner) {
                 if (it) {
@@ -261,11 +263,12 @@ class ProfilePlayerFrag : Fragment() {
             }
         }
         teamRecyclerView.adapter = adapter
-        teamRecyclerView.addItemDecoration(SpaceItemDecoration(30))
     }
 
     private fun setupEvents(id: Int) {
+        viewModel.getRequest(id)
         binding.eventsArrowEndImg.setOnClickListener {
+
             findNavController().navigate(
                 ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToListEventsProfRedesFrag(
                     id
@@ -273,13 +276,15 @@ class ProfilePlayerFrag : Fragment() {
             )
         }
         val recyclerView = binding.eventsRv
+
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val adapter = EventsRedesAdapter()
         recyclerView.adapter = adapter
+
         recyclerView.setHasFixedSize(true)
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.events.collectLatest {
+            viewModel.getUserEvents.collectLatest {
                 adapter.submitData(it)
                 val size = adapter.snapshot().size
                 binding.eventsCountTv.text = "${size}"
@@ -288,6 +293,7 @@ class ProfilePlayerFrag : Fragment() {
                 }
             }
         }
+
     }
 
     private fun setupFriends(id: Int) {
@@ -315,4 +321,7 @@ class ProfilePlayerFrag : Fragment() {
             )
         }*/
     }
+
+
+
 }
