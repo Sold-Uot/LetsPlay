@@ -19,15 +19,17 @@ import ru.radixit.letsplay.databinding.ItemEventsProfRedesRvBinding
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
 
+typealias SelectEventItemOnClickListener = ((Event) -> Unit)
 class ListEventPlayerAdapter : RecyclerView.Adapter<ListEventPlayerAdapter.EventPlayerViewHolder>() {
 
 
+    private var selectEventItemOnClickListener : SelectEventItemOnClickListener? = null
     var list = emptyList<Event>()
     class EventPlayerViewHolder(private val binding: ItemEventsProfRedesRvBinding)  :RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n", "LongLogTag")
 
 
-        fun bind(event: ru.radixit.letsplay.data.model.Event) {
+        fun bind(event: ru.radixit.letsplay.data.model.Event,selectEventItemOnClickListener: SelectEventItemOnClickListener) {
             with(binding) {
                 if (event.preview != null) {
                     itemAvatarImg.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -41,6 +43,11 @@ class ListEventPlayerAdapter : RecyclerView.Adapter<ListEventPlayerAdapter.Event
                     itemAvatarImg2.visible()
                 }
                 titleEventTv.text = event.title
+
+                root.setOnClickListener{
+
+                    selectEventItemOnClickListener(event)
+                }
             }
         }
 
@@ -59,7 +66,11 @@ class ListEventPlayerAdapter : RecyclerView.Adapter<ListEventPlayerAdapter.Event
 
     override fun onBindViewHolder(holder: EventPlayerViewHolder, position: Int) {
 
-        holder.bind(list[position])
+        holder.bind(list[position], selectEventItemOnClickListener!!)
+    }
+    fun selectItem(selecteventlistner: SelectEventItemOnClickListener){
+        selectEventItemOnClickListener = selecteventlistner
+
     }
     fun setData(list: List<ru.radixit.letsplay.data.model.Event>) {
         this.list = list

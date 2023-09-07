@@ -25,7 +25,6 @@ import ru.radixit.letsplay.data.network.response.ProfileResponse
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.data.paging.ArchiveEventPagingSource
 import ru.radixit.letsplay.data.paging.EventPagingSource
-import ru.radixit.letsplay.data.paging.EventPlayerProfilePagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
 import ru.radixit.letsplay.presentation.global.ErrorHandler
 import ru.radixit.letsplay.utils.showToast
@@ -52,7 +51,6 @@ class ProfileViewModel @Inject constructor(
     val profile_player: LiveData<ProfileResponse> = _profile_player
 
     private val _id_profile = MutableLiveData<Int>()
-    val id_profile : LiveData<Int> = _id_profile
 
     private val _photo = MutableLiveData<Photo?>()
     val photo: LiveData<Photo?> = _photo
@@ -69,10 +67,22 @@ class ProfileViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _me = MutableLiveData<MeResponse>()
-    val me: LiveData<MeResponse> = _me
+
+
     private val _response = MutableLiveData<String>()
     val response: LiveData<String> = _response
+
+
+
+
+    fun checkThisMyProfile(id :Int):Boolean {
+
+        if (_id_profile.value == id){
+            return false
+        }
+        return true
+    }
+
 
     fun searchUsers(query: String = "", userId: String): Flow<PagingData<User>> {
         return repository.friends(ListRequest(search = query, userId = userId))
@@ -80,10 +90,6 @@ class ProfileViewModel @Inject constructor(
 
     }
 
-    fun eventsProfilePlayer(request: Int) = Pager(PagingConfig(pageSize = 1)) {
-        EventPlayerProfilePagingSource(userApi, sessionManager.fetchToken())
-    }.flow
-    .cachedIn(viewModelScope)
     fun block(userId: String) {
         viewModelScope.launch {
             try {
@@ -135,6 +141,8 @@ class ProfileViewModel @Inject constructor(
                 _loading.value = true
                 val response = repository.getUserProfile(id.toString())
 
+                        Log.e("акrrкаунт" , response.body()!!.id.toString())
+                        _id_profile.value = response.body()!!.id
                         _profile.value = response.body()
                         _gender.value = response.body()?.gender
                         _photo.value = response.body()?.photo

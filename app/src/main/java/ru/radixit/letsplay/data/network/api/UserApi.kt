@@ -34,12 +34,7 @@ interface UserApi {
         @Query("filter") filter: String
     ): Response<EventResponse>
 
-    @GET("/user/v1/get/{ID}/events")
-    suspend fun eventListFlow(
-        @Path("ID") id: String, @Query("pageSize") pageSize: String = "30",
-        @Query("pageIndex") pageIndex: String = "1",
-        @Query("filter") filter: String  = "active"
-    ): Response<EventResponse>
+
 
     /**
      * Список команд

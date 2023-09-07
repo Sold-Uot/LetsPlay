@@ -29,6 +29,7 @@ import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListEv
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.showSnackBar
+import ru.radixit.letsplay.utils.showToast
 import ru.radixit.letsplay.utils.visible
 import javax.inject.Inject
 
@@ -52,14 +53,18 @@ class ProfilePlayerFrag : Fragment() {
 
     private val friendAdapter: FriendsRedesAdapter =
         FriendsRedesAdapter {
-
-
+            val user = it
+            if ( viewModel.checkThisMyProfile(user.id)){
             findNavController().navigate(
-                ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(
-                    it.id.toString()
+                ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(user.id.toString()
                 )
-            )
+            )}
+            else
+                context?.showToast("Это ваш профиль")
+
+
         }
+
 
     @Inject
     lateinit var sessionManager: SessionManager
@@ -136,11 +141,13 @@ class ProfilePlayerFrag : Fragment() {
                     profileMatCard.setCardBackgroundColor(cardColor)
                 }
                 cityValueTv.text = it.address ?: "Неизв."
-                posValueTv.text = if (it.position != null) {
-                    "${it.position}"
-                } else {
-                    "не указана"
+                posValueTv.text = when(it.position){
+                    "1"-> "Нападающий"
+                    "2"-> "Защитник"
+                    "3"-> "Вратарь"
+                    else -> "Не указано"
                 }
+
                 matchesPlayedValueTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
                 clickViews(it.id)
@@ -173,7 +180,7 @@ class ProfilePlayerFrag : Fragment() {
             friendArrowEndImg.setOnClickListener {
                 findNavController().navigate(
                     ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToListFriendsRedesFrag(
-                        id
+                        id,true
                     )
                 )
             }
@@ -270,9 +277,10 @@ class ProfilePlayerFrag : Fragment() {
         val adapter = ListTeamProfileRedesAdapter()
         viewModel.listTeams(id)
         viewModel.teams.observe(viewLifecycleOwner) {
+            binding.emptyListTeamsTv.gone()
             adapter.setData(it)
-            binding.teamsCountTv.text = "${it.size}"
-            if (it.isEmpty()) {
+            binding.teamsCountTv.text = "${adapter.itemCount}"
+            if (adapter.itemCount == 0) {
                 binding.emptyListTeamsTv.visible()
             }
         }
@@ -282,6 +290,7 @@ class ProfilePlayerFrag : Fragment() {
     private fun setupEvents(id: Int) {
         lifecycleScope.launch {
             Log.e("id_event", id.toString())
+
 
 
 
@@ -303,6 +312,19 @@ class ProfilePlayerFrag : Fragment() {
             recyclerView.setHasFixedSize(true)
             viewModel.eventLiveData.observe(viewLifecycleOwner){
                 adapter.setData(it)
+                val size = adapter.itemCount
+                binding.eventsCountTv.text = "${size}"
+                if (size == 0) {
+                    binding.emptyListEventsTv.visible()
+                }
+            }
+
+            adapter.selectItem {
+                findNavController().navigate(
+                    ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToEventDescRedesignFrag2(
+                        it,id.toString()
+                    )
+                )
             }
 
             recyclerView.adapter = adapter
@@ -328,6 +350,8 @@ class ProfilePlayerFrag : Fragment() {
     }
 
     private fun setupFriends(id: Int) {
+
+
         val recyclerView = binding.friendsRv
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

@@ -95,6 +95,16 @@ class ProfileRedesignFrag : BaseFragment() {
                     if (it.wasNotPresentGame != null) it.wasNotPresentGame.toString() else "0"
                 playedCountTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "0"
+
+                Log.e("rwqerwer", it.position.toString())
+                profileInfoPositionTv.text = when(it.position){
+                    "1"-> "Нападающий"
+                    "2"-> "Защитник"
+                    "3"-> "Вратарь"
+                    else -> "Не указано"
+                }
+
+
                 sport.text = it.userType ?: "Неизв."
                 if (it.photo != null) {
                     nameOnAvatar.visibility = View.GONE
@@ -109,11 +119,7 @@ class ProfileRedesignFrag : BaseFragment() {
                     profileMatCard.setCardBackgroundColor(cardColor)
                 }
                 profileInfoAddressTv.text = it.address ?: "Неизв."
-                profileInfoPositionTv.text = if (it.position != null) {
-                    "${it.position}"
-                } else {
-                    "не указана"
-                }
+
                 matchesPlayedTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
 
@@ -219,7 +225,7 @@ class ProfileRedesignFrag : BaseFragment() {
             viewModel.profile.observe(viewLifecycleOwner) {
                 findNavController().navigate(
                     ProfileRedesignFragDirections.actionProfileRedesignFragToListFriendsRedesFrag(
-                        it.id
+                        it.id,false
                     )
                 )
             }

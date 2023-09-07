@@ -20,7 +20,6 @@ import ru.radixit.letsplay.data.network.request.*
 import ru.radixit.letsplay.data.network.response.*
 import ru.radixit.letsplay.data.paging.BlackListPagingSource
 import ru.radixit.letsplay.data.paging.EventPagingSource
-import ru.radixit.letsplay.data.paging.EventPlayerProfilePagingSource
 import ru.radixit.letsplay.data.paging.FindFriendPagingSource
 import ru.radixit.letsplay.data.paging.FriendsPagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
@@ -113,19 +112,7 @@ class ProfileRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override fun eventsListProfilePlayer(
-        request: Int,
-        pageSize: String,
-        pageIndex: String,
-        filter: String
-    ): Flow<PagingData<Event>> {
 
-
-        return Pager(
-            config = PagingConfig(pageSize = 5, enablePlaceholders = true),
-            pagingSourceFactory = {EventPlayerProfilePagingSource(userApi,request)}
-        ).flow
-    }
 
     override fun findFriend(request: ListRequest): Flow<PagingData<User>> {
         @OptIn(ExperimentalPagingApi::class)

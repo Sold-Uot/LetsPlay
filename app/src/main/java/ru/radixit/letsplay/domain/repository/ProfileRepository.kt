@@ -37,12 +37,7 @@ interface ProfileRepository {
     suspend fun fetchProfile(): Response<FetchEditProfileResponse>
 
     fun friends(request: ListRequest): Flow<PagingData<User>>
-    fun eventsListProfilePlayer(
-        request: Int,
-        pageSize: String,
-        pageIndex: String,
-        filter: String
-    ): Flow<PagingData<Event>>
+
 
     fun findFriend(request: ListRequest): Flow<PagingData<User>>
 

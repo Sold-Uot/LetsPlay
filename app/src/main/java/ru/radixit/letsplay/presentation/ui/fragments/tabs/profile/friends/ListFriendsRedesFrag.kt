@@ -48,6 +48,10 @@ class ListFriendsRedesFrag : Fragment() {
         binding.swipeToRefresh.setOnRefreshListener{
             setupRecyclerview()
         }
+
+        if (args?.checker == true){
+            binding.openAddFriend.gone()
+        }
         binding.openAddFriend.setOnClickListener {
             Log.w("click", "wow its click")
             findNavController().navigate(ListFriendsRedesFragDirections.actionListFriendsRedesFragToFindFriendFragment())

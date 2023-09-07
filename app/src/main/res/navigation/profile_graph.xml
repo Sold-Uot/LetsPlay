@@ -175,6 +175,9 @@
         <action
             android:id="@+id/action_friendProfileInfoFragment_self"
             app:destination="@id/friendProfileInfoFragment" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_eventDescRedesignFrag2"
+            app:destination="@id/eventDescRedesignFrag" />
     </fragment>
     <fragment
         android:id="@+id/listFriendsRedesFrag"
@@ -188,6 +191,9 @@
         <action
             android:id="@+id/action_listFriendsRedesFrag_to_findFriendFragment"
             app:destination="@id/findFriendFragment" />
+        <argument
+            android:name="checker"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/listEventsProfRedesFrag"
