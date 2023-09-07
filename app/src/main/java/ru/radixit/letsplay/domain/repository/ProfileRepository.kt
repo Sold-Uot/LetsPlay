@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.AvatarResponse
+import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.network.request.*
 import ru.radixit.letsplay.data.network.response.*
@@ -14,9 +15,10 @@ interface ProfileRepository {
         base64File: String
     ): Response<AvatarResponse>
 
+    suspend fun eventListFlow( id : Int):Response<EventResponse>
     suspend fun getProfile(id: Int): Response<ProfileResponse>
 
-    fun getProfileData(id : Int) : Flow<Response<ProfileResponse>>
+    fun getProfileData(id: Int): Flow<Response<ProfileResponse>>
 
     suspend fun eventsList(
         request: Int,
@@ -29,11 +31,18 @@ interface ProfileRepository {
 
     suspend fun listTeams(request: Int): Response<TeamResponse>
 
+
     suspend fun editProfile(request: EditProfileRedesRequest): Response<EditProfileResponse>
 
     suspend fun fetchProfile(): Response<FetchEditProfileResponse>
 
     fun friends(request: ListRequest): Flow<PagingData<User>>
+    fun eventsListProfilePlayer(
+        request: Int,
+        pageSize: String,
+        pageIndex: String,
+        filter: String
+    ): Flow<PagingData<Event>>
 
     fun findFriend(request: ListRequest): Flow<PagingData<User>>
 

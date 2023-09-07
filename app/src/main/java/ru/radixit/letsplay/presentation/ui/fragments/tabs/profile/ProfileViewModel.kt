@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,12 +18,14 @@ import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.data.model.Gender
 import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.network.api.UserApi
 import ru.radixit.letsplay.data.network.request.ListRequest
 import ru.radixit.letsplay.data.network.response.MeResponse
 import ru.radixit.letsplay.data.network.response.ProfileResponse
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.data.paging.ArchiveEventPagingSource
 import ru.radixit.letsplay.data.paging.EventPagingSource
+import ru.radixit.letsplay.data.paging.EventPlayerProfilePagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
 import ru.radixit.letsplay.presentation.global.ErrorHandler
 import ru.radixit.letsplay.utils.showToast
@@ -32,6 +35,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val repository: ProfileRepository,
     private val errorHandler: ErrorHandler,
+    private val userApi: UserApi,
     @ApplicationContext private val context: Context,
     private val sessionManager: SessionManager
 ) : ViewModel() {
@@ -44,6 +48,12 @@ class ProfileViewModel @Inject constructor(
     private val _profile = MutableLiveData<ProfileResponse>()
     val profile: LiveData<ProfileResponse> = _profile
 
+    private val _profile_player = MutableLiveData<ProfileResponse>()
+    val profile_player: LiveData<ProfileResponse> = _profile_player
+
+    private val _id_profile = MutableLiveData<Int>()
+    val id_profile : LiveData<Int> = _id_profile
+
     private val _photo = MutableLiveData<Photo?>()
     val photo: LiveData<Photo?> = _photo
 
@@ -52,6 +62,9 @@ class ProfileViewModel @Inject constructor(
 
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> = _teams
+
+    private val _event = MutableLiveData<List<Event>>()
+    val eventLiveData : LiveData <List<Event>> = _event
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -64,7 +77,13 @@ class ProfileViewModel @Inject constructor(
     fun searchUsers(query: String = "", userId: String): Flow<PagingData<User>> {
         return repository.friends(ListRequest(search = query, userId = userId))
             .map { pagingData -> pagingData.map { it } }.cachedIn(viewModelScope)
+
     }
+
+    fun eventsProfilePlayer(request: Int) = Pager(PagingConfig(pageSize = 1)) {
+        EventPlayerProfilePagingSource(userApi, sessionManager.fetchToken())
+    }.flow
+    .cachedIn(viewModelScope)
     fun block(userId: String) {
         viewModelScope.launch {
             try {
@@ -79,21 +98,49 @@ class ProfileViewModel @Inject constructor(
             }
         }
     }
-    fun getRequest(id : Int) {
-        _request.value = id
+
+
+    fun getProfilePlayerData(id: Int){
+        viewModelScope.launch {
+            try {
+                getRequest(id)
+                _loading.value = true
+                val response = repository.getProfileData(id)
+                response.collect{
+                    Log.e("123",it.body()?.id.toString())
+                    _profile_player.value = it.body()
+                    /*_gender.value = it.body()?.gender
+                    _photo.value = it.body()?.photo*/
+
+
+                }
+            }
+
+
+            catch (ex:Exception) {
+                errorHandler.proceed(ex) { msg ->
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+            }
+            finally {
+                _loading.value = false
+            }
+
+
+        }
     }
     fun getProfileData(id: Int){
         viewModelScope.launch {
             try {
                 _loading.value = true
-                val response = repository.getProfileData(id)
-                response.collect{
-                        _profile.value = it.body()
-                        _gender.value = it.body()?.gender
-                        _photo.value = it.body()?.photo
+                val response = repository.getUserProfile(id.toString())
+
+                        _profile.value = response.body()
+                        _gender.value = response.body()?.gender
+                        _photo.value = response.body()?.photo
 
 
-                    }
+
                 }
 
 
@@ -110,9 +157,13 @@ class ProfileViewModel @Inject constructor(
         }}
 
 
+    fun getRequest(id : Int){
+        Log.e("request_id " , id.toString())
+        _request.value = id
+    }
     // старый способо тянуть данные профиля
 
-    /*fun fetchProfile(id: Int) {
+    fun fetchProfile(id: Int) {
         viewModelScope.launch {
             try {
                 _loading.value = true
@@ -132,7 +183,7 @@ class ProfileViewModel @Inject constructor(
             }
 
         }
-    }*/
+    }
 
     fun addToFriends(userId: String) {
         viewModelScope.launch {
@@ -151,14 +202,16 @@ class ProfileViewModel @Inject constructor(
             }
         }
     }
+
+
     val events: Flow<PagingData<Event>> = Pager(PagingConfig(pageSize = 1)) {
         EventPagingSource(repository, sessionManager.fetchToken())
     }.flow
         .cachedIn(viewModelScope)
 
-    val getUserEvents : Flow<PagingData<Event>> = Pager(PagingConfig(pageSize = 1)) {
-        EventPagingSource(repository,request.value!! )
-    }.flow
+
+
+
         .cachedIn(viewModelScope)
     val archiveEvents: Flow<PagingData<Event>> = Pager(PagingConfig(pageSize = 1)) {
         ArchiveEventPagingSource(repository, sessionManager.fetchToken())
@@ -176,6 +229,18 @@ class ProfileViewModel @Inject constructor(
     }.flow
         .cachedIn(viewModelScope)
 
+    fun listEvent(id : Int) {
+        viewModelScope.launch {
+
+                val res = repository.eventListFlow(id)
+                if (res.isSuccessful) {
+                    _event.value = res.body()!!.list
+                }
+
+
+
+        }
+    }
     fun listTeams(id: Int) {
         viewModelScope.launch {
             try {

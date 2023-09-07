@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.map
 import okhttp3.Dispatcher
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.AvatarResponse
+import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.network.api.FriendApi
 import ru.radixit.letsplay.data.network.api.ProfileApi
@@ -18,6 +19,8 @@ import ru.radixit.letsplay.data.network.api.UserApi
 import ru.radixit.letsplay.data.network.request.*
 import ru.radixit.letsplay.data.network.response.*
 import ru.radixit.letsplay.data.paging.BlackListPagingSource
+import ru.radixit.letsplay.data.paging.EventPagingSource
+import ru.radixit.letsplay.data.paging.EventPlayerProfilePagingSource
 import ru.radixit.letsplay.data.paging.FindFriendPagingSource
 import ru.radixit.letsplay.data.paging.FriendsPagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
@@ -27,6 +30,7 @@ class ProfileRepositoryImpl @Inject constructor(
     private val service: ProfileApi,
     private val userApi: UserApi,
     private val friendApi: FriendApi,
+    private val profileApi: ProfileApi,
     private val teamApi: TeamApi
 ) : ProfileRepository {
 
@@ -35,17 +39,19 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
 
-    override fun getProfileData(id: Int): Flow<Response<ProfileResponse>>  = flow {
+    override fun getProfileData(id: Int): Flow<Response<ProfileResponse>> = flow {
         emit(userApi.getProfile(id))
     }.flowOn(Dispatchers.IO)
-
-
 
 
     override suspend fun uploadAvatar(
         base64File: String
     ): Response<AvatarResponse> {
         return service.uploadAvatar(UploadPhotoChatRequest(base64File))
+    }
+
+    override suspend fun eventListFlow(id: Int): Response<EventResponse> {
+        return userApi.eventsList(id, pageSize = "30", pageIndex = "1", filter = "active")
     }
 
     override suspend fun eventsList(
@@ -62,21 +68,6 @@ class ProfileRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun blackList(request: ListRequest): Flow<PagingData<User>> {
-        @OptIn(ExperimentalPagingApi::class)
-        return Pager(
-            config = PagingConfig(
-                pageSize = 5,
-                enablePlaceholders = true
-            ),
-            pagingSourceFactory = {
-                BlackListPagingSource(
-                    query = request.search.toString(),
-                    service = service
-                )
-            }
-        ).flow
-    }
 
     override suspend fun listTeams(request: Int): Response<TeamResponse> {
         return userApi.listTeams(request)
@@ -122,6 +113,20 @@ class ProfileRepositoryImpl @Inject constructor(
         ).flow
     }
 
+    override fun eventsListProfilePlayer(
+        request: Int,
+        pageSize: String,
+        pageIndex: String,
+        filter: String
+    ): Flow<PagingData<Event>> {
+
+
+        return Pager(
+            config = PagingConfig(pageSize = 5, enablePlaceholders = true),
+            pagingSourceFactory = {EventPlayerProfilePagingSource(userApi,request)}
+        ).flow
+    }
+
     override fun findFriend(request: ListRequest): Flow<PagingData<User>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
@@ -149,6 +154,22 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun unblock(userId: String): Response<UnblockResponse> {
         return userApi.unblock(userId)
+    }
+
+    override fun blackList(request: ListRequest): Flow<PagingData<User>> {
+        @OptIn(ExperimentalPagingApi::class)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = {
+                BlackListPagingSource(
+                    query = request.search.toString(),
+                    service = service
+                )
+            }
+        ).flow
     }
 
     override suspend fun getUserProfile(userId: String): Response<ProfileResponse> {

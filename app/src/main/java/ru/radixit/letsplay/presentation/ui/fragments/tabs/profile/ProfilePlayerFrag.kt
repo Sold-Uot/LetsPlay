@@ -16,21 +16,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.databinding.FragProfilePlayerRedesBinding
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.EventsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.FriendsRedesAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListEventPlayerAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
-import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.showSnackBar
 import ru.radixit.letsplay.utils.visible
@@ -54,11 +50,17 @@ class ProfilePlayerFrag : Fragment() {
     }
 
 
-    private val friendAdapter by lazy {
+    private val friendAdapter: FriendsRedesAdapter =
         FriendsRedesAdapter {
-            findNavController().navigate(ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(it.id.toString()))
+
+
+            findNavController().navigate(
+                ProfilePlayerFragDirections.actionFriendProfileInfoFragmentSelf(
+                    it.id.toString()
+                )
+            )
         }
-    }
+
     @Inject
     lateinit var sessionManager: SessionManager
     override fun onCreateView(
@@ -89,23 +91,29 @@ class ProfilePlayerFrag : Fragment() {
 
     private fun getProfileData() {
         with(binding) {
-            viewModel.getProfileData(id.toInt())
+            Log.w("iddi", id.toString())
+
+
+
+
+            viewModel.getProfilePlayerData(id.toInt())
             viewModel.loading.observe(viewLifecycleOwner) {
                 infoProgressBar.loadingProgressLayout.isVisible = it
             }
-            viewModel.profile.observe(viewLifecycleOwner) {
+            viewModel.profile_player.observe(viewLifecycleOwner) {
+                Log.e("id_it", it.id.toString())
                 friendCountTv.text = it.friends.size.toString()
-                if(it.name !=  null && it.surname != null){
+                if (it.name != null && it.surname != null) {
                     profileName.text = "${it.name} ${it.surname}"
-                }else if(it.name !=  null && it.surname == null){
+                } else if (it.name != null && it.surname == null) {
                     profileName.text = "${it.name}"
-                }else if(it.name ==  null && it.surname != null){
+                } else if (it.name == null && it.surname != null) {
                     profileName.text = "${it.surname}"
-                }else{
+                } else {
                     profileName.text = "Не указано"
                 }
 
-                if (it.stateFriend != null){
+                if (it.stateFriend != null) {
                     binding.addFriendMatBtn.gone()
 
                 }
@@ -136,10 +144,14 @@ class ProfilePlayerFrag : Fragment() {
                 matchesPlayedValueTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "Неизв."
                 clickViews(it.id)
+
+
                 setupEvents(it.id)
                 setupFriends(it.id)
                 setupTeams(it.id)
             }
+
+
             viewModel.successAddToFriends.observe(viewLifecycleOwner) {
                 if (it) {
                     binding.addFriendMatBtn.text = resources.getString(R.string.add_friend_send)
@@ -268,39 +280,57 @@ class ProfilePlayerFrag : Fragment() {
     }
 
     private fun setupEvents(id: Int) {
-        viewModel.getRequest(id)
-        binding.eventsArrowEndImg.setOnClickListener {
+        lifecycleScope.launch {
+            Log.e("id_event", id.toString())
 
-            findNavController().navigate(
-                ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToListEventsProfRedesFrag(
-                    id
+
+
+            binding.eventsArrowEndImg.setOnClickListener {
+
+                findNavController().navigate(
+                    ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToListEventsProfRedesFrag(
+                        id
+                    )
                 )
-            )
-        }
-        val recyclerView = binding.eventsRv
-
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val adapter = EventsRedesAdapter()
-        recyclerView.adapter = adapter
-
-        recyclerView.setHasFixedSize(true)
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getUserEvents.collectLatest {
-                adapter.submitData(it)
-                val size = adapter.snapshot().size
-                binding.eventsCountTv.text = "${size}"
-                if (size == 0) {
-                    binding.emptyListEventsTv.visible()
-                }
             }
-        }
+            viewModel.listEvent(id)
 
+            val recyclerView = binding.eventsRv
+
+            recyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            val adapter = ListEventPlayerAdapter()
+            recyclerView.setHasFixedSize(true)
+            viewModel.eventLiveData.observe(viewLifecycleOwner){
+                adapter.setData(it)
+            }
+
+            recyclerView.adapter = adapter
+
+            /* val adapter = EventsRedesAdapter()
+             recyclerView.adapter = adapter
+
+             recyclerView.setHasFixedSize(true)
+             viewLifecycleOwner.lifecycleScope.launch {
+
+                 viewModel.eventsProfilePlayer(id).collect {
+                     adapter.submitData(it)
+                     val size = adapter.snapshot().size
+                     binding.eventsCountTv.text = "${size}"
+                     if (size == 0) {
+                         binding.emptyListEventsTv.visible()
+                     }
+                 }
+             }*/
+
+
+        }
     }
 
     private fun setupFriends(id: Int) {
         val recyclerView = binding.friendsRv
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.setHasFixedSize(true)
         val adapter = friendAdapter
         recyclerView.adapter = adapter
@@ -323,7 +353,6 @@ class ProfilePlayerFrag : Fragment() {
             )
         }*/
     }
-
 
 
 }
