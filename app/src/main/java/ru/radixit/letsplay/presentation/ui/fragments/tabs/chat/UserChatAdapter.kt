@@ -38,6 +38,8 @@ class UserChatAdapter(private val id: Int, private var userName:String) :
             binding.message.text = chat.messageText
             binding.date.text = chat.createdAt.split(" ")[1]
         }
+
+
     }
 
     inner class AnotherChatViewHolder(private val binding: ItemAnotherChatBinding) :
