@@ -26,6 +26,7 @@ class UserChatAdapter(private val id: Int, private var userName:String) :
     class UserChatViewHolder(private val binding: ItemUserChatBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
         companion object {
             fun from(parent: ViewGroup): UserChatViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
