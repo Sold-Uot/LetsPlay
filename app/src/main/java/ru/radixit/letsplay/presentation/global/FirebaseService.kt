@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.presentation.global
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -71,6 +72,7 @@ class FirebaseService : FirebaseMessagingService() {
         }
     }
 
+
     private fun showNotification(remoteMessage: RemoteMessage) {
         createNotificationChannel()
         var pendingIntent: PendingIntent? = null
@@ -89,6 +91,7 @@ class FirebaseService : FirebaseMessagingService() {
         }
         val builder = NotificationCompat.Builder(this, channelID)
             .setSmallIcon(R.mipmap.ic_launcher_lets_play)
+
             .setContentTitle(remoteMessage.notification?.title)
             .setContentText(remoteMessage.notification?.body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

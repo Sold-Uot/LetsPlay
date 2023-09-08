@@ -9,7 +9,9 @@ data class EditProfileRedesRequest(
     val height: Int,
     val birthday: String,
     val position: Int,
-    val gender: Int
+    val gender: Int,
+    val city : String,
+    val address : String
 )
 
 data class ChangePasswordRedesRequest(

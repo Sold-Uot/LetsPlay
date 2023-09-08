@@ -183,12 +183,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/noah_regular"
                 android:text="@string/gender"
                 android:textColor="@color/main_gray"
-                app:layout_constraintStart_toStartOf="@+id/surname_user_lay_tv"
-                app:layout_constraintTop_toBottomOf="@+id/surname_user_lay_tv" />
+                app:layout_constraintStart_toStartOf="@+id/city_user_lay_tv"
+                app:layout_constraintTop_toBottomOf="@+id/city_user_lay_tv" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/city_user_lay_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:textColorHint="@color/main_gray"
+                app:boxBackgroundColor="@color/background_for_edittext"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/surname_user_lay_tv">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/city_user_ed_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_for_edittext"
+                    android:fontFamily="@font/noah_regular"
+                    android:hint="@string/city"
+                    android:inputType="textPersonName|textCapWords"
+                    android:lines="1"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_color_secondary"
+                    android:textSize="@dimen/button_textsize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
                 android:id="@+id/day_1_rbg"

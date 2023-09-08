@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
@@ -50,6 +52,25 @@ class FriendsViewModel @Inject constructor(
     val successAddToFriends: LiveData<Boolean> = _successAddToFriends
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
+
+    private val _id_profile  =MutableLiveData<Boolean>()
+    val id_profile : LiveData<Boolean>  = _id_profile
+
+    fun checkThisMyProfile(id : Int) {
+
+        _id_profile.value = false
+        Log.e("user_id" , _id_profile.value.toString())
+        if (sessionManager.fetchToken() == id){
+            context.showToast("Это ваш профиль ")
+
+        }
+        else {
+            _id_profile.value = true
+        }
+
+    }
+
+
 
     fun searchUsers(query: String = "", userId: String): Flow<PagingData<User>> {
         return repository.friends(ListRequest(search = query, userId = userId))

@@ -20,7 +20,7 @@
     </style>
     <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:textColorHint">#AAAAB3</item>
-        <item name="android:textColor">#AAAAB3</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:fontFamily">@font/noah_regular</item>
     </style>
     <style name="Widget.App.Tooltip" parent="Widget.MaterialComponents.Tooltip">

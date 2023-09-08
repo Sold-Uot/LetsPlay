@@ -46,11 +46,11 @@
             android:value="@string/google_maps_key" />
 
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_lets_play_foreground" />
-        <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/black_total" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_launcher_lets_play_foreground" />
 
         <activity
             android:name=".presentation.ui.MainActivity"

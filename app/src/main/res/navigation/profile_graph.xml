@@ -194,6 +194,9 @@
         <argument
             android:name="checker"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_listFriendsRedesFrag_to_friendProfileInfoFragment"
+            app:destination="@id/friendProfileInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/listEventsProfRedesFrag"

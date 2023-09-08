@@ -61,7 +61,7 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/name_friend_tv"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryBackground="@android:color/transparent"
+                app:queryBackground="@color/white"
                 app:queryHint="Имя друзей"
                 app:searchIcon="@drawable/ic_baseline_search_white"
                 app:theme="@style/SearchViewStyle" />

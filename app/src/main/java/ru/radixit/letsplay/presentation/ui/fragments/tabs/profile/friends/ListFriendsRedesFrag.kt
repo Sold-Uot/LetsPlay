@@ -54,7 +54,7 @@ class ListFriendsRedesFrag : Fragment() {
         }
         binding.openAddFriend.setOnClickListener {
             Log.w("click", "wow its click")
-            findNavController().navigate(ListFriendsRedesFragDirections.actionListFriendsRedesFragToFindFriendFragment())
+            findNavController()?.navigate(ListFriendsRedesFragDirections.actionListFriendsRedesFragToFindFriendFragment())
         }
         setupRecyclerview()
 //        binding.addFriend.setOnClickListener {
@@ -175,12 +175,18 @@ class ListFriendsRedesFrag : Fragment() {
 
 
             adapter.selectItem {
-//                findNavController().navigate(
-//                    FriendsFragmentDirections.actionFriendsFragmentToFriendProfileFragment(
-//                        it.id.toString()
-//                    )
-//                )
-            }
+                var user = it
+                viewModel.checkThisMyProfile(it.id)
+                viewModel.id_profile.observe(viewLifecycleOwner) {
+                    if (it){
+                    findNavController()?.navigate(
+                        ListFriendsRedesFragDirections.actionListFriendsRedesFragToFriendProfileInfoFragment(
+                            user.id.toString()
+                        )
+                    )
+                }
+
+            }}
             adapter.showActions { id ->
                 val actions = BottomSheetDialog(requireContext())
                 actions.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -216,7 +222,7 @@ class ListFriendsRedesFrag : Fragment() {
 
     private fun onBack() {
         binding.toolbar2.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController()?.popBackStack()
         }
     }
 

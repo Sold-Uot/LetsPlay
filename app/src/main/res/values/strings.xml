@@ -192,4 +192,5 @@
     <string name="continue_registry_all_caps">Продолжить</string>
     <string name="create_playg_tv">Создать площадку</string>
     <string name="create_event_tv">Создать событие</string>
+    <string name="city">Город</string>
 </resources>

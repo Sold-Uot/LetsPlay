@@ -128,6 +128,11 @@ class EditProfileRedesFrag : Fragment() {
             } else {
                 1
             }
+            val city = binding.cityUserEdTv.text.toString().ifEmpty {
+                binding.surnameUserEdTv.hint.toString()}
+
+            val address = city // вынужденая мера так на get запросе профиле нету поля city а только address
+
             val surname = binding.surnameUserEdTv.text.toString().ifEmpty {
                 binding.surnameUserEdTv.hint.toString()
             }
@@ -153,7 +158,7 @@ class EditProfileRedesFrag : Fragment() {
             viewModel.edit(
                 EditProfileRedesRequest(
                     name, surname, weight, height, birthDate,
-                    position, gender
+                    position, gender , city ,address
                 )
             ) {
                 if (it) {
