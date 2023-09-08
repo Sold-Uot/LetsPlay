@@ -39,23 +39,7 @@ class GroupChatAdapter(private val id: Int,private val isShowAvatar: Boolean) :
             binding.message.text = chat.messageText
             binding.date.text = chat.createdAt.split(" ")[1]
             binding.name.text = chat.name
-            if(isShowAvatar){
-                if (chat.photo == null) {
-                    binding.nameOnAvatar.visibility = View.VISIBLE
-                    binding.nameOnAvatar.text = if (chat.name?.length!! > 0) "${chat.name[0]}" else ""
-                    binding.constraint.setBackgroundColor(
-                        ContextCompat.getColor(
-                            itemView.context,
-                            R.color.violet
-                        )
-                    )
-                } else {
-                    binding.nameOnAvatar.visibility = View.GONE
-                    Glide.with(binding.root).load(chat.photo.url).into(binding.photo)
-                }
-            }else{
-                binding.playingMarCard.gone()
-            }
+
         }
     }
 

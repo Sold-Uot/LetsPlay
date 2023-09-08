@@ -72,6 +72,7 @@ class ChatAdapter :
                         ChatFragmentDirections.actionChatFragmentToUserChatFragment(
                             chat.chatType,
                             chat.receiverId,
+                            chat.name.toString()
                         )
                     )
                 }

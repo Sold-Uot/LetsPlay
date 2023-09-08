@@ -26,8 +26,7 @@ class UserChatFragment : DialogFragment() {
     private val viewModel: UserChatViewModel by viewModels()
     private val args by navArgs<UserChatFragmentArgs>()
     private var adapter: UserChatAdapter? = null
-
-
+    private var userName : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(
@@ -44,6 +43,7 @@ class UserChatFragment : DialogFragment() {
         onBack()
         viewModel.fetchChatInfo(args.chatType, args.receiverId)
         viewModel.chatInfo.observe(viewLifecycleOwner) {
+            userName = it.name
             binding.profileName.text = it.name ?: ""
             binding.sport.text = it.userType ?: ""
             if (it.photo == null) {
@@ -65,7 +65,7 @@ class UserChatFragment : DialogFragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         layoutManager.stackFromEnd = true
         recyclerView.layoutManager = layoutManager
-        adapter = UserChatAdapter(viewModel.fetchToken())
+        adapter = UserChatAdapter(viewModel.fetchToken() , args.chatusername)
         recyclerView.addItemDecoration(SpaceItemDecoration(30))
 
         viewModel.fetchChat(args.receiverId, args.chatType)

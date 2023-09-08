@@ -47,7 +47,10 @@
         <argument
             android:name="receiverId"
             app:argType="integer" />
-<!--        <deepLink-->
+        <argument android:name="chatusername"
+            app:argType="string"
+             />
+        <!--        <deepLink-->
 <!--            android:id="@+id/deepLink"-->
 <!--            android:autoVerify="true"-->
 <!--            app:action="ACTION_SEND_MULTIPLE"-->

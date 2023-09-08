@@ -7,53 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/playing_mar_card"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/second_gray"
-        app:strokeWidth="2dp">
-
-
-        <ImageView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_black"
-            app:srcCompat="@drawable/ic_no_images"
-            tools:src="@drawable/profile_photo" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="match_parent"
-            android:background="@color/background_black">
-
-            <TextView
-                android:id="@+id/name_on_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="M"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
     <ImageView
         android:id="@+id/corner_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playing_mar_card"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_other_message_corner" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,18 +28,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-                android:id="@+id/name"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/noah_medium"
-            android:textColor="@color/white"
+            android:textColor="@color/clicked_text_color"
             android:textSize="@dimen/small_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Джафар"
-            tools:textColor="#FF8585" />
+            tools:textColor="@color/text_color_secondary1" />
 
         <TextView
                 android:id="@+id/message"

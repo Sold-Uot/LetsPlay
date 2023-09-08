@@ -1,5 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.chat
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +14,13 @@ import ru.radixit.letsplay.data.model.UserMessage
 import ru.radixit.letsplay.databinding.ItemAnotherChatBinding
 import ru.radixit.letsplay.databinding.ItemUserChatBinding
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.visible
 
-class UserChatAdapter(private val id: Int) :
+class UserChatAdapter(private val id: Int, private var userName:String) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var dataList = mutableListOf<UserMessage>()
+
 
     class UserChatViewHolder(private val binding: ItemUserChatBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -39,22 +43,13 @@ class UserChatAdapter(private val id: Int) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(chat: UserMessage) {
+            Log.e("chat", chat.toString())
+            binding.name.text = if (userName != null ) userName else chat.name.toString()
             binding.message.text = chat.messageText
             binding.date.text = chat.createdAt.split(" ")[1]
-            binding.name.text = chat.name
-                if (chat.photo == null) {
-                    binding.nameOnAvatar.visibility = View.VISIBLE
-                    binding.nameOnAvatar.text = if (chat.name?.length!! > 0) "${chat.name[0]}" else ""
-                    binding.constraint.setBackgroundColor(
-                        ContextCompat.getColor(
-                            itemView.context,
-                            R.color.violet
-                        )
-                    )
-                } else {
-                    binding.nameOnAvatar.visibility = View.GONE
-                    Glide.with(binding.root).load(chat.photo.url).into(binding.photo)
-                }
+
+
+
         }
     }
 
