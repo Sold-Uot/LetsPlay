@@ -56,6 +56,7 @@ class ReviewFullScreenRedesFrag : Fragment() {
 
     private fun ratingRB() {
 
+        binding.progBar1.setProgress(70)
         viewModel.general.observe(viewLifecycleOwner) {
             if (it.ratingsCount == 0) {
                 binding.nullStartsImg.visible()

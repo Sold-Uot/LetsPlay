@@ -18,6 +18,10 @@ class ReviewsAdapter : RecyclerView.Adapter<ReviewsAdapter.ReviewsHolder>() {
 
     private var selectItemOnClickListener: SelectItemOnClickListener? = null
     private var dataList = emptyList<CommentResponse.Comment>()
+    companion object {
+        val ratingList = emptyList<Int>()
+    }
+
 
     class ReviewsHolder(private val binding: ItemReviewRedesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,11 +38,14 @@ class ReviewsAdapter : RecyclerView.Adapter<ReviewsAdapter.ReviewsHolder>() {
             comment: CommentResponse.Comment,
             selectItemOnClickListener: SelectItemOnClickListener
         ) {
+            ReviewsAdapter.ratingList
+
             comment.createdBy.surname?.let {
                 binding.tvCreatedBy.text = "${comment.createdBy.name} ${comment.createdBy.surname}"
             }?:run {
                 binding.tvCreatedBy.text = comment.createdBy.name
             }
+
             binding.tvCreatedAt.text = comment.createdAt.timeSummary
 
 //            val ratingString = comment.rating

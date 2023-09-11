@@ -1,5 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.fragments
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +11,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -24,7 +27,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ListPlaygroundsViewModel @Inject constructor(
     private val repository: PlaygroundRepository,
-) : ViewModel() {
+    @ApplicationContext private val context: Context,
+
+    ) : ViewModel() {
 
     val playgrounds: Flow<PagingData<Playground>>
 
@@ -42,11 +47,17 @@ class ListPlaygroundsViewModel @Inject constructor(
 
     fun newNotifCount() {
         viewModelScope.launch {
+            try {
+
+
             val response = repository.newNotifCount()
             if (response.isSuccessful) {
                 response.body()?.let {
                     _newNotifCount.value = it.total
                 }
+            }}
+            catch (ex: Exception) {
+                context.showToast("Не удалось подключиться к серверу")
             }
         }
     }

@@ -480,6 +480,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     nullStartsImg.inVisible()
                     rbRatingBar.rating = it.ratingsCount.toFloat()
                 }
+                rbRatingBar.rating  = it.rating.toFloat()
                 titleReviewsCountContent.text = it.rating
                 countReviews.text = "(${it.ratingsCount})"
                 priceContentScroll.text = "от ${it.price.trim()}"
@@ -539,7 +540,10 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     binding.nullStartsImg.inVisible()
                     binding.rbRatingBar.rating = it.ratingsCount.toFloat()
                 }
-                binding.titleReviewsCount.text = it.ratingsCount.toString()
+
+                binding.countReviews.text =  "(${it.ratingsCount})"
+                binding.titleReviewsCount.text = it.rating
+                binding.rbRatingBar.rating = it.rating.toFloat()
             }
         }
         val infoRecyclerView = binding.infoRecyclerView

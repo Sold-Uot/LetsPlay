@@ -17,6 +17,7 @@ interface EventApi {
         @Query("search") search: String?,
         @Query("pageSize") pageSize: String?
     ): Response<EventResponse>
+
     @GET("/event/v1/get/{ID}/members")
     suspend fun listEventsMembers(@Path("ID") id: String): Response<EventMembersResp>
 
@@ -25,6 +26,11 @@ interface EventApi {
     suspend fun getEvent(@Path("ID") id: String): Response<NewEventDescriptionResponse>
 
 
+    @POST("/event/v1/get/{ID}/accept")
+    suspend fun acceptEvent(@Path("ID") id: Int): Response<ReportResponse>
+
+    @POST("/event/v1/get/{ID}/reject")
+    suspend fun rejectEvent(@Path("ID") id: Int): Response<ReportResponse>
 
     /**
      * Возвращает список событии на карте

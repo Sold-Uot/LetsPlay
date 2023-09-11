@@ -40,7 +40,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/title_event_tv"
+        android:id="@+id/title_small_event"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -64,6 +64,6 @@
         android:textColor="@color/main_gray"
         app:layout_constraintEnd_toEndOf="@+id/item_playing_cv"
         app:layout_constraintStart_toStartOf="@+id/item_playing_cv"
-        app:layout_constraintTop_toBottomOf="@+id/title_event_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title_small_event"
         tools:text="Апрель 12 2022, 11:00" />
 </androidx.constraintlayout.widget.ConstraintLayout>

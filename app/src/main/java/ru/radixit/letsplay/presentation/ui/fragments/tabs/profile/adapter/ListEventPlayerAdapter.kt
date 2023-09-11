@@ -42,7 +42,7 @@ class ListEventPlayerAdapter : RecyclerView.Adapter<ListEventPlayerAdapter.Event
                     itemAvatarImg.gone()
                     itemAvatarImg2.visible()
                 }
-                titleEventTv.text = event.title
+                titleSmallEvent.text = event.title
 
                 root.setOnClickListener{
 

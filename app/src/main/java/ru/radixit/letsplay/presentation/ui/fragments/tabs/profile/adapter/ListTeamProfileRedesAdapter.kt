@@ -28,7 +28,7 @@ class ListTeamProfileRedesAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(team: Team) {
             with(binding) {
-                titleEventTv.text = team.title
+                teamNameSmall.text = team.title
                 if (team.photo == null) {
                     itemAvatarImg.visibility = View.GONE
                 } else {

@@ -71,6 +71,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noah_bold"
                             android:textColor="@color/white"
+                            android:maxLength="3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:text="4.5" />
@@ -81,13 +82,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:numStars="5"
-                            android:rating="0"
                             android:layout_marginStart="8dp"
                             android:stepSize="@integer/material_motion_duration_long_1"
                             android:theme="@style/MyRatingBar"
                             app:layout_constraintStart_toEndOf="@+id/title_reviews_count"
                             app:layout_constraintTop_toTopOf="parent"
-                            tools:rating="5" />
+                            />
 
                         <ImageView
                             android:id="@+id/null_starts_img"

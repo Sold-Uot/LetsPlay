@@ -47,7 +47,7 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                     eventBottomShadowImg.isVisible = false
                 }
                 placeEventTv.text = event.address
-                titleEventTv.text = event.title
+                titleEvent.text = event.title
                 levelGameMatBtn.text = event.gameLevel
 
                 val str1 = SpannableString(event.countMember)
@@ -55,6 +55,7 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                 builder.append(str1)
                 countPlayers.text = str1
                 nameEvent.text = event.createdBy?.name
+                eventTime.text = event.start
 
 
                 Log.w("123", event.createdBy?.photo?.url ?: "lollll")

@@ -36,7 +36,7 @@ class EventsRedesAdapter : PagingDataAdapter<Event, EventsRedesAdapter.EventsVie
                     itemAvatarImg.gone()
                     itemAvatarImg2.visible()
                 }
-                titleEventTv.text = event.title
+                titleSmallEvent.text = event.title
 
                 root.setOnClickListener {
                     itemView.findNavController().navigate(ProfileRedesignFragDirections.actionProfileRedesignFragToEventDescRedesignFrag(

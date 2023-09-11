@@ -101,42 +101,99 @@ class NotificationsFragment : Fragment() {
             else -> "Неизвестно"
         }
         adapter.selectItem { _it ->
-            val customDialog = Dialog(requireActivity())
-            customDialog.setContentView(R.layout.dialog_accept_or_rejec)
-            val title = customDialog.findViewById(R.id.title) as TextView
-            val typeLabel = customDialog.findViewById(R.id.typeLabel) as TextView
-            val cancelBtn = customDialog.findViewById(R.id.cancel) as ImageView
-            val acceptBtn = customDialog.findViewById(R.id.acceptBtn) as ConstraintLayout
-            val rejectBtn = customDialog.findViewById(R.id.rejectBtn) as TextView
-            cancelBtn.setOnClickListener {
-                customDialog.dismiss()
-            }
-            title.text = _it.title
-            typeLabel.text = desc(_it.type.value.toString())
-            acceptBtn.setOnClickListener {
 
-                if (_it.type.value == 7) {
-                    viewModel.acceptFriend(_it.id.toString())
-                }
-                customDialog.dismiss()
-            }
-            rejectBtn.setOnClickListener {
-                if (_it.type.value == 7) {
-                    viewModel.rejectFriend(_it.id.toString())
-                }
-                customDialog.dismiss()
-            }
+
+                val customDialog = Dialog(requireActivity())
+                customDialog.setContentView(R.layout.dialog_accept_or_rejec)
+                val title = customDialog.findViewById(R.id.title) as TextView
+                val typeLabel = customDialog.findViewById(R.id.typeLabel) as TextView
+                val dataTimeTv = customDialog.findViewById(R.id.data_time_notifi) as TextView
+                val cancelBtn = customDialog.findViewById(R.id.cancel) as ImageView
+                val acceptBtn = customDialog.findViewById(R.id.acceptBtn) as ConstraintLayout
+                val rejectBtn = customDialog.findViewById(R.id.rejectBtn) as TextView
             customDialog.window?.setLayout(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
             );
             customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            customDialog.show()
-        }
+                cancelBtn.setOnClickListener {
+                    customDialog.dismiss()
+                }
+
+                when (_it.type.value) {
+
+                    3 -> {
+                        customDialog.show()
+
+                        title.text = _it.title
+                        dataTimeTv.text = _it.createdAt
+                        typeLabel.text = _it.type.label
+                        acceptBtn.setOnClickListener {
+
+
+                            viewModel.acceptEvent(_it.id)
+
+                            customDialog.dismiss()
+                        }
+                        rejectBtn.setOnClickListener {
+
+                            viewModel.rejectEvent(_it.id)
+
+                            customDialog.dismiss()
+                        }
+
+                    }
+
+                    5 -> {
+                        customDialog.show()
+
+                        title.text = _it.title
+                        dataTimeTv.text = _it.createdAt
+                        typeLabel.text = _it.type.label
+                        acceptBtn.setOnClickListener {
+                            TODO("ЖДЕМ БЭК")
+                        }
+
+                        rejectBtn.setOnClickListener {
+                            TODO("ждем бэк")
+                        }
+                    }
+
+
+                    7 -> {
+                        customDialog.show()
+
+                        title.text = _it.title
+                        dataTimeTv.text = _it.createdAt
+                        typeLabel.text = desc(_it.type.value.toString())
+                        acceptBtn.setOnClickListener {
+
+
+                            viewModel.acceptFriend(_it.id.toString())
+
+                            customDialog.dismiss()
+                        }
+                        rejectBtn.setOnClickListener {
+
+                            viewModel.rejectFriend(_it.id.toString())
+
+                            customDialog.dismiss()
+                        }
+
+                    }
+
+
+                }
+
+
+            }
+
+
         recyclerView.adapter = adapter
         binding.toolbar2.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+
         return binding.root
     }
 }

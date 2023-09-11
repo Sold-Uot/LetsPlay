@@ -15,4 +15,9 @@ interface NotificationRepository {
 
     suspend fun rejectFriend(userId: String): Response<ReportResponse>
 
+    fun acceptEvent(id : Int) : Flow<Response<ReportResponse>>
+
+    fun rejectEvent(id : Int) : Flow<Response<ReportResponse>>
+
+
 }
