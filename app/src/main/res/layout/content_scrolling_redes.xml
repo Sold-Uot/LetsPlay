@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/reviews_mat_btn"
                     app:layout_constraintStart_toEndOf="@+id/title_reviews_count_content"
                     app:layout_constraintTop_toTopOf="@+id/reviews_mat_btn"
@@ -95,6 +95,7 @@
                     app:layout_constraintStart_toEndOf="@+id/rbRatingBar"
                     app:layout_constraintTop_toTopOf="@+id/rbRatingBar"
                     tools:text="(176)" />
+
 
                 <TextView
                     android:id="@+id/price_content_scroll"

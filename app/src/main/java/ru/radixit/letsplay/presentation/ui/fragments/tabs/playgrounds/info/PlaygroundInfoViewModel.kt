@@ -64,6 +64,17 @@ class PlaygroundInfoViewModel @Inject constructor(
             }
         }
     }
+
+    fun sendRating(rating:Float) {
+        viewModelScope.launch {
+            try {
+                val response  = repository.comment()
+            }
+            catch (ex:Exception){
+                context.showToast("Рейтинг не отправлен")
+            }
+        }
+    }
     fun getPlayground(id: String) {
         viewModelScope.launch {
             try {

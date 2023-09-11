@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reviews_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded_bg">
+
+    <TextView
+        android:id="@+id/reviews_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/noah_bold"
+        android:text="Оцените поле"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/search_fields"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/text_edit_playg_shape"
+        android:fontFamily="@font/noah_regular"
+        android:hint="Что вам понравилось?"
+        android:padding="16dp"
+        android:textColor="#CBCBCD"
+        android:textColorHint="#CBCBCD"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingReviewsStar"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        tools:ignore="TextFields"
+        tools:visibility="visible" />
+
+    <RatingBar
+        android:id="@+id/ratingReviewsStar"
+        style="?android:attr/ratingBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="@integer/material_motion_duration_long_1"
+        android:theme="@style/MyRatingBar"
+        app:layout_constraintEnd_toEndOf="@+id/reviews_tv"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/reviews_tv"
+        app:layout_constraintTop_toBottomOf="@+id/reviews_tv"
+        tools:rating="3.5" />
+
+    <TextView
+        android:id="@+id/button_reviews_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/noah_bold"
+
+        android:text="Отправить"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_fields"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_goneMarginTop="10dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

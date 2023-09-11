@@ -16,7 +16,7 @@ import ru.radixit.letsplay.databinding.ItemUserChatBinding
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
 
-class UserChatAdapter(private val id: Int, private var userName:String) :
+class UserChatAdapter(private val id: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var dataList = mutableListOf<UserMessage>()
@@ -48,7 +48,7 @@ class UserChatAdapter(private val id: Int, private var userName:String) :
 
         fun bind(chat: UserMessage) {
             Log.e("chat", chat.toString())
-            binding.name.text = if (userName != null ) userName else chat.name.toString()
+            binding.name.text = chat.name
             binding.message.text = chat.messageText
             binding.date.text = chat.createdAt.split(" ")[1]
 

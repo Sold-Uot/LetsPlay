@@ -18,4 +18,7 @@ interface CommentApi {
         @Body request: ReportUserRequest
     ): Response<ReportResponse>
 
+
+    fun commentPlaygroundAdd()
+
 }

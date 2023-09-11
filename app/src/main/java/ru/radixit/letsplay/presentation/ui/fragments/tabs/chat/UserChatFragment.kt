@@ -65,7 +65,7 @@ class UserChatFragment : DialogFragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         layoutManager.stackFromEnd = true
         recyclerView.layoutManager = layoutManager
-        adapter = UserChatAdapter(viewModel.fetchToken() , args.chatusername)
+        adapter = UserChatAdapter(viewModel.fetchToken() )
         recyclerView.addItemDecoration(SpaceItemDecoration(30))
 
         viewModel.fetchChat(args.receiverId, args.chatType)

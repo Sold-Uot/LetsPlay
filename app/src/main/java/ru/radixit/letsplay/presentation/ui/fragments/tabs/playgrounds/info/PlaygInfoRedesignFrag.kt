@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,9 +44,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_pointer.*
 import kotlinx.android.synthetic.main.item_playgrounds_recyclerview.*
 import ru.radixit.letsplay.R
-import ru.radixit.letsplay.data.model.PlaygroundInDetail
 import ru.radixit.letsplay.databinding.DialogReportRedesBinding
 import ru.radixit.letsplay.databinding.FragmentPlaygroundInfoRedesignBinding
+import ru.radixit.letsplay.databinding.ReviewsDialogBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.ShowTrafficAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.fragments.ReviewsAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.UserProfileViewModel
@@ -86,6 +87,10 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon())
                 ).snippet(String.format("%.1f", distance) + " " + args.id)
             )
+
+            googleMap.setOnCameraMoveStartedListener {
+
+            }
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12F))
         }
     }
@@ -113,6 +118,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                 }
             }
         }
+
         viewModel.getPlayground(args.id)
         return binding.root
     }
@@ -276,6 +282,29 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
         reviewsRecyclerView.addItemDecoration(SpaceItemDecoration(50))
     }
 
+    private fun showDialogReviews(){
+        val reviewsDialogBinding  = ReviewsDialogBinding.inflate(layoutInflater)
+        val customDialog = Dialog(requireActivity())
+
+
+
+        customDialog.setContentView(reviewsDialogBinding.root)
+        customDialog.window?.setLayout(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        with(reviewsDialogBinding){
+            buttonReviewsTv.setOnClickListener {
+                Log.e("stars" , ratingReviewsStar.rating.toString())
+            }
+        }
+
+        reviewsDialogBinding.ratingReviewsStar.rating
+        customDialog.show()
+
+    }
+
     private fun showDialogReport(id: String) {
         val viewModelReport = ViewModelProvider(requireActivity())[UserProfileViewModel::class.java]
         val customDialog = Dialog(requireActivity())
@@ -355,11 +384,9 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                 )
             }
             reviewsMatBtn.setOnClickListener {
-                findNavController().navigate(
-                    PlaygInfoRedesignFragDirections.actionPlaygInfoRedesignFragToReviewFullScreenRedesFrag(
-                        args.id
-                    )
-                )
+
+                showDialogReviews()
+
             }
             showAllTv.setOnClickListener {
                 findNavController().navigate(
