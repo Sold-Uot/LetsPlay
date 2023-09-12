@@ -65,16 +65,7 @@ class PlaygroundInfoViewModel @Inject constructor(
         }
     }
 
-    fun sendRating(rating:Float) {
-        viewModelScope.launch {
-            try {
 
-            }
-            catch (ex:Exception){
-                context.showToast("Рейтинг не отправлен")
-            }
-        }
-    }
     fun getPlayground(id: String) {
         viewModelScope.launch {
             try {
@@ -134,6 +125,7 @@ class PlaygroundInfoViewModel @Inject constructor(
                 val response = repository.comment(id, ReportUserRequest(cause = cause, text = text))
                 if (response.isSuccessful) {
                     _textMessage.value = response.body()?.message
+                    context.showToast("Отзыв успешно отправлен")
                 }
             }
         } catch (e: Exception) {

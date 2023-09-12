@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +21,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.isDigitsOnly
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -64,10 +64,14 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
 
     private var _binding: FragmentPlaygroundInfoRedesignBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: PlaygroundInfoViewModel
+
+    /*
+        private lateinit var viewModel: PlaygroundInfoViewModel
+    */
     private val args by navArgs<PlaygInfoRedesignFragArgs>()
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var client: FusedLocationProviderClient
+    private val viewModel by viewModels<PlaygroundInfoViewModel>()
     private var position = 1
     private var latLng: LatLng? = null
     private val id by lazy {
@@ -101,7 +105,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentPlaygroundInfoRedesignBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity())[PlaygroundInfoViewModel::class.java]
+//        viewModel = ViewModelProvider(requireActivity())[PlaygroundInfoViewModel::class.java]
         mapFragment =
             (childFragmentManager.findFragmentById(R.id.map_frag) as SupportMapFragment?)!!
         args.latLng?.let {
@@ -282,26 +286,42 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
         reviewsRecyclerView.addItemDecoration(SpaceItemDecoration(50))
     }
 
-    private fun showDialogReviews(){
-        val reviewsDialogBinding  = ReviewsDialogBinding.inflate(layoutInflater)
+    private fun showDialogReviews() {
+        val reviewsDialogBinding = ReviewsDialogBinding.inflate(layoutInflater)
         val customDialog = Dialog(requireActivity())
 
+        with(customDialog) {
 
+            setContentView(reviewsDialogBinding.root)
+            window?.setLayout(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        customDialog.setContentView(reviewsDialogBinding.root)
-        customDialog.window?.setLayout(
-            ConstraintLayout.LayoutParams.MATCH_PARENT,
-            ConstraintLayout.LayoutParams.WRAP_CONTENT
-        );
-        customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        with(reviewsDialogBinding){
-            buttonReviewsTv.setOnClickListener {
-                Log.e("stars" , ratingReviewsStar.rating.toString())
+            show()
+            reviewsDialogBinding.buttonReviewsTv.setOnClickListener {
+                viewModel.comment(
+                    id = args.id,
+                    reviewsDialogBinding.ratingReviewsStar.rating.toInt(),
+                    reviewsDialogBinding.reviewsTv.text.toString()
+                )
+                viewModel.progressButton.observe(viewLifecycleOwner){
+                    if (it == false){
+                        dismiss()
+                    }
+                    else{
+                        reviewsDialogBinding.buttonReviewsTv.gone()
+                        reviewsDialogBinding.progressBar4.visible()
+                    }
+                }
+
             }
-        }
 
-        reviewsDialogBinding.ratingReviewsStar.rating
-        customDialog.show()
+
+
+
+        }
 
     }
 
@@ -480,7 +500,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     nullStartsImg.inVisible()
                     rbRatingBar.rating = it.ratingsCount.toFloat()
                 }
-                rbRatingBar.rating  = it.rating.toFloat()
+                rbRatingBar.rating = it.rating.toFloat()
                 titleReviewsCountContent.text = it.rating
                 countReviews.text = "(${it.ratingsCount})"
                 priceContentScroll.text = "от ${it.price.trim()}"
@@ -541,7 +561,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     binding.rbRatingBar.rating = it.ratingsCount.toFloat()
                 }
 
-                binding.countReviews.text =  "(${it.ratingsCount})"
+                binding.countReviews.text = "(${it.ratingsCount})"
                 binding.titleReviewsCount.text = it.rating
                 binding.rbRatingBar.rating = it.rating.toFloat()
             }
