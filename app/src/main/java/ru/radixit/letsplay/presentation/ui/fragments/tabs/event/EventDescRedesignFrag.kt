@@ -166,6 +166,7 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
                 it.playgroundId?.let {
                     setMarkerInMap(it)
                 }
+
                 it.start?.let { start ->
                     dateEventDesc.text = start.split(" ")[0]
                     clockEventDesc.text = start.split(" ")[1]

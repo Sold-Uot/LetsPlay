@@ -177,6 +177,8 @@
     <string name="choice_date">Выбор даты проведения</string>
     <string name="choice_date_event">Выбор даты события</string>
     <string name="create_chat">СОЗДАТЬ ЧАТ</string>
+    <string name="create_new_team">СОЗДАТЬ КОМАНДУ</string>
+    <string name="creating_new_team">Создание команды</string>
     <string name="event_title">Название события</string>
     <string name="beginning_event">Начало события: завтра (19:00)</string>
     <string name="not_require_for_edit">Необязательно для заполнения*</string>
@@ -193,4 +195,5 @@
     <string name="create_playg_tv">Создать площадку</string>
     <string name="create_event_tv">Создать событие</string>
     <string name="city">Город</string>
+    <string name="options_creat_new_team">Добавьте изображения, которое будет отображаться на профиле команады.</string>
 </resources>
