@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import ru.radixit.letsplay.data.model.Member
+import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.network.response.EventMembersResp
 import ru.radixit.letsplay.data.network.response.NewEventDescriptionResponse
 import ru.radixit.letsplay.domain.repository.EventRepository
@@ -25,6 +27,9 @@ class EventDescriptionViewModel @Inject constructor(
 
     private val _eventMember = MutableLiveData<EventMembersResp>()
     val eventMember: LiveData<EventMembersResp> = _eventMember
+
+    private val _eventMemberList = MutableLiveData<List<EventMembersResp.Member>>()
+    val eventMemberList: LiveData<List<EventMembersResp.Member>> = _eventMemberList
 
     private val _eventDescription = MutableLiveData<NewEventDescriptionResponse>()
     val eventDescription: LiveData<NewEventDescriptionResponse> = _eventDescription
@@ -61,7 +66,14 @@ class EventDescriptionViewModel @Inject constructor(
                 _successLoading.value = true
                 val response = repository.listEventsMembers(id)
                 if (response.isSuccessful) {
-                    _eventMember.value = response.body()
+                    /*_eventMember.value = response.body()
+                    _eventMember.value = response.body()*/
+                    Log.e( "list_players"  , response.body()!!.list.toString())
+/*
+                    _eventMemberList.value = listOf(EventMembersResp.Member(1 , "пктрп" , null , "admino" , "admin"))
+*/
+                    _eventMemberList.value = response!!.body()!!.list
+
                 }
             } catch (e: Exception) {
                 errorHandler.proceed(e) {

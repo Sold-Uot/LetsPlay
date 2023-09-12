@@ -27,11 +27,19 @@ interface UserApi {
      * Список событий
      */
     @GET("/user/v1/get/{ID}/events")
-    suspend fun eventsList(
+    suspend fun eventsListActive(
         @Path("ID") id: Int,
         @Query("pageSize") pageSize: String,
         @Query("pageIndex") pageIndex: String,
-        @Query("filter") filter: String
+        @Query("active") flag: Boolean
+    ): Response<EventResponse>
+
+    @GET("/user/v1/get/{ID}/events")
+    suspend fun eventsListArchive(
+        @Path("ID") id: Int,
+        @Query("pageSize") pageSize: String,
+        @Query("pageIndex") pageIndex: String,
+        @Query("archive") flag: Boolean
     ): Response<EventResponse>
 
 

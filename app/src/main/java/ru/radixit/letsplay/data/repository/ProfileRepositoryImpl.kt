@@ -1,16 +1,13 @@
 package ru.radixit.letsplay.data.repository
 
 import androidx.paging.*
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import okhttp3.Dispatcher
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.AvatarResponse
-import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.network.api.FriendApi
 import ru.radixit.letsplay.data.network.api.ProfileApi
@@ -19,7 +16,6 @@ import ru.radixit.letsplay.data.network.api.UserApi
 import ru.radixit.letsplay.data.network.request.*
 import ru.radixit.letsplay.data.network.response.*
 import ru.radixit.letsplay.data.paging.BlackListPagingSource
-import ru.radixit.letsplay.data.paging.EventPagingSource
 import ru.radixit.letsplay.data.paging.FindFriendPagingSource
 import ru.radixit.letsplay.data.paging.FriendsPagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
@@ -50,7 +46,7 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun eventListFlow(id: Int): Response<EventResponse> {
-        return userApi.eventsList(id, pageSize = "30", pageIndex = "1", filter = "active")
+        return userApi.eventsListArchive(id, pageSize = "30", pageIndex = "1", flag = true)
     }
 
     override suspend fun eventsList(
@@ -59,11 +55,25 @@ class ProfileRepositoryImpl @Inject constructor(
         pageIndex: String,
         filter: String
     ): Response<EventResponse> {
-        return userApi.eventsList(
+        return userApi.eventsListActive(
             request,
             pageSize = pageSize,
             pageIndex = pageIndex,
-            filter = filter
+            flag = true
+        )
+    }
+
+    override suspend fun eventsListArchive(
+        request: Int,
+        pageSize: String,
+        pageIndex: String,
+        flag: Boolean
+    ): Response<EventResponse> {
+        return userApi.eventsListArchive(
+            request,
+            pageSize = pageSize,
+            pageIndex = pageIndex,
+            flag = true
         )
     }
 

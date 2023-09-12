@@ -30,6 +30,7 @@ import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_pointer.*
 import ru.radixit.letsplay.R
+import ru.radixit.letsplay.data.network.response.EventMembersResp
 import ru.radixit.letsplay.databinding.FragEventDescRedesignBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.CreateEventViewModel
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.PlayerRedesAdapter
@@ -151,8 +152,9 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
                 }
                 playingListRv.adapter = adapterPlaying
                 viewModel.listEventsMembers(id)
-                viewModel.eventMember.observe(viewLifecycleOwner) {
-                    adapterPlaying.submitList(it.list)
+                viewModel.eventMemberList.observe(viewLifecycleOwner) {
+
+                    adapterPlaying.setData(it)
                 }
             }
         }

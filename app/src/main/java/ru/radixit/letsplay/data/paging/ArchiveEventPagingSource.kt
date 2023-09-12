@@ -14,11 +14,11 @@ class ArchiveEventPagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Event> {
         return try {
             val nextPage = params.key ?: 1
-            val response = repository.eventsList(
+            val response = repository.eventsListArchive(
                 pageIndex = nextPage.toString(),
                 request = request,
                 pageSize = "30",
-                filter = "archive"
+                flag = true
             )
 
             LoadResult.Page(

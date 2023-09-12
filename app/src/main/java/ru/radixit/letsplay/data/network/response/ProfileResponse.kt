@@ -107,7 +107,8 @@ data class Data(
     val photo: Photo? = null,
     val position: Int? = null,
     val surname: String? = null,
-    val weight: String? = null
+    val weight: String? = null,
+    val address: String? = null
 )
 
 data class NotificationsSettingsResponse(

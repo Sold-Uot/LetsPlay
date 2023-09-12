@@ -27,6 +27,13 @@ interface ProfileRepository {
         filter: String
     ): Response<EventResponse>
 
+    suspend fun eventsListArchive(
+        request: Int,
+        pageSize: String,
+        pageIndex: String,
+        flag: Boolean
+    ): Response<EventResponse>
+
     fun blackList(request: ListRequest): Flow<PagingData<User>>
 
     suspend fun listTeams(request: Int): Response<TeamResponse>

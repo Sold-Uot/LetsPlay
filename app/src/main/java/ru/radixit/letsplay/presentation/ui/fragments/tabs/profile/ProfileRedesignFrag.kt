@@ -155,7 +155,6 @@ class ProfileRedesignFrag : BaseFragment() {
             }
         }
         teamRecyclerView.adapter = adapter
-        teamRecyclerView.addItemDecoration(SpaceItemDecoration(30))
     }
 
     private fun setupEvents(id: Int) {

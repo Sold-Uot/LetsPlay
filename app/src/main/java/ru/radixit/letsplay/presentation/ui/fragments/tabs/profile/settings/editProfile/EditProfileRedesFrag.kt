@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -242,6 +243,8 @@ class EditProfileRedesFrag : Fragment() {
             } else {
                 binding.day2Rb.isChecked = true
             }
+            Log.e("12313231", it.data.address.toString())
+            binding.cityUserEdTv.setText(it.data.address)
             binding.surnameUserEdTv.setText(it.data.surname ?: "Фамилия не указана")
 //            binding.editProfilePosition.hint =
 //                if (it.data.position != null) "Позиция: ${it.option.position[it.data.position - 1].text}" else "Позиция на поле не указана"
