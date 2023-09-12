@@ -22,7 +22,6 @@ import javax.inject.Singleton
 class PlaygroundRepositoryImpl @Inject constructor(
     private val playgroundsApi: PlaygroundsApi,
     private val retrofitInstance: RetrofitInstance,
-    private val eventApi: EventApi,
     private val commentApi: CommentApi,
 ) : PlaygroundRepository {
 
@@ -85,9 +84,7 @@ class PlaygroundRepositoryImpl @Inject constructor(
         return retrofitInstance.api.addresses(request)
     }
 
-    override suspend fun createEvent(request: CreateEventRequest): Response<CreateEventResponse> {
-        return eventApi.createEvent(request)
-    }
+
 
     override suspend fun fetchHoursFree(id: String, weekDay: String): Response<HoursFreeResponse> {
         return playgroundsApi.fetchHoursFree(id, weekDay)

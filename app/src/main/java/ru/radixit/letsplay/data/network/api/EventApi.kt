@@ -2,6 +2,7 @@ package ru.radixit.letsplay.data.network.api
 
 import retrofit2.Response
 import retrofit2.http.*
+import ru.radixit.letsplay.data.model.UploadPhoto
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
 import ru.radixit.letsplay.data.network.request.JoinEventRequest
 import ru.radixit.letsplay.data.network.response.*
@@ -49,6 +50,15 @@ interface EventApi {
      */
     @POST("/event/v1/add")
     suspend fun createEvent(@Body request: CreateEventRequest): Response<CreateEventResponse>
+
+    /**
+     * Отправляем фото ивента
+     */
+    @POST("/event/v1/get/{ID}/photo")
+    suspend fun upload(
+        @Path("ID") id: String,
+        @Body uploadPhoto: UploadPhoto
+    ): Response<PhotoResponse>
 
     /**
      * Отправляем заявку на участие

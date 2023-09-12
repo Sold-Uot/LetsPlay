@@ -29,7 +29,6 @@ interface PlaygroundRepository {
 //    suspend fun commentList(request: EventRequest): Response<>
 
 
-    suspend fun createEvent(request: CreateEventRequest): Response<CreateEventResponse>
 
     suspend fun fetchHoursFree(id: String, weekDay: String): Response<HoursFreeResponse>
 

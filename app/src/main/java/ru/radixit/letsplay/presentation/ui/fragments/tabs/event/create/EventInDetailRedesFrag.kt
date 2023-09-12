@@ -82,8 +82,13 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         }
 
     private fun uploadPhoto(uri: List<Uri>) {
-        Glide.with(binding.root).load(uri[uri.lastIndex]).into(binding.photoImg)
-    }
+        viewModel.saveUri(uri)
+        binding.photoProfile.visibility = View.GONE
+        viewModel.uriList.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                Glide.with(binding.root).load(it[it.lastIndex]).into(binding.photoImg)
+            }
+        }    }
 
     private var myLatLng: LatLng? = null
 

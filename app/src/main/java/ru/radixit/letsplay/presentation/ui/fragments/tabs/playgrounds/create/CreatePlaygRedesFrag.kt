@@ -461,6 +461,7 @@ class CreatePlaygRedesFrag : Fragment(), OnMapReadyCallback {
     }
 
 
+
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     private fun onBack() {
