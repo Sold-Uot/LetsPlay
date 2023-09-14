@@ -40,13 +40,11 @@ class SelectedUsersFragment : BaseFragment() {
         val adapter = SelectedUsersAdapter()
 
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(SpaceItemDecoration(40))
+
         viewModel.selectedUsers.observe(viewLifecycleOwner) {
             Log.e("user_list2" , it.size.toString())
             viewModelChat.saveChatUsers(it)
 
-            val bundle = Bundle()
-            bundle.putString("count_member" , it.size.toString())
             adapter.setData(it!!)
             binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
         }
@@ -58,6 +56,10 @@ class SelectedUsersFragment : BaseFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
 

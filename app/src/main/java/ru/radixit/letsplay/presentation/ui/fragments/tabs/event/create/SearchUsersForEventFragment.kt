@@ -2,6 +2,7 @@ package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class SearchUsersForEventFragment : BaseFragment() {
         return binding.root
     }
 
+
     @SuppressLint("ClickableViewAccessibility")
     private fun setupRecyclerview() {
         val recyclerView = binding.recyclerview
@@ -63,6 +65,9 @@ class SearchUsersForEventFragment : BaseFragment() {
         adapter.selectItem {
             viewModel.add(it)
         }
+         viewModel.selectedUsers.observe(viewLifecycleOwner){
+             Log.e("users",it.size.toString())
+         }
         adapter.removeItem {
             viewModel.remove(it)
         }

@@ -38,6 +38,9 @@ class CreateTeamFragment : Fragment() {
 
     private fun settingsView() {
         clickView()
+        vm.selectedUsers.observe(viewLifecycleOwner){
+            binding.countFriends.text = it.size.toString()
+        }
 
     }
 

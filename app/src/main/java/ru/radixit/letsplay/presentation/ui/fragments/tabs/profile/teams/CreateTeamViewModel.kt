@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +20,9 @@ import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
@@ -50,7 +53,15 @@ class CreateTeamViewModel @Inject constructor(
 
     private val _selectedUsers = MutableLiveData<ArrayList<User>>()
     val selectedUsers: LiveData<ArrayList<User>> = _selectedUsers
-    private val listUsers = arrayListOf<User>()
+
+    private val _test = MutableLiveData<String>()
+     val test :LiveData<String> = _test
+
+    private val _state = MutableStateFlow<String>("")
+    val state :StateFlow<String> = _state
+
+
+     val listUsers = arrayListOf<User>()
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> = _teams
     private val _success = MutableLiveData<Boolean>()
@@ -62,6 +73,7 @@ class CreateTeamViewModel @Inject constructor(
     val uriList: LiveData<List<Uri>> = _uriList
     private val _uploadingPhoto = MutableLiveData<Boolean>()
     val uploadingPhoto: LiveData<Boolean> = _uploadingPhoto
+
 
     private val _membersList  = MutableLiveData<List<User>>()
     val memberList : LiveData<List<User>> = _membersList
@@ -160,10 +172,16 @@ class CreateTeamViewModel @Inject constructor(
     fun remove(user: User) {
         listUsers.remove(user)
         _selectedUsers.value = listUsers
+        _membersList.value = listUsers
     }
 
     fun add(user: User) {
+        Log.e("user_add" , user.name.toString())
         listUsers.add(user)
         _selectedUsers.value = listUsers
+        _membersList.value = listUsers
+        Log.e("user_add" , _selectedUsers.value!!.last().name.toString())
+
+
     }
 }

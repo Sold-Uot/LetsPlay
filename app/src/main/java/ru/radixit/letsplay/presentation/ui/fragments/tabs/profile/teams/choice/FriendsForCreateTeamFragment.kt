@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +68,7 @@ class FriendsForCreateTeamFragment : BaseFragment() {
             }
         }
         adapter.selectItem {
+            Log.e("select" , it.name.toString())
             viewModel.add(it)
         }
         adapter.removeItem {
