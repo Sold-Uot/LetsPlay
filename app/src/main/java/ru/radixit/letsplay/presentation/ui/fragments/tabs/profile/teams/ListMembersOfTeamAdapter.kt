@@ -1,4 +1,4 @@
-package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.tabs.teams.createTeam
+package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

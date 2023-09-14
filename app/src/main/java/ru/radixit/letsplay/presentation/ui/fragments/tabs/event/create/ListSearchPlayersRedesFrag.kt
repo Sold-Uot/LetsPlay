@@ -7,22 +7,17 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.databinding.FragSearchListPlayersTeamsRedesBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.EventsAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.ListPlayearsRedesFrag
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.UserProfileViewModel
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.tabs.teams.TeamAdapter
-import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
 

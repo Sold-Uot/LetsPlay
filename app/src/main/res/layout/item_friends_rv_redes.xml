@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_black"
-             />
+            android:scaleType="centerCrop" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -32,14 +32,13 @@
         android:id="@+id/friend_is_online_mat_card"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/main_orange"
         app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/playing_mar_card"
-        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="2dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/playing_mar_card" />
     <TextView
         android:id="@+id/name_on_avatar"
         android:layout_width="wrap_content"

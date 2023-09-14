@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentChoiceUsersForEventBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.ChoiceUsersAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.CreateTeamViewModel
 
 @AndroidEntryPoint
 class ChoiceUsersForEventFragment : DialogFragment() {
@@ -23,7 +25,7 @@ class ChoiceUsersForEventFragment : DialogFragment() {
         FriendsForEventFragment(),
         SearchUsersForEventFragment()
     )
-    private lateinit var viewModel: CreateEventViewModel
+    private val viewModel by viewModels<CreateTeamViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +41,6 @@ class ChoiceUsersForEventFragment : DialogFragment() {
     ): View {
 
         _binding = FragmentChoiceUsersForEventBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity())[CreateEventViewModel::class.java]
         val viewPager = binding.viewPager
         val adapter = ChoiceUsersAdapter(this)
         adapter.setData(arrayListFragments)

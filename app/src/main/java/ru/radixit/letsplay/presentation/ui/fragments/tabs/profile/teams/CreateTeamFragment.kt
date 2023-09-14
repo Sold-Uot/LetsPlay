@@ -15,8 +15,8 @@ class CreateTeamFragment : DialogFragment() {
 
     private var _binding : FragmentCreatTeamBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<CreateTeamViewModel>()
 
+    private val vm  by viewModels<CreateTeamViewModel>()
 
 
 
@@ -29,6 +29,7 @@ class CreateTeamFragment : DialogFragment() {
         _binding = FragmentCreatTeamBinding.inflate(inflater,container,false)
 
         return binding.root
+
 
     }
 

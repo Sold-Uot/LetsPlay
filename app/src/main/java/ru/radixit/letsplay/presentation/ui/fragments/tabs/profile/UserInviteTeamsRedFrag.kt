@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragListEventsRedesignBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.tabs.teams.TeamAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.TeamAdapter
 import ru.radixit.letsplay.utils.SpaceItemDecoration
 
 @AndroidEntryPoint
