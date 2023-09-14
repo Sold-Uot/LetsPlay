@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -48,6 +49,7 @@ class ProfileRedesignFrag : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragProfileRedesignBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
         return binding.root
@@ -57,6 +59,11 @@ class ProfileRedesignFrag : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
+
+            creatTeamTv.setOnClickListener {
+                findNavController().navigate(ProfileRedesignFragDirections.actionProfileRedesignFragToCreateTeamFragment2())
+            }
+
             swipeToRefresh.setOnRefreshListener {
                 getProfileData()
             }

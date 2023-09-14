@@ -49,22 +49,17 @@
             app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/choicen" />
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/friends" />
 
             <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teams" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/search" />
 

@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentSelectedUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 
+@AndroidEntryPoint
 
 class SelectedUsersForCreateTeamFragment : BaseFragment() {
 

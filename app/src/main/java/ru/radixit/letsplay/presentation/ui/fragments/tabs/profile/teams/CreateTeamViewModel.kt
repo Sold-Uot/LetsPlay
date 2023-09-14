@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.data.model.Member
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.network.request.CreateTeamRequest
@@ -42,6 +43,8 @@ import javax.inject.Inject
 class CreateTeamViewModel @Inject constructor(
     private val repository: ProfileRepository,
     private val errorHandler: ErrorHandler,
+    private val sessionManager: SessionManager,
+
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -143,9 +146,9 @@ class CreateTeamViewModel @Inject constructor(
     }
 
 
-    fun searchFriends(query: String): Flow<PagingData<User>> {
-        return repository.friends(ListRequest(search = query))
-            .map { pagingData -> pagingData.map { it } }.cachedIn(viewModelScope)
+    fun searchFriends(query: String =  ""): Flow<PagingData<User>> {
+        return repository.friends(ListRequest(search = query, userId = sessionManager.fetchToken().toString()))
+            .map { pagingData -> pagingData.map { it } }.shareIn(viewModelScope,SharingStarted.WhileSubscribed(), replay = 10)
     }
 
     fun searchUsers(query: String = ""): Flow<PagingData<User>> {

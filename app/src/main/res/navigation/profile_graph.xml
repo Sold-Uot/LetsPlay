@@ -121,7 +121,7 @@
             android:id="@+id/action_profileRedesignFrag_to_eventDescRedesignFrag"
             app:destination="@id/eventDescRedesignFrag" />
         <action
-            android:id="@+id/action_profileRedesignFrag_to_createTeamFragment"
+            android:id="@+id/action_profileRedesignFrag_to_createTeamFragment2"
             app:destination="@id/createTeamFragment" />
     </fragment>
     <dialog
@@ -303,10 +303,18 @@
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.HistoryActiveFrag"
         android:label="frag_history_active"
         tools:layout="@layout/frag_history_active" />
-    <dialog
+    <fragment
         android:id="@+id/createTeamFragment"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.CreateTeamFragment"
-        android:label="CreateTeamFragment"
-        tools:layout="@layout/fragment_creat_team"/>
+        android:label="CreateTeamFragment" >
+        <action
+            android:id="@+id/action_createTeamFragment_to_choiceUsersForCreateTeamFragment"
+            app:destination="@id/choiceUsersForCreateTeamFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/choiceUsersForCreateTeamFragment"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice.ChoiceUsersForCreateTeamFragment"
+        android:label="fragment_choice_users_for_creat_team"
+        tools:layout="@layout/fragment_choice_users_for_creat_team" />
 
 </navigation>

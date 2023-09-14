@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentChoiceUsersForCreatTeamBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.ChoiceUsersAdapter
 
@@ -18,6 +19,10 @@ class ChoiceUsersForCreateTeamFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(
+            STYLE_NORMAL,
+            R.style.FullScreenDialogStyle
+        )
 
     }
 

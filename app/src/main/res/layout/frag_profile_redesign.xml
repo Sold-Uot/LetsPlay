@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/all_inform_profile_tv3"
+                    android:id="@+id/creat_team_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="26dp"
@@ -287,7 +287,7 @@
                     android:background="@color/gray_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/all_inform_profile_tv3" />
+                    app:layout_constraintTop_toBottomOf="@+id/creat_team_tv" />
 
                 <TextView
                     android:id="@+id/friend_tv"

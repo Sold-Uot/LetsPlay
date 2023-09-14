@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.databinding.FragmentSearchUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 
+@AndroidEntryPoint
 
 class SearchUsersForCreateTeamFragment : BaseFragment() {
     private var _binding: FragmentSearchUsersForCreateTeamBinding? = null
