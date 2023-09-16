@@ -9,14 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.databinding.ItemBlackListBinding
 
-typealias SelectItemOnClickListener = ((User) -> Unit)
+typealias SelectItemOnClickListener = ((UserEntity  ) -> Unit)
 
 class SelectedUsersAdapter :
     RecyclerView.Adapter<SelectedUsersAdapter.SelectedUsersViewHolder>() {
 
-    private var dataList = arrayListOf<User>()
+    private var dataList = arrayListOf<UserEntity>()
     private var selectItemOnClickListener: SelectItemOnClickListener? = null
 
     class SelectedUsersViewHolder(private val binding: ItemBlackListBinding) :
@@ -32,7 +33,8 @@ class SelectedUsersAdapter :
 
         @SuppressLint("SetTextI18n")
         fun bind(
-            user: User,
+            user : UserEntity   ,
+
             selectItemOnClickListener: SelectItemOnClickListener
         ) {
             binding.playerName.text = user.name ?: "Не указано"
@@ -73,7 +75,7 @@ class SelectedUsersAdapter :
         selectItemOnClickListener = listener
     }
 
-    fun setData(list: ArrayList<User>) {
+    fun setData(list: ArrayList<UserEntity>) {
         dataList = list
         notifyDataSetChanged()
     }

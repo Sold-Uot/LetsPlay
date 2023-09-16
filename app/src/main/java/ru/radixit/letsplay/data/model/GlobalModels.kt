@@ -2,6 +2,8 @@ package ru.radixit.letsplay.data.model
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -37,6 +39,13 @@ data class Photo(
     val id: Int,
     val url: String
 ):Parcelable
+
+@Entity
+data class PhotoEntity(
+    @PrimaryKey
+    val id :Int?,
+    val url:String?
+)
 
 data class AvatarResponse(
     val message: String,

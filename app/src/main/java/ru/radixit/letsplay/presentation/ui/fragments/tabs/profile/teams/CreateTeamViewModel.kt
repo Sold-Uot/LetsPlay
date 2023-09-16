@@ -23,12 +23,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.data.model.Member
+import ru.radixit.letsplay.data.model.PhotoEntity
 import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.data.network.request.CreateTeamRequest
 import ru.radixit.letsplay.data.network.request.ListRequest
 import ru.radixit.letsplay.data.network.request.UploadPhotoChatRequest
@@ -48,20 +51,21 @@ class CreateTeamViewModel @Inject constructor(
     private val errorHandler: ErrorHandler,
     private val sessionManager: SessionManager,
 
+
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    private val _selectedUsers = MutableLiveData<ArrayList<User>>()
-    val selectedUsers: LiveData<ArrayList<User>> = _selectedUsers
+    private val _selectedUsers = MutableLiveData<List<UserEntity>>()
+    val selectedUsers: LiveData<List<UserEntity>> = _selectedUsers
 
     private val _test = MutableLiveData<String>()
-     val test :LiveData<String> = _test
+    val test: LiveData<String> = _test
 
     private val _state = MutableStateFlow<String>("")
-    val state :StateFlow<String> = _state
+    val state: StateFlow<String> = _state
 
 
-     val listUsers = arrayListOf<User>()
+    val listUsers = arrayListOf<User>()
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> = _teams
     private val _success = MutableLiveData<Boolean>()
@@ -75,8 +79,8 @@ class CreateTeamViewModel @Inject constructor(
     val uploadingPhoto: LiveData<Boolean> = _uploadingPhoto
 
 
-    private val _membersList  = MutableLiveData<List<User>>()
-    val memberList : LiveData<List<User>> = _membersList
+    private val _membersList = MutableLiveData<List<User>>()
+    val memberList: LiveData<List<User>> = _membersList
     val list = mutableListOf<String>()
 
     fun createTeam(title: String, nickname: String) {
@@ -158,9 +162,15 @@ class CreateTeamViewModel @Inject constructor(
     }
 
 
-    fun searchFriends(query: String =  ""): Flow<PagingData<User>> {
-        return repository.friends(ListRequest(search = query, userId = sessionManager.fetchToken().toString()))
-            .map { pagingData -> pagingData.map { it } }.shareIn(viewModelScope,SharingStarted.WhileSubscribed(), replay = 10)
+    fun searchFriends(query: String = ""): Flow<PagingData<User>> {
+        return repository.friends(
+            ListRequest(
+                search = query,
+                userId = sessionManager.fetchToken().toString()
+            )
+        )
+            .map { pagingData -> pagingData.map { it } }
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), replay = 10)
     }
 
     fun searchUsers(query: String = ""): Flow<PagingData<User>> {
@@ -171,17 +181,57 @@ class CreateTeamViewModel @Inject constructor(
 
     fun remove(user: User) {
         listUsers.remove(user)
-        _selectedUsers.value = listUsers
-        _membersList.value = listUsers
+        repository.addUser(
+            UserEntity(
+                id = user.id,
+                name = user.name,
+                photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                surname = user.surname,
+                userType = user.userType,
+                username = user.username
+            )
+        )
     }
 
     fun add(user: User) {
-        Log.e("user_add" , user.name.toString())
-        listUsers.add(user)
-        _selectedUsers.value = listUsers
-        _membersList.value = listUsers
-        Log.e("user_add" , _selectedUsers.value!!.last().name.toString())
-
-
+        viewModelScope.launch {
+            repository.addUser(
+                UserEntity(
+                    id = user.id,
+                    name = user.name,
+                    photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                    surname = user.surname,
+                    userType = user.userType,
+                    username = user.username
+                )
+            )
+        }
     }
+    fun addsus(user: User) {
+        viewModelScope.launch {
+            repository.addSuspend(
+                UserEntity(
+                    id = user.id,
+                    name = user.name,
+                    photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                    surname = user.surname,
+                    userType = user.userType,
+                    username = user.username
+                )
+            )
+        }
+    }
+
+    fun fetchSelectUserList() {
+        viewModelScope.launch {
+            val response  = repository.getAllUserList()
+            response.collect {
+                _selectedUsers.value  = it
+                Log.e("23",it.toString())
+
+            }
+        }
+    }
+
+
 }

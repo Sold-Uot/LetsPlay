@@ -75,5 +75,4 @@ class SearchUsersForCreateTeamFragment : BaseFragment() {
         _binding = null
     }
 
-
 }
