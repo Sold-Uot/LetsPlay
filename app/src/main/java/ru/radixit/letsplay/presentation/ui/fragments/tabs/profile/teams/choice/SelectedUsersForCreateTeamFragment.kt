@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import ru.radixit.letsplay.R
+import ru.radixit.letsplay.data.model.Photo
+import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.databinding.FragmentSelectedUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.SelectedUsersAdapter
@@ -55,15 +58,25 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
         }
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(40))
+        viewModel.fetchSelectUserList()
         viewModel.selectedUsers.observe(viewLifecycleOwner) {
             Log.e("user_list2w" , it.size.toString())
 
 
-            adapter.setData(it!!)
+            val list = it as ArrayList<UserEntity>
+            adapter.setData(list)
             binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
         }
         adapter.selectItem {
-            viewModel.remove(it)
+            viewModel.remove(User(
+                id = it.id,
+                name = it.name ,
+                photo = Photo(it.photo?.id!!,it.photo.url!!),
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username
+
+            ))
         }
         recyclerView.setOnTouchListener { view, _ ->
             requireContext().hideKeyboardOnScroll(view)

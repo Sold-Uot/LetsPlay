@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.data.repository
 
+import android.util.Log
 import androidx.paging.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -7,8 +8,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
+import ru.radixit.letsplay.data.database.UserDao
 import ru.radixit.letsplay.data.model.AvatarResponse
 import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.data.network.api.FriendApi
 import ru.radixit.letsplay.data.network.api.ProfileApi
 import ru.radixit.letsplay.data.network.api.TeamApi
@@ -19,6 +22,8 @@ import ru.radixit.letsplay.data.paging.BlackListPagingSource
 import ru.radixit.letsplay.data.paging.FindFriendPagingSource
 import ru.radixit.letsplay.data.paging.FriendsPagingSource
 import ru.radixit.letsplay.domain.repository.ProfileRepository
+import ru.radixit.letsplay.utils.LoadState
+import java.lang.Exception
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
@@ -26,7 +31,8 @@ class ProfileRepositoryImpl @Inject constructor(
     private val userApi: UserApi,
     private val friendApi: FriendApi,
     private val profileApi: ProfileApi,
-    private val teamApi: TeamApi
+    private val teamApi: TeamApi,
+    private val userDao: UserDao
 ) : ProfileRepository {
 
     override suspend fun getProfile(id: Int): Response<ProfileResponse> {
@@ -153,6 +159,8 @@ class ProfileRepositoryImpl @Inject constructor(
         return userApi.unblock(userId)
     }
 
+
+
     override fun blackList(request: ListRequest): Flow<PagingData<User>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
@@ -193,4 +201,41 @@ class ProfileRepositoryImpl @Inject constructor(
         return service.saveNotificationsSettings(request)
     }
 
+
+
+    override fun getAllUserList(): Flow<List<UserEntity>> = flow {
+
+        emit(userDao.getALlUser())
+    }
+
+    override fun addUser(user: UserEntity): Flow<LoadState<UserEntity>> = flow  {
+        emit(LoadState.loading())
+        try {
+            userDao.addUser(user)
+            Log.e("add",userDao.getALlUser().toString())
+            emit(LoadState.success(user))
+        }
+        catch (ex: Exception){
+            emit(LoadState.error(ex.toString()))
+        }
+
+
+    }
+
+    override fun removeUser(user: UserEntity): Flow<LoadState<UserEntity>> = flow  {
+        emit(LoadState.loading())
+        try {
+            userDao.removeUser(user)
+            emit(LoadState.success(user))
+        }
+        catch (ex: Exception){
+            emit(LoadState.error(ex.toString()))
+        }
+    }
+
+    override suspend fun addSuspend(user: UserEntity) {
+        Log.e("addsus","12")
+
+        userDao.addUser(user)
+    }
 }

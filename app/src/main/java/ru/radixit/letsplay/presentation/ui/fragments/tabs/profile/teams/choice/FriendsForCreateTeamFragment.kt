@@ -70,6 +70,7 @@ class FriendsForCreateTeamFragment : BaseFragment() {
         adapter.selectItem {
             Log.e("select" , it.name.toString())
             viewModel.add(it)
+            viewModel.addsus(it)
         }
         adapter.removeItem {
             viewModel.remove(it)
