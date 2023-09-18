@@ -64,6 +64,7 @@ class SearchUsersForCreateTeamFragment : BaseFragment() {
         }
         adapter.selectItem {
             viewModel.add(it)
+            viewModel.addsus(it)
         }
         adapter.removeItem {
             viewModel.remove(it)

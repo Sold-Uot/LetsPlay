@@ -31,6 +31,7 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val adapter = SelectedUsersAdapter()
+    private val adapterDB =SelectedForCreateTeamUsersAdapter()
 
     private lateinit var viewModel : CreateTeamViewModel
 //    private val viewModel by viewModels<CreateTeamViewModel>()
@@ -58,15 +59,7 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
         }
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(40))
-        viewModel.fetchSelectUserList()
-        viewModel.selectedUsers.observe(viewLifecycleOwner) {
-            Log.e("user_list2w" , it.size.toString())
 
-
-            val list = it as ArrayList<UserEntity>
-            adapter.setData(list)
-            binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
-        }
         adapter.selectItem {
             viewModel.remove(User(
                 id = it.id,
@@ -86,27 +79,16 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.fetchSelectUserList()
+        viewModel.selectedUsers.observe(viewLifecycleOwner) {
+            Log.e("user_list2w" , it.size.toString())
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.state.collect{
-                binding.foundNumber.text = "Найдено: ${it}"
 
-                Log.e("user_list2w" , it.toString())
-
-            }
-        }
-
-        viewModel.test.observe(viewLifecycleOwner) {
-
-            binding.foundNumber.text = "123"
+            adapterDB.setData(listOf(UserEntity(id=1, id_user=80, name="Крон Маркет", photo_id=1, photo_url="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666364979_14-mykaleidoscope-ru-p-krasivie-peizazhi-prirodi-oboi-17.jpg", surname=null, userType="", username="123")))
+            binding.foundNumber.text = "Найдено: ${it.size}"
         }
     }
-    override fun onResume() {
-        super.onResume()
 
-        Log.e("resum" , viewModel.selectedUsers.value.toString())
-
-    }
 
 
 

@@ -11,9 +11,9 @@ import ru.radixit.letsplay.data.model.UserEntity
 
 @Database(
     version = 1,
-    entities = [UserEntity::class , PhotoEntity::class]
+    entities = [UserEntity::class ],
+    exportSchema = true
 )
-@TypeConverters(PhotoConverter::class)
 abstract class AppDatabase :RoomDatabase() {
     public abstract val userDao: UserDao
 

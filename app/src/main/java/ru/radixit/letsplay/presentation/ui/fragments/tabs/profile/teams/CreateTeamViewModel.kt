@@ -183,12 +183,13 @@ class CreateTeamViewModel @Inject constructor(
         listUsers.remove(user)
         repository.addUser(
             UserEntity(
-                id = user.id,
+                id_user = user.id,
                 name = user.name,
-                photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                photo_url = user.photo?.url,
+                photo_id = user.photo?.id,
                 surname = user.surname,
                 userType = user.userType,
-                username = user.username
+                username = user.username,
             )
         )
     }
@@ -197,9 +198,10 @@ class CreateTeamViewModel @Inject constructor(
         viewModelScope.launch {
             repository.addUser(
                 UserEntity(
-                    id = user.id,
+                    id_user = user.id,
                     name = user.name,
-                    photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                    photo_url = user.photo?.url,
+                    photo_id = user.photo?.id,
                     surname = user.surname,
                     userType = user.userType,
                     username = user.username
@@ -211,12 +213,14 @@ class CreateTeamViewModel @Inject constructor(
         viewModelScope.launch {
             repository.addSuspend(
                 UserEntity(
-                    id = user.id,
+                    id_user = user.id,
                     name = user.name,
-                    photo = PhotoEntity(user.photo?.id, user.photo?.url),
+                    photo_url = user.photo?.url,
+                    photo_id = user.photo?.id,
                     surname = user.surname,
                     userType = user.userType,
-                    username = user.username
+                    username = user.username,
+
                 )
             )
         }

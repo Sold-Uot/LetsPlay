@@ -204,6 +204,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
 
     override fun getAllUserList(): Flow<List<UserEntity>> = flow {
+        Log.e("addsus","12")
 
         emit(userDao.getALlUser())
     }
@@ -217,6 +218,7 @@ class ProfileRepositoryImpl @Inject constructor(
         }
         catch (ex: Exception){
             emit(LoadState.error(ex.toString()))
+            Log.e("ex "  , ex.message.toString())
         }
 
 

@@ -12,12 +12,12 @@ import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.databinding.ItemBlackListBinding
 
-typealias SelectItemOnClickListener = ((UserEntity  ) -> Unit)
+typealias SelectItemOnClickListener = ((User  ) -> Unit)
 
 class SelectedUsersAdapter :
     RecyclerView.Adapter<SelectedUsersAdapter.SelectedUsersViewHolder>() {
 
-    private var dataList = arrayListOf<UserEntity>()
+    private var dataList = arrayListOf<User>()
     private var selectItemOnClickListener: SelectItemOnClickListener? = null
 
     class SelectedUsersViewHolder(private val binding: ItemBlackListBinding) :
@@ -33,7 +33,7 @@ class SelectedUsersAdapter :
 
         @SuppressLint("SetTextI18n")
         fun bind(
-            user : UserEntity   ,
+            user : User   ,
 
             selectItemOnClickListener: SelectItemOnClickListener
         ) {
@@ -75,7 +75,7 @@ class SelectedUsersAdapter :
         selectItemOnClickListener = listener
     }
 
-    fun setData(list: ArrayList<UserEntity>) {
+    fun setData(list: ArrayList<User>) {
         dataList = list
         notifyDataSetChanged()
     }

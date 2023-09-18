@@ -16,10 +16,12 @@ data class User(
 )
 @Entity
 data class UserEntity (
-    @PrimaryKey
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id : Int = 0,
+    val id_user: Int,
     val name: String? = null,
-    val photo: PhotoEntity? = null,
+    val photo_id: Int? = null,
+    val photo_url : String? = null,
     val surname: String? = null,
     val userType: String? = null,
     val username: String? = null
