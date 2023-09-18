@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.radixit.letsplay.data.local.SharedPrefRepositoryImpl
+import ru.radixit.letsplay.data.local.shared_pref.SharedPrefRepositoryImpl
 import ru.radixit.letsplay.data.repository.*
 import ru.radixit.letsplay.domain.global.ResourceManager
 import ru.radixit.letsplay.domain.repository.*

@@ -65,7 +65,7 @@ class ChoiceUsersForCreateTeamFragment : DialogFragment() {
 
     private fun onBack() {
         binding.toolbar2.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(ChoiceUsersForCreateTeamFragmentDirections.actionChoiceUsersForCreateTeamFragmentToCreateTeamFragment())
         }
     }
 

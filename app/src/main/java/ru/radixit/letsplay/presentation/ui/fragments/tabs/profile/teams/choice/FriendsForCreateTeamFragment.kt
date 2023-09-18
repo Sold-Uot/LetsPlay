@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.databinding.FragmentFriendsForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.FriendsForEventAdapter
@@ -69,10 +70,24 @@ class FriendsForCreateTeamFragment : BaseFragment() {
         }
         adapter.selectItem {
             Log.e("select" , it.name.toString())
-            viewModel.add(it)
+            viewModel.add(UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username))
         }
         adapter.removeItem {
-            viewModel.remove(it)
+            viewModel.remove(UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username))
         }
         adapter.addLoadStateListener {
             binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
