@@ -1,9 +1,10 @@
 package ru.radixit.letsplay.data.model
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import ru.radixit.letsplay.data.network.response.Playground
-
+@SuppressLint("event")
 @Parcelize
 data class Event(
     val address: String? = null,

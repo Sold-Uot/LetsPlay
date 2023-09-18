@@ -36,8 +36,8 @@ data class Gender(
 
 @Parcelize
 data class Photo(
-    val id: Int,
-    val url: String
+    val id: Int?,
+    val url: String?
 ):Parcelable
 
 @Entity

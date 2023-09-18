@@ -7,10 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.radixit.letsplay.LetsPlayApp
-import ru.radixit.letsplay.data.database.AppDatabase
-import ru.radixit.letsplay.data.database.UserDao
-import javax.inject.Singleton
+import ru.radixit.letsplay.data.local.database.AppDatabase
+import ru.radixit.letsplay.data.local.dao.UserDao
+
 @InstallIn(SingletonComponent::class)
 @Module
 object DataBaseModule {
@@ -23,8 +22,8 @@ object DataBaseModule {
     }
 
     @Provides
-    fun provideUserDao(database: AppDatabase): UserDao {
-        return database.userDao
+    fun provideUserDao(@ApplicationContext appContext: Context,database: AppDatabase): UserDao {
+        return database.getDatabase(appContext).userDao
 
     }
 }

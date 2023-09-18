@@ -72,7 +72,7 @@ interface ProfileRepository {
 
     suspend fun saveNotifications(request: NotificationsSettingsResponse): Response<ReportResponse>
 
-    fun getAllUserList(): Flow<List<UserEntity>>
+    fun getAllUserList(): Flow<LoadState<List<UserEntity>>>
 
     fun addUser(user : UserEntity) : Flow<LoadState<UserEntity>>
     fun removeUser(user : UserEntity) : Flow<LoadState<UserEntity>>

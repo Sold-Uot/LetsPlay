@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.databinding.FragmentSearchUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.FriendsForEventAdapter
@@ -63,11 +64,26 @@ class SearchUsersForCreateTeamFragment : BaseFragment() {
             binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
         }
         adapter.selectItem {
-            viewModel.add(it)
-            viewModel.addsus(it)
+            viewModel.add(
+                UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username)
+            )
         }
         adapter.removeItem {
-            viewModel.remove(it)
+            viewModel.remove(UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username))
         }
     }
 

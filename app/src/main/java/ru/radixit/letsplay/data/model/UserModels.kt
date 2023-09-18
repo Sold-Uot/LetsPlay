@@ -16,8 +16,7 @@ data class User(
 )
 @Entity
 data class UserEntity (
-    @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
+    @PrimaryKey(autoGenerate = false)
     val id_user: Int,
     val name: String? = null,
     val photo_id: Int? = null,

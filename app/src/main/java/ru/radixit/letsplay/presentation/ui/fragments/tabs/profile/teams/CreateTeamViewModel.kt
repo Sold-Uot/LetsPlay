@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -7,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,17 +19,17 @@ import androidx.paging.map
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.data.global.SessionManager
+import ru.radixit.letsplay.data.local.database.AppDatabase
 import ru.radixit.letsplay.data.model.Member
-import ru.radixit.letsplay.data.model.PhotoEntity
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.data.network.request.CreateTeamRequest
@@ -39,6 +39,7 @@ import ru.radixit.letsplay.data.network.response.CreateTeamResponse
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.domain.repository.ProfileRepository
 import ru.radixit.letsplay.presentation.global.ErrorHandler
+import ru.radixit.letsplay.utils.Status
 import ru.radixit.letsplay.utils.getFileName
 import ru.radixit.letsplay.utils.showToast
 import java.io.ByteArrayOutputStream
@@ -50,6 +51,7 @@ class CreateTeamViewModel @Inject constructor(
     private val repository: ProfileRepository,
     private val errorHandler: ErrorHandler,
     private val sessionManager: SessionManager,
+    private val appDatabase: AppDatabase,
 
 
     @ApplicationContext private val context: Context
@@ -89,7 +91,7 @@ class CreateTeamViewModel @Inject constructor(
                 val list = mutableListOf<Member>()
                 if (_selectedUsers.value?.isNotEmpty() == true) {
                     for (i in _selectedUsers.value!!) {
-                        list.add(Member(userId = i.id))
+                        list.add(Member(userId = i.id_user))
                     }
                 }
                 val response = repository.createTeam(CreateTeamRequest(title, nickname, list))
@@ -179,61 +181,71 @@ class CreateTeamViewModel @Inject constructor(
             .shareIn(viewModelScope, started = SharingStarted.WhileSubscribed(), replay = 10)
     }
 
-    fun remove(user: User) {
-        listUsers.remove(user)
-        repository.addUser(
-            UserEntity(
-                id_user = user.id,
-                name = user.name,
-                photo_url = user.photo?.url,
-                photo_id = user.photo?.id,
-                surname = user.surname,
-                userType = user.userType,
-                username = user.username,
-            )
-        )
-    }
-
-    fun add(user: User) {
+    @SuppressLint("SuspiciousIndentation")
+    fun remove(user: UserEntity) {
         viewModelScope.launch {
-            repository.addUser(
-                UserEntity(
-                    id_user = user.id,
-                    name = user.name,
-                    photo_url = user.photo?.url,
-                    photo_id = user.photo?.id,
-                    surname = user.surname,
-                    userType = user.userType,
-                    username = user.username
-                )
-            )
+            val response = repository.removeUser(user)
+
+            response.collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        context.showToast("Пользователь удален")
+                        fetchSelectUserList()
+                    }
+
+                    Status.ERROR -> {
+                        context.showToast("Произшла ошибка ")
+                    }
+
+                    Status.LOADING -> {
+
+                    }
+                }
+            }
+
         }
     }
-    fun addsus(user: User) {
-        viewModelScope.launch {
-            repository.addSuspend(
-                UserEntity(
-                    id_user = user.id,
-                    name = user.name,
-                    photo_url = user.photo?.url,
-                    photo_id = user.photo?.id,
-                    surname = user.surname,
-                    userType = user.userType,
-                    username = user.username,
 
-                )
+    fun add(user: UserEntity) {
+        viewModelScope.launch {
+            val response = repository.addUser(
+                user
+
             )
+            response.collect {
+                when (it.status) {
+                    Status.SUCCESS -> {
+                        context.showToast("Пользователь добавлен")
+                    }
+
+                    Status.ERROR -> {
+                        context.showToast("Произшла ошибка ")
+                    }
+
+                    Status.LOADING -> {
+
+                    }
+                }
+            }
+
         }
     }
+
 
     fun fetchSelectUserList() {
         viewModelScope.launch {
-            val response  = repository.getAllUserList()
+            val response = repository.getAllUserList()
             response.collect {
-                _selectedUsers.value  = it
-                Log.e("23",it.toString())
+                _selectedUsers.value = it.data ?: emptyList()
+
 
             }
+        }
+    }
+
+    fun clearDataBase() {
+        viewModelScope.launch(Dispatchers.IO) {
+            appDatabase.clearAllTables()
         }
     }
 

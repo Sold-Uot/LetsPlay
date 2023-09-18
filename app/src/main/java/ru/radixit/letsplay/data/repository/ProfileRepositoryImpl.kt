@@ -7,8 +7,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import okhttp3.internal.notifyAll
 import retrofit2.Response
-import ru.radixit.letsplay.data.database.UserDao
+import ru.radixit.letsplay.data.local.dao.UserDao
+import ru.radixit.letsplay.data.local.database.AppDatabase
 import ru.radixit.letsplay.data.model.AvatarResponse
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.model.UserEntity
@@ -32,7 +34,8 @@ class ProfileRepositoryImpl @Inject constructor(
     private val friendApi: FriendApi,
     private val profileApi: ProfileApi,
     private val teamApi: TeamApi,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val appDatabase: AppDatabase
 ) : ProfileRepository {
 
     override suspend fun getProfile(id: Int): Response<ProfileResponse> {
@@ -203,10 +206,16 @@ class ProfileRepositoryImpl @Inject constructor(
 
 
 
-    override fun getAllUserList(): Flow<List<UserEntity>> = flow {
-        Log.e("addsus","12")
+    override fun getAllUserList(): Flow<LoadState<List<UserEntity>>> = flow {
 
-        emit(userDao.getALlUser())
+        emit(LoadState.loading())
+        try {
+            emit(LoadState.success(userDao.getALlUser()))
+        }
+        catch (ex: Exception){
+            emit(LoadState.error(ex.toString()))
+            Log.e("ex "  , ex.message.toString())
+        }
     }
 
     override fun addUser(user: UserEntity): Flow<LoadState<UserEntity>> = flow  {

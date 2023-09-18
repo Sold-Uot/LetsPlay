@@ -315,6 +315,10 @@
         android:id="@+id/choiceUsersForCreateTeamFragment"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice.ChoiceUsersForCreateTeamFragment"
         android:label="fragment_choice_users_for_creat_team"
-        tools:layout="@layout/fragment_choice_users_for_creat_team" />
+        tools:layout="@layout/fragment_choice_users_for_creat_team" >
+        <action
+            android:id="@+id/action_choiceUsersForCreateTeamFragment_to_createTeamFragment"
+            app:destination="@id/createTeamFragment" />
+    </dialog>
 
 </navigation>

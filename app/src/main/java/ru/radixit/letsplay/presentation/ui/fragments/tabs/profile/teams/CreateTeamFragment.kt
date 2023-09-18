@@ -1,14 +1,18 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentCreatTeamBinding
 
@@ -29,16 +33,22 @@ class CreateTeamFragment : Fragment() {
         _binding = FragmentCreatTeamBinding.inflate(inflater,container,false)
 
 
-        settingsView()
 
 
 
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        settingsView()
+    }
+
     private fun settingsView() {
         clickView()
+        vm.fetchSelectUserList()
         vm.selectedUsers.observe(viewLifecycleOwner){
+            Log.e("q3", it.size.toString())
             binding.countFriends.text = it.size.toString()
         }
 
@@ -46,6 +56,9 @@ class CreateTeamFragment : Fragment() {
 
     private fun  clickView() {
         binding.createTeam.setOnClickListener {
+            vm.viewModelScope.launch(Dispatchers.IO){
+                vm.clearDataBase()
+            }
 
 //            vm.createTeam(binding.editProfileName.text.toString() , "1" )
         }

@@ -1,12 +1,10 @@
-package ru.radixit.letsplay.data.database
+package ru.radixit.letsplay.data.local.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
-import ru.radixit.letsplay.data.model.PhotoEntity
+import ru.radixit.letsplay.data.local.dao.UserDao
 import ru.radixit.letsplay.data.model.UserEntity
 
 @Database(
@@ -17,6 +15,15 @@ import ru.radixit.letsplay.data.model.UserEntity
 abstract class AppDatabase :RoomDatabase() {
     public abstract val userDao: UserDao
 
+    fun getDatabase(context: Context): AppDatabase {
+        // проверка на нулл
+        if (INSTANCE == null) {
+            synchronized(this) {
+                INSTANCE = buildDatabase(context)
+            }
+        }
+        return INSTANCE!!
+    }
     companion object {
 
         @Volatile
