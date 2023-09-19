@@ -66,14 +66,8 @@ class EventDescriptionViewModel @Inject constructor(
                 _successLoading.value = true
                 val response = repository.listEventsMembers(id)
                 if (response.isSuccessful) {
-                    /*_eventMember.value = response.body()
-                    _eventMember.value = response.body()*/
                     Log.e( "list_players"  , response.body()!!.list.toString())
-/*
-                    _eventMemberList.value = listOf(EventMembersResp.Member(1 , "пктрп" , null , "admino" , "admin"))
-*/
                     _eventMemberList.value = response!!.body()!!.list
-
                 }
             } catch (e: Exception) {
                 errorHandler.proceed(e) {

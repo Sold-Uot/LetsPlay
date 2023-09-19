@@ -56,11 +56,7 @@ class CreateTeamFragment : Fragment() {
 
     private fun  clickView() {
         binding.createTeam.setOnClickListener {
-            vm.viewModelScope.launch(Dispatchers.IO){
-                vm.clearDataBase()
-            }
-
-//            vm.createTeam(binding.editProfileName.text.toString() , "1" )
+            vm.createTeam(title = binding.editProfileName.text.toString(),"12133вфывв1233")
         }
         binding.addMembers.setOnClickListener {
             findNavController().navigate(CreateTeamFragmentDirections.actionCreateTeamFragmentToChoiceUsersForCreateTeamFragment())

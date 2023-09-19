@@ -1,7 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.databinding.FragmentSelectedUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.SelectedUsersAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.CreateTeamViewModel
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice.adapter.SelectUserFoeCreateTeamAdapter
 import ru.radixit.letsplay.utils.SpaceItemDecoration
@@ -23,8 +21,7 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
     private var _binding: FragmentSelectedUsersForCreateTeamBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = SelectedUsersAdapter()
-    private val adapterDB = SelectUserFoeCreateTeamAdapter()
+    private val adapter = SelectUserFoeCreateTeamAdapter()
     private var firstStart = true
 
     private lateinit var viewModel: CreateTeamViewModel
@@ -58,22 +55,14 @@ class SelectedUsersForCreateTeamFragment : BaseFragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         viewModel.fetchSelectUserList()
         viewModel.selectedUsers.observe(viewLifecycleOwner) {
-            adapterDB.setData(it)
+            adapter.setData(it)
             binding.foundNumber.text = "Найдено: ${it.size}"
         }
 
-
-
-
-        adapterDB.selectItem {
-            viewModel.remove(
-               it
-                )
-
-
-
+        adapter.selectItem {
+            viewModel.remove(it)
         }
-        recyclerView.adapter = adapterDB
+        recyclerView.adapter = adapter
         if(firstStart){
             recyclerView.addItemDecoration(SpaceItemDecoration(40))
 
