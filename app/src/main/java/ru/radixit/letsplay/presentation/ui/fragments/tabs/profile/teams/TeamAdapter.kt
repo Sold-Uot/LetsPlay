@@ -1,4 +1,4 @@
-package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.tabs.teams
+package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

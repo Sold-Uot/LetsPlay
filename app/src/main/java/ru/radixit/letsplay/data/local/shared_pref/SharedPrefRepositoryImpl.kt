@@ -1,4 +1,4 @@
-package ru.radixit.letsplay.data.local
+package ru.radixit.letsplay.data.local.shared_pref
 
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.domain.repository.SharedPrefRepository

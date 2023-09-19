@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chat_graph"
-    app:startDestination="@id/fragChatRedes">
+    app:startDestination="@id/chatFragment">
 
     <fragment
         android:id="@+id/chatFragment"
@@ -82,5 +82,9 @@
         android:id="@+id/choiceUsersForEventFragment2"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.ChoiceUsersForEventFragment"
         android:label="fragment_choice_users_for_event"
-        tools:layout="@layout/fragment_choice_users_for_event" />
+        tools:layout="@layout/fragment_choice_users_for_event" >
+        <action
+            android:id="@+id/action_choiceUsersForEventFragment2_to_createChatFragment2"
+            app:destination="@id/createChatFragment" />
+    </dialog>
 </navigation>

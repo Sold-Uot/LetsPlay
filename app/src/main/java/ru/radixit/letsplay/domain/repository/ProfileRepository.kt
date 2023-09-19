@@ -4,10 +4,11 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.AvatarResponse
-import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.data.model.User
+import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.data.network.request.*
 import ru.radixit.letsplay.data.network.response.*
+import ru.radixit.letsplay.utils.LoadState
 
 interface ProfileRepository {
 
@@ -70,4 +71,11 @@ interface ProfileRepository {
     suspend fun deleteFromFriend(id: Int): Response<ReportResponse>
 
     suspend fun saveNotifications(request: NotificationsSettingsResponse): Response<ReportResponse>
+
+    fun getAllUserList(): Flow<LoadState<List<UserEntity>>>
+
+    fun addUser(user : UserEntity) : Flow<LoadState<UserEntity>>
+    fun removeUser(user : UserEntity) : Flow<LoadState<UserEntity>>
+
+    suspend fun addSuspend(user :UserEntity)
 }

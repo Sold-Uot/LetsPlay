@@ -91,7 +91,8 @@
     <string name="add_images_etc">Добавьте изображения, которое будет отображаться на профиле команды.</string>
     <string name="profile_edit">Редактировать</string>
     <string name="login_team">\@bsa63</string>
-    <string name="barcelona_lenina"><font color="#97979B">Название:</font> <font color="#D6D6DE">Barcelona_Lenina</font></string>
+    <string name="barcelona_lenina"><font  color="#D6D6DE">Название:</font> <font color="#97979B">Barcelona_Lenina</font></string>
+    <string name="barcelona_lenina_nick"><font color="#D6D6DE">Никнейм</font> <font color="#97979B">(более 4 символов)</font></string>
     <string name="add_more"><u>+Добавить ещё</u></string>
     <string name="edit_profile">Редактирование профиля</string>
     <string name="profile_add_images">Добавьте изображение, которое будет отображаться на странице профиля.</string>

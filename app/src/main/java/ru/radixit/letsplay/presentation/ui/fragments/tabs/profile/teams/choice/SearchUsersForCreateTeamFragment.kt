@@ -1,43 +1,44 @@
-package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
+package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import ru.radixit.letsplay.databinding.FragmentSearchUsersForEventBinding
+import ru.radixit.letsplay.data.model.UserEntity
+import ru.radixit.letsplay.databinding.FragmentSearchUsersForCreateTeamBinding
 import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.FriendsForEventAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.CreateTeamViewModel
 import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.hideKeyboardOnScroll
 
 @AndroidEntryPoint
-class SearchUsersForEventFragment : BaseFragment() {
 
-    private var _binding: FragmentSearchUsersForEventBinding? = null
+class SearchUsersForCreateTeamFragment : BaseFragment() {
+    private var _binding: FragmentSearchUsersForCreateTeamBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CreateEventViewModel
+
+    private val viewModel by viewModels<CreateTeamViewModel>()
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchUsersForEventBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(requireActivity())[CreateEventViewModel::class.java]
+        // Inflate the layout for this fragment
+
+        _binding = FragmentSearchUsersForCreateTeamBinding.inflate(inflater, container, false)
+
         setupRecyclerview()
 
         return binding.root
     }
-
-
-    @SuppressLint("ClickableViewAccessibility")
     private fun setupRecyclerview() {
         val recyclerView = binding.recyclerview
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -63,13 +64,32 @@ class SearchUsersForEventFragment : BaseFragment() {
             binding.foundNumber.text = "Найдено: ${adapter.itemCount}"
         }
         adapter.selectItem {
-            viewModel.add(it)
+            viewModel.add(
+                UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username)
+            )
         }
-         viewModel.selectedUsers.observe(viewLifecycleOwner){
-             Log.e("users",it.size.toString())
-         }
         adapter.removeItem {
-            viewModel.remove(it)
+            viewModel.remove(UserEntity(
+                id_user = it.id,
+                name = it.name,
+                photo_url = it.photo?.url,
+                photo_id = it.photo?.id,
+                surname = it.surname,
+                userType = it.userType,
+                username = it.username))
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
 }

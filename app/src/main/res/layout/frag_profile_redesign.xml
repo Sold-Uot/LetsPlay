@@ -43,6 +43,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/creat_team_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:drawableStart="@drawable/ic_profile_position"
+                    android:drawablePadding="12dp"
+                    android:fontFamily="@font/noah_bold"
+                    android:padding="2dp"
+                    android:text="Создать команду"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/matches_played_title_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/all_inform_profile_tv" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/profile_mat_card"
                     android:layout_width="80dp"
@@ -248,7 +265,7 @@
                     android:id="@+id/all_inform_profile_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="24dp"
                     android:drawableStart="@drawable/ic_all_inform_icon"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/noah_bold"
@@ -257,6 +274,7 @@
                     android:textAlignment="textStart"
                     android:textColor="@color/main_orange"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/matches_played_title_tv"
                     app:layout_constraintTop_toBottomOf="@+id/matches_played_title_tv" />
 
@@ -265,11 +283,11 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="24dp"
                     android:background="@color/gray_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/all_inform_profile_tv" />
+                    app:layout_constraintTop_toBottomOf="@+id/creat_team_tv" />
 
                 <TextView
                     android:id="@+id/friend_tv"

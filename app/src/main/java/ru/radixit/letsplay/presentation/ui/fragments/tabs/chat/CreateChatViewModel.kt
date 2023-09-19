@@ -50,6 +50,9 @@ class CreateChatViewModel @Inject constructor(
     val uploadingPhoto: LiveData<Boolean> = _uploadingPhoto
     val list = mutableListOf<String>()
 
+    private val _chatUsers = MutableLiveData<List<User>>()
+    val chatUsers : LiveData<List<User>> = _chatUsers
+
     fun create(title: String) {
         viewModelScope.launch {
             try {
@@ -132,6 +135,12 @@ class CreateChatViewModel @Inject constructor(
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    fun saveChatUsers(users: List<User>) {
+
+        _chatUsers.value = users
+
     }
 
 }

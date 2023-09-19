@@ -5,5 +5,5 @@ import ru.radixit.letsplay.data.model.Member
 data class CreateTeamRequest(
     val title: String,
     val nickname: String,
-    val members: List<Member>
+    val members: List<Int>
 )

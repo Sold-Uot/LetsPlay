@@ -1,31 +1,21 @@
-package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
+package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.choice
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
-import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
-import ru.radixit.letsplay.databinding.FragmentChoiceUsersForEventBinding
+import ru.radixit.letsplay.databinding.FragmentChoiceUsersForCreatTeamBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.ChoiceUsersAdapter
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.CreateTeamViewModel
 
-@AndroidEntryPoint
-class ChoiceUsersForEventFragment : DialogFragment() {
 
-    private var _binding: FragmentChoiceUsersForEventBinding? = null
+class ChoiceUsersForCreateTeamFragment : DialogFragment() {
+
+    private var _binding: FragmentChoiceUsersForCreatTeamBinding? = null
     private val binding get() = _binding!!
-    private val arrayListFragments = arrayListOf(
-        SelectedUsersFragment(),
-        FriendsForEventFragment(),
-        SearchUsersForEventFragment()
-    )
-    private val viewModel by viewModels<CreateTeamViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +23,21 @@ class ChoiceUsersForEventFragment : DialogFragment() {
             STYLE_NORMAL,
             R.style.FullScreenDialogStyle
         )
+
     }
+
+    private val arrayListFragments = arrayListOf(
+        SelectedUsersForCreateTeamFragment(),
+        FriendsForCreateTeamFragment(),
+        SearchUsersForCreateTeamFragment()
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = FragmentChoiceUsersForCreatTeamBinding.inflate(inflater, container, false)
 
-        _binding = FragmentChoiceUsersForEventBinding.inflate(inflater, container, false)
         val viewPager = binding.viewPager
         val adapter = ChoiceUsersAdapter(this)
         adapter.setData(arrayListFragments)
@@ -52,9 +49,11 @@ class ChoiceUsersForEventFragment : DialogFragment() {
                 0 -> {
                     tab.text = "Выбрано"
                 }
+
                 1 -> {
                     tab.text = "Друзья"
                 }
+
                 2 -> {
                     tab.text = "Поиск"
                 }
@@ -66,12 +65,14 @@ class ChoiceUsersForEventFragment : DialogFragment() {
 
     private fun onBack() {
         binding.toolbar2.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(ChoiceUsersForCreateTeamFragmentDirections.actionChoiceUsersForCreateTeamFragmentToCreateTeamFragment())
         }
     }
 
     override fun onDestroy() {
-        _binding = null
         super.onDestroy()
+        _binding = null
     }
+
+
 }

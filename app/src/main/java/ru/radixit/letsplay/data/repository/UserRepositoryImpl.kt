@@ -8,11 +8,12 @@ import ru.radixit.letsplay.domain.repository.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val service: UserApi
+    private val service: UserApi,
 ) : UserRepository {
 
     override suspend fun report(userId: Int, request: ReportUserRequest): Response<ReportResponse> {
         return service.report(userId, request)
     }
+
 
 }
