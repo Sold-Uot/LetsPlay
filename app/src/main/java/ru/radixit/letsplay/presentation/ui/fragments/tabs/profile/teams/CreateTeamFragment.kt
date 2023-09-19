@@ -44,6 +44,7 @@ class CreateTeamFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         settingsView()
+
     }
 
     private fun settingsView() {

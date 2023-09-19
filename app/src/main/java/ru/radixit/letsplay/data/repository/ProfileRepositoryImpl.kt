@@ -229,9 +229,9 @@ class ProfileRepositoryImpl @Inject constructor(
             emit(LoadState.error(ex.toString()))
             Log.e("ex "  , ex.message.toString())
         }
-
-
     }
+
+
 
     override fun removeUser(user: UserEntity): Flow<LoadState<UserEntity>> = flow  {
         emit(LoadState.loading())
@@ -244,9 +244,5 @@ class ProfileRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun addSuspend(user: UserEntity) {
-        Log.e("addsus","12")
 
-        userDao.addUser(user)
-    }
 }

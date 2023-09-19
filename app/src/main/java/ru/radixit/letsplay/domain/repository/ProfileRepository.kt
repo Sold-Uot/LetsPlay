@@ -77,5 +77,4 @@ interface ProfileRepository {
     fun addUser(user : UserEntity) : Flow<LoadState<UserEntity>>
     fun removeUser(user : UserEntity) : Flow<LoadState<UserEntity>>
 
-    suspend fun addSuspend(user :UserEntity)
 }

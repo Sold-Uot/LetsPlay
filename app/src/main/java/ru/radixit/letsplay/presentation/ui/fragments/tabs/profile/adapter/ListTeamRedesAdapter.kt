@@ -10,10 +10,13 @@ import com.bumptech.glide.Glide
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.ItemListTeamRedesRvBinding
-
+typealias SelectTeamListMembers = (Team) -> Unit
 class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamViewHolder>() {
 
+
     private var list = emptyList<Team>()
+
+    private var selectTeamListMembers :SelectTeamListMembers? = null
 
     class TeamViewHolder(private val binding: ItemListTeamRedesRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,7 +30,7 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
         }
 
         @SuppressLint("SetTextI18n")
-        fun bind(team: Team) {
+        fun bind(team: Team, selectTeamListMembers: SelectTeamListMembers) {
             if (team.my) binding.myTeam.visibility = View.VISIBLE else binding.myTeam.visibility =
                 View.GONE
             binding.teamName.text = team.title
@@ -49,6 +52,9 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
                 binding.constraint.visibility = View.GONE
                 Glide.with(binding.root).load(team.photo.url).into(binding.photo)
             }
+            binding.myTeam.setOnClickListener {
+                selectTeamListMembers.invoke(team)
+            }
         }
     }
 
@@ -57,11 +63,16 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position], selectTeamListMembers!!)
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun onClick(listener : SelectTeamListMembers){
+        selectTeamListMembers = listener
+
     }
 
     fun setData(list: List<Team>) {

@@ -39,6 +39,8 @@ class MyWebSocket @Inject constructor(
 
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
+                Log.d("Receiving bytes : %s", text.toString())
+
                 val myClass: ChatMessage = Gson().fromJson(text, ChatMessage::class.java)
                 outputData(myClass)
             }

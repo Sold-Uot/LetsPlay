@@ -259,11 +259,7 @@ class CreateTeamViewModel @Inject constructor(
         }
     }
 
-    fun clearDataBase() {
-        viewModelScope.launch(Dispatchers.IO) {
-            appDatabase.clearAllTables()
-        }
-    }
+
 
 
 }
