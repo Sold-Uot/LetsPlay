@@ -12,6 +12,7 @@ import ru.radixit.letsplay.data.model.Notification
 import ru.radixit.letsplay.data.network.api.EventApi
 import ru.radixit.letsplay.data.network.api.FriendApi
 import ru.radixit.letsplay.data.network.api.NotificationApi
+import ru.radixit.letsplay.data.network.api.TeamApi
 import ru.radixit.letsplay.data.network.request.ListRequest
 import ru.radixit.letsplay.data.network.response.ReportResponse
 import ru.radixit.letsplay.data.paging.NotificationPagingSource
@@ -20,8 +21,9 @@ import javax.inject.Inject
 
 class NotificationRepositoryImpl @Inject constructor(
     private val service: NotificationApi,
-    private val eventApi: EventApi ,
-    private val friendApi: FriendApi
+    private val eventApi: EventApi,
+    private val friendApi: FriendApi,
+    private val teamApi: TeamApi
 ) : NotificationRepository {
 
     override fun list(request: ListRequest): Flow<PagingData<Notification>> {
@@ -52,6 +54,15 @@ class NotificationRepositoryImpl @Inject constructor(
     override fun rejectEvent(id: Int): Flow<Response<ReportResponse>> = flow {
 
         emit(eventApi.rejectEvent(id))
+    }.flowOn(Dispatchers.IO)
+
+    override fun acceptTeam(id: Int): Flow<Response<ReportResponse>> = flow {
+        emit(teamApi.acceptTeam(id))
+    }.flowOn(Dispatchers.IO)
+
+    override fun rejectTeam(id: Int): Flow<Response<ReportResponse>> = flow {
+
+        emit(teamApi.rejectTeam(id))
     }.flowOn(Dispatchers.IO)
 
 }

@@ -151,11 +151,13 @@ class NotificationsFragment : Fragment() {
                         dataTimeTv.text = _it.createdAt
                         typeLabel.text = _it.type.label
                         acceptBtn.setOnClickListener {
-                            TODO("ЖДЕМ БЭК")
+                            viewModel.acceptTeam(_it.id)
+                            customDialog.dismiss()
+
                         }
 
                         rejectBtn.setOnClickListener {
-                            TODO("ждем бэк")
+                            viewModel.rejectTeam(_it.id)
                         }
                     }
 

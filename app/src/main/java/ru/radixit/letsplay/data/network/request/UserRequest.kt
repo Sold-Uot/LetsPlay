@@ -6,6 +6,6 @@ data class ReportUserRequest(
     @SerializedName("text")
     val text: String? = null,
 
-    @SerializedName("cause")
+    @SerializedName("rating")
     val cause: Int
 )

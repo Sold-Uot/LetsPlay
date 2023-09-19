@@ -7,6 +7,7 @@ import retrofit2.http.Path
 import ru.radixit.letsplay.data.network.request.CreateTeamRequest
 import ru.radixit.letsplay.data.network.request.UploadPhotoChatRequest
 import ru.radixit.letsplay.data.network.response.CreateTeamResponse
+import ru.radixit.letsplay.data.network.response.ReportResponse
 import ru.radixit.letsplay.data.network.response.UploadPhotoChatResponse
 
 interface TeamApi {
@@ -25,5 +26,10 @@ interface TeamApi {
         @Path("ID") teamId: Int,
         @Body request: UploadPhotoChatRequest
     ): Response<UploadPhotoChatResponse>
+
+    @POST("/team/v1/get/{ID}/accept")
+    suspend fun  acceptTeam(@Path("ID") id: Int) : Response<ReportResponse>
+    @POST("/team/v1/get/{ID}/reject")
+    suspend fun rejectTeam(@Path("ID") id: Int): Response<ReportResponse>
 
 }

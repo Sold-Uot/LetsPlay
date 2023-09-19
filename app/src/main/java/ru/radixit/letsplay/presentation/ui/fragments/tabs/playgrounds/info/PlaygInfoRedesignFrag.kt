@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -301,6 +302,8 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
 
             show()
             reviewsDialogBinding.buttonReviewsTv.setOnClickListener {
+                Log.e("rating" ,                    reviewsDialogBinding.ratingReviewsStar.rating.toInt().toString()
+                )
                 viewModel.comment(
                     id = args.id,
                     reviewsDialogBinding.ratingReviewsStar.rating.toInt(),
