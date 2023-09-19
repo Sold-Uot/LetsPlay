@@ -65,6 +65,8 @@ class SelectedForCreateTeamUsersAdapter() :
         return dataList.size
     }
 
+
+
     override fun onBindViewHolder(holder: SelectedForCreateTeamUsersViewHolder, position: Int) {
         holder.bind(dataList[position], selectUserEntityItemOnClickListener!!)
     }
