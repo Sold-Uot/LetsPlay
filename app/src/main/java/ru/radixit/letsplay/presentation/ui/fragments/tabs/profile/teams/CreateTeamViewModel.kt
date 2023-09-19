@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,6 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.data.local.database.AppDatabase
 import ru.radixit.letsplay.data.model.Member
@@ -67,6 +69,8 @@ class CreateTeamViewModel @Inject constructor(
     val state: StateFlow<String> = _state
 
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading :LiveData<Boolean> = _loading
     val listUsers = arrayListOf<User>()
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> = _teams
@@ -88,17 +92,22 @@ class CreateTeamViewModel @Inject constructor(
     fun createTeam(title: String, nickname: String) {
         viewModelScope.launch {
             try {
-                val list = mutableListOf<Member>()
+
+
+                _success.value = false
+                _loading.value = true
+                val list = mutableListOf<Int>()
                 if (_selectedUsers.value?.isNotEmpty() == true) {
                     for (i in _selectedUsers.value!!) {
-                        list.add(Member(userId = i.id_user))
+                        list.add(Member(userId = i.id_user).userId)
                     }
                 }
                 val response = repository.createTeam(CreateTeamRequest(title, nickname, list))
                 if (response.isSuccessful) {
-                    _success.value = true
 
-                    if (_uri.value!!.isNotEmpty()) {
+                    if (_uri.value?.isNotEmpty() == true) {
+
+
                         for (base64Url in _uri.value!!) {
                             repository.uploadPhoto(
                                 response.body()?.id!!, UploadPhotoChatRequest(
@@ -106,7 +115,12 @@ class CreateTeamViewModel @Inject constructor(
                                 )
                             )
                         }
+
                     }
+
+                    _loading.value = false
+                    _success.value = true
+
                 } else {
                     context.showToast(
                         Gson().fromJson(
@@ -114,11 +128,13 @@ class CreateTeamViewModel @Inject constructor(
                         ).errors[0].message
                     )
                 }
-            } catch (e: Exception) {
+            }catch (e: Exception) {
                 errorHandler.proceed(e) {
                     context.showToast(it)
                 }
             }
+
+
         }
     }
 
