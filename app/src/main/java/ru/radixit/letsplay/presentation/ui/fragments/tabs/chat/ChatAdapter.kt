@@ -102,6 +102,10 @@ class ChatAdapter :
         holder.bind(getItem(position)!!)
     }
 
+    fun updateItem(id: Int){
+        notifyItemChanged(id)
+    }
+
 
     object CHAT_COMPARATOR : DiffUtil.ItemCallback<Chat>() {
 

@@ -36,7 +36,7 @@ data class PlaygroundInDetail(
     val coating: Int,
     val phone: String,
     val price: String,
-    val rating: String,
+    val rating: String?,
     val ratingsCount: Int,
     val schedule: List<Schedule>
     ) : Parcelable

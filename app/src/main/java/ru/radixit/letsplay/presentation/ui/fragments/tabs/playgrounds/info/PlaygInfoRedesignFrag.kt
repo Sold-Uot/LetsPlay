@@ -160,6 +160,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
         abstract fun onStateChanged(appBarLayout: AppBarLayout?, state: State?)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.include.swipeToRefresh.setOnRefreshListener {
@@ -307,7 +308,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                 viewModel.comment(
                     id = args.id,
                     reviewsDialogBinding.ratingReviewsStar.rating.toInt(),
-                    reviewsDialogBinding.reviewsTv.text.toString()
+                    reviewsDialogBinding.searchFields.text.toString()
                 )
                 viewModel.progressButton.observe(viewLifecycleOwner){
                     if (it == false){
@@ -318,6 +319,8 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                         reviewsDialogBinding.progressBar4.visible()
                     }
                 }
+
+                setupData()
 
             }
 
@@ -492,9 +495,11 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
         })
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun setupRecyclerView() {
         binding.include.apply {
             viewModel.general.observe(viewLifecycleOwner) {
+                Log.e("info" , it.toString())
                 if (it.ratingsCount == 0) {
                     rbRatingBar.inVisible()
                     nullStartsImg.visible()
@@ -503,6 +508,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
                     nullStartsImg.inVisible()
                     rbRatingBar.rating = it.ratingsCount.toFloat()
                 }
+                if(it.rating?.toFloat() != null)
                 rbRatingBar.rating = it.rating.toFloat()
                 titleReviewsCountContent.text = it.rating
                 countReviews.text = "(${it.ratingsCount})"
@@ -566,7 +572,7 @@ class PlaygInfoRedesignFrag : Fragment(), OnMapReadyCallback {
 
                 binding.countReviews.text = "(${it.ratingsCount})"
                 binding.titleReviewsCount.text = it.rating
-                binding.rbRatingBar.rating = it.rating.toFloat()
+                binding.rbRatingBar.rating = it.rating?.toFloat() ?: 0f
             }
         }
         val infoRecyclerView = binding.infoRecyclerView

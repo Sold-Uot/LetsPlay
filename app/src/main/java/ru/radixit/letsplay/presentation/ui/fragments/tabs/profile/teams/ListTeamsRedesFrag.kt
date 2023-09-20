@@ -74,6 +74,10 @@ class ListTeamsRedesFrag : BaseFragment() {
                 binding.titleListTeamsTv.layoutParams = params
             }
         }
+
+        adapter.onClick {
+
+        }
         teamRecyclerView.adapter = adapter
         teamRecyclerView.addItemDecoration(SpaceItemDecoration(30))
         with(binding) {
