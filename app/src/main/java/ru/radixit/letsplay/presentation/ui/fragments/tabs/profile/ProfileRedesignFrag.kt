@@ -238,10 +238,7 @@ class ProfileRedesignFrag : BaseFragment() {
         }
     }
 
-    override fun onPause() {
-        _binding = null
-        super.onPause()
-    }
+
     override fun onDestroy() {
         _binding = null
         super.onDestroy()

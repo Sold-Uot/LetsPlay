@@ -13,3 +13,13 @@ fun Context.showToast(message: String) {
 fun View.showSnackBar(message: String) {
     Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
 }
+private const val DEBOUNCE_DELAY = 1000
+
+fun View.setOnSingleClickListener(listener: View.OnClickListener?) {
+    var lastClickTime: Long = 0
+    setOnClickListener {
+        if (System.currentTimeMillis() - lastClickTime < DEBOUNCE_DELAY) return@setOnClickListener
+        lastClickTime = System.currentTimeMillis()
+        listener?.onClick(this)
+    }
+}

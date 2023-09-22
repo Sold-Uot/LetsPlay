@@ -91,6 +91,14 @@
         </provider>
 
         <service
+            android:name=".NavigationService"
+            android:foregroundServiceType="location" >
+
+    </service>
+
+
+
+        <service
             android:name=".presentation.global.FirebaseService"
             android:exported="true"
             tools:ignore="Instantiatable">

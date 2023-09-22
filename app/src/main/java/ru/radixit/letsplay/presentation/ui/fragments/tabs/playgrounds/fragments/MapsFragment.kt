@@ -22,6 +22,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -71,6 +72,7 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var client: FusedLocationProviderClient
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -117,10 +119,19 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback {
         }
     }
 
+
     private fun settigGps() {
         if (isGpsEnabled()) {
             // GPS включен
-            getCurrentLocation()
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (context?.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                    getCurrentLocation()
+                }
+            }
+
+//            getCurrentLocation()
             binding.myGpsImg.setImageResource(R.drawable.circle_white)
             binding.gpsProgressBar.visible()
         } else {
@@ -182,6 +193,7 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback {
         if (requestCode == 44) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation()
+
             }
         }
     }

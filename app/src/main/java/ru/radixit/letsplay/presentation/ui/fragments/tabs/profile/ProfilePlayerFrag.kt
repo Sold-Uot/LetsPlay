@@ -28,6 +28,7 @@ import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.Friend
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListEventPlayerAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.showSnackBar
 import ru.radixit.letsplay.utils.showToast
 import ru.radixit.letsplay.utils.visible
@@ -87,7 +88,7 @@ class ProfilePlayerFrag : Fragment() {
             swipeToRefresh.setOnRefreshListener {
                 getProfileData()
             }
-            allInformProfPlayTv.setOnClickListener {
+            allInformProfPlayTv.setOnSingleClickListener() {
                 findNavController().navigate(ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToNotifSettingRedesFrag())
             }
         }

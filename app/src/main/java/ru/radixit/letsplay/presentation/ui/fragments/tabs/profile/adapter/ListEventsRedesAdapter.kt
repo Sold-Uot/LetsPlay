@@ -19,6 +19,7 @@ import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.Event
 import ru.radixit.letsplay.databinding.ItemEventRvRedesBinding
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.visible
 
 
@@ -79,7 +80,7 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                  }
 
 
-                root.setOnClickListener {
+                root.setOnSingleClickListener() {
                     click(event)
                     Log.d("event","event = ${event}")
                     /*

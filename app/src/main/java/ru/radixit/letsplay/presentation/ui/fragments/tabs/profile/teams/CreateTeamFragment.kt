@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.databinding.FragmentCreatTeamBinding
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.showToast
 import ru.radixit.letsplay.utils.visible
 
@@ -69,7 +70,7 @@ class CreateTeamFragment : Fragment() {
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     private fun onBack(){
-        binding.toolbar2.setNavigationOnClickListener {
+        binding.toolbar2.setOnSingleClickListener {
             findNavController().popBackStack()
         }
 
@@ -92,7 +93,7 @@ class CreateTeamFragment : Fragment() {
             }
 
         }
-        binding.createTeamBtn.setOnClickListener {
+        binding.createTeamBtn.setOnSingleClickListener {
 
             if (binding.editProfileName.text.isEmpty())
                 context?.showToast("Название не должно быть пустым")
@@ -103,10 +104,10 @@ class CreateTeamFragment : Fragment() {
                 )
         }
 
-        binding.addPhoto.setOnClickListener {
+        binding.addPhoto.setOnSingleClickListener {
             selectImageFromGallery()
         }
-        binding.addMembers.setOnClickListener {
+        binding.addMembers.setOnSingleClickListener() {
             findNavController().navigate(CreateTeamFragmentDirections.actionCreateTeamFragmentToChoiceUsersForCreateTeamFragment())
 
         }

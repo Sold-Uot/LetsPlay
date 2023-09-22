@@ -76,6 +76,7 @@ class ListTeamsRedesFrag : BaseFragment() {
         }
 
         adapter.onClick {
+            findNavController().navigate(ListTeamsRedesFragDirections.actionListTeamsRedesFragToListTeamPlayers(it.id!! ,it.my))
 
         }
         teamRecyclerView.adapter = adapter
