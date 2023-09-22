@@ -2,13 +2,18 @@ package ru.radixit.letsplay.data.network.api
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import ru.radixit.letsplay.data.model.Member
 import ru.radixit.letsplay.data.network.request.CreateTeamRequest
 import ru.radixit.letsplay.data.network.request.UploadPhotoChatRequest
 import ru.radixit.letsplay.data.network.response.CreateTeamResponse
+import ru.radixit.letsplay.data.network.response.ListTeamPlayersResponse
 import ru.radixit.letsplay.data.network.response.ReportResponse
 import ru.radixit.letsplay.data.network.response.UploadPhotoChatResponse
+import ru.radixit.letsplay.data.network.response.UserForTeamPlayers
 
 interface TeamApi {
 
@@ -31,5 +36,10 @@ interface TeamApi {
     suspend fun  acceptTeam(@Path("ID") id: Int) : Response<ReportResponse>
     @POST("/team/v1/get/{ID}/reject")
     suspend fun rejectTeam(@Path("ID") id: Int): Response<ReportResponse>
+
+    @GET("/team/v1/get/{ID}/members")
+    suspend fun fetchPlayersForTeam(@Path("ID") id : Int) : Response<ListTeamPlayersResponse>
+    @DELETE("/team/v1/get/{ID}/members_exclude")
+    fun deletePlayer(@Path("ID") id :Int,  member: List<Member>): Response<ReportResponse>
 
 }

@@ -50,5 +50,8 @@ abstract class AppModule {
     @Binds
     @Singleton
     abstract fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
+    @Binds
+    @Singleton
+    abstract fun  bindTeamRepository(repository: TeamRepositoryImpl) : TeamRepository
 
 }

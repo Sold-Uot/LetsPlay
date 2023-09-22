@@ -222,8 +222,8 @@
             android:name="id"
             app:argType="integer" />
         <action
-            android:id="@+id/action_listTeamsRedesFrag_to_listPlayingFrag"
-            app:destination="@id/listPlayingFrag" />
+            android:id="@+id/action_listTeamsRedesFrag_to_listTeamPlayers"
+            app:destination="@id/listTeamPlayers" />
     </fragment>
     <dialog
         android:id="@+id/notifSettingRedesFrag"
@@ -323,5 +323,16 @@
             android:id="@+id/action_choiceUsersForCreateTeamFragment_to_createTeamFragment"
             app:destination="@id/createTeamFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/listTeamPlayers"
+        tools:layout="@layout/fragment_list_team_players"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.ListTeamPlayers"
+        android:label="ListTeamPlayers" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument android:name="myTeam"
+            app:argType="boolean" />
+    </fragment>
 
 </navigation>

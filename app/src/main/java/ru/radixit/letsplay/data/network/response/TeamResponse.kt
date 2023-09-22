@@ -24,3 +24,31 @@ data class CreateTeamResponse(
     val id: Int,
     val errors: List<Error>
 )
+
+data class ListTeamPlayersResponse(
+    val status: String?,
+    val total: Int?,
+    val pages: Int?,
+    val teamForPlayers: TeamForPlayers?,
+    val list  : List<UserForTeamPlayers>?
+
+)
+
+data class UserForTeamPlayers(
+    val id : Int,
+    val name : String,
+    val surname :String,
+    val username:String,
+    val position: String,
+    val positionKey : Int,
+    val photo: Photo?
+)
+
+
+
+data class TeamForPlayers(
+    val title: String?,
+    val count: Int?,
+    val photo: Photo?,
+    val isBlock : Boolean
+)
