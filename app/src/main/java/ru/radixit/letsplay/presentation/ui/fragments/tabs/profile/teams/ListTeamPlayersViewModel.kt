@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import ru.radixit.letsplay.data.model.Member
+import ru.radixit.letsplay.data.network.request.DeletePlayerRequest
 import ru.radixit.letsplay.data.network.response.ListTeamPlayersResponse
 import ru.radixit.letsplay.domain.repository.TeamRepository
 import ru.radixit.letsplay.utils.showToast
@@ -42,11 +42,14 @@ class ListTeamPlayersViewModel @Inject constructor(private val teamRepository: T
         }
     }
 
-    fun deletePLayer(id :Int ,list:List<Member>) {
+    fun deletePLayer(id:Int,request: DeletePlayerRequest) {
         viewModelScope.launch {
 
-                val response = teamRepository.deletePlayer(id , list)
-                response.collect{
+
+                val response = teamRepository.deletePlayer(id , request)
+            Log.e("wqwe" ,"123331" )
+
+            response.collect{
                     if(it.isSuccessful){
                         Log.e("wqwe" ,it.body()?.message.toString() )
                     }

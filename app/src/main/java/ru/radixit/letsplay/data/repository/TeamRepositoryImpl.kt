@@ -1,10 +1,13 @@
 package ru.radixit.letsplay.data.repository
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.Member
 import ru.radixit.letsplay.data.network.api.TeamApi
+import ru.radixit.letsplay.data.network.request.DeletePlayerRequest
 import ru.radixit.letsplay.data.network.response.ListTeamPlayersResponse
 import ru.radixit.letsplay.data.network.response.ReportResponse
 import ru.radixit.letsplay.domain.repository.TeamRepository
@@ -14,11 +17,11 @@ class TeamRepositoryImpl @Inject constructor(private val teamApi: TeamApi) : Tea
 
     override fun fetchListTeamPlayers(id: Int): Flow<Response<ListTeamPlayersResponse>> = flow {
         emit(teamApi.fetchPlayersForTeam(id))
-    }
+    }.flowOn(Dispatchers.IO)
 
-    override fun deletePlayer( id :Int , list :List<Member>) : Flow<Response<ReportResponse>> = flow {
+    override fun deletePlayer(id:Int, request: DeletePlayerRequest) : Flow<Response<ReportResponse>> = flow {
 
-        emit(teamApi.deletePlayer(id, list))
-    }
+        emit(teamApi.deletePlayer(id, request))
+    }.flowOn(Dispatchers.IO)
 
 }

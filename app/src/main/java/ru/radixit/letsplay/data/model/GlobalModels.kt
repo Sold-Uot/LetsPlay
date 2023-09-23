@@ -91,6 +91,9 @@ data class Schedule(
 data class Member(
     val userId: Int
 )
+data class MemberList(
+    val userId: List<Int>
+)
 
 data class UploadPhoto(
     val base64File: String

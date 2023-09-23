@@ -12,6 +12,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.data.model.Member
+import ru.radixit.letsplay.data.model.MemberList
+import ru.radixit.letsplay.data.network.request.DeletePlayerRequest
 import ru.radixit.letsplay.databinding.FragmentListTeamPlayersBinding
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
@@ -65,7 +67,8 @@ class ListTeamPlayers : Fragment() {
 
             }
             adapter.onClick {
-                viewModel.deletePLayer(args.id,listOf<Member>(Member(it.id)))
+
+                viewModel.deletePLayer(args.id, DeletePlayerRequest(listOf(Member(it.id))))
             }
 
 
