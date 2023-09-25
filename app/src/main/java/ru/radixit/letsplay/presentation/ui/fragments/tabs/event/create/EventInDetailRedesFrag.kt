@@ -13,19 +13,16 @@ import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.applandeo.materialcalendarview.utils.calendar
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -40,19 +37,17 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_pointer.*
-import kotlinx.android.synthetic.main.frag_event_in_detail_redes.*
-import kotlinx.android.synthetic.main.item_notifications.view.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
+import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.FragEventInDetailRedesBinding
 import ru.radixit.letsplay.databinding.ProgressDialogBinding
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.TeamSelectAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.DropDownRvRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.SpinnerCreatePlaygAdapter
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.RemoveFromFriendsFragmentArgs
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.showToast
 import ru.tinkoff.decoro.MaskImpl
@@ -128,6 +123,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         viewModel.int(0)
         changeGameStatus()
         changeGameLevel()
+        setupRecyclerView()
 
         viewModel.playgId.observe(viewLifecycleOwner) {
             playgId = it
@@ -477,6 +473,22 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         })
+    }
+
+    private fun setupRecyclerView(){
+
+        val adapter = TeamSelectAdapter()
+        binding.teamsEventRv.layoutManager = LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL , false)
+
+        adapter.setData(listOf(Team(2,1,false , null , "123")))
+
+        adapter.onClick {
+
+        }
+
+        binding.teamsEventRv.adapter = adapter
+
+
     }
 
     private fun onBack() {

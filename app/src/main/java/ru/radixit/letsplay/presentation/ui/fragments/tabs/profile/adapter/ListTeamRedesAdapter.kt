@@ -5,20 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.ItemListTeamRedesRvBinding
-import ru.radixit.letsplay.utils.setOnSingleClickListener
+import ru.radixit.letsplay.utils.gone
 
 typealias SelectTeamListMembers = (Team) -> Unit
+
 class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamViewHolder>() {
 
 
     private var list = emptyList<Team>()
 
-    private var selectTeamListMembers :SelectTeamListMembers? = null
+    private var selectTeamListMembers: SelectTeamListMembers? = null
 
     class TeamViewHolder(private val binding: ItemListTeamRedesRvBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -54,9 +56,15 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
                 binding.constraint.visibility = View.GONE
                 Glide.with(binding.root).load(team.photo.url).into(binding.photo)
             }
-            binding.myTeam.setOnSingleClickListener() {
+
+            if (!team.my) {
+                binding.myTeamStar.gone()
+
+            }
+            binding.root.setOnClickListener {
                 selectTeamListMembers.invoke(team)
             }
+
         }
     }
 
@@ -72,7 +80,7 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
         return list.size
     }
 
-    fun onClick(listener : SelectTeamListMembers){
+    fun onClick(listener: SelectTeamListMembers) {
         selectTeamListMembers = listener
 
     }
