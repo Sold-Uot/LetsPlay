@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import ru.radixit.letsplay.data.local.dao.FriendDao
 import ru.radixit.letsplay.data.local.dao.UserDao
 import ru.radixit.letsplay.data.model.UserEntity
 
@@ -14,6 +15,7 @@ import ru.radixit.letsplay.data.model.UserEntity
 )
 abstract class AppDatabase :RoomDatabase() {
     public abstract val userDao: UserDao
+    public abstract val friendDao :FriendDao
 
     fun getDatabase(context: Context): AppDatabase {
         // проверка на нулл

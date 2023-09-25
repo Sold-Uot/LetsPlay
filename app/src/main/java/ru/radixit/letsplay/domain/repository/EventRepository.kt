@@ -1,9 +1,11 @@
 package ru.radixit.letsplay.domain.repository
 
+
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import ru.radixit.letsplay.data.model.Event
+import ru.radixit.letsplay.data.model.FriendEntity
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
 import ru.radixit.letsplay.data.network.request.JoinEventRequest
 import ru.radixit.letsplay.data.network.request.ListRequest
@@ -14,8 +16,15 @@ import ru.radixit.letsplay.data.network.response.JoinEventResponse
 import ru.radixit.letsplay.data.network.response.MapsResponse
 import ru.radixit.letsplay.data.network.response.NewEventDescriptionResponse
 import ru.radixit.letsplay.data.network.response.PhotoResponse
+import ru.radixit.letsplay.utils.LoadState
 
 interface EventRepository {
+
+    fun  addFriendToInviteList(user : FriendEntity) : Flow<LoadState<FriendEntity>>
+
+    fun removeFriendToInviteList(user : FriendEntity) : Flow<LoadState<FriendEntity>>
+
+    fun fetchFriendToInviteList() : Flow<LoadState<List<FriendEntity>>>
 
     fun listEvents(request: ListRequest): Flow<PagingData<Event>>
 

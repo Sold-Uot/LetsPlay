@@ -39,6 +39,8 @@ import ru.radixit.letsplay.domain.repository.EventRepository
 import ru.radixit.letsplay.domain.repository.PlaygroundRepository
 import ru.radixit.letsplay.domain.repository.ProfileRepository
 import ru.radixit.letsplay.presentation.global.ErrorHandler
+import ru.radixit.letsplay.utils.FriendMapper
+import ru.radixit.letsplay.utils.Status
 import ru.radixit.letsplay.utils.getFileName
 import ru.radixit.letsplay.utils.showToast
 import java.io.ByteArrayOutputStream
@@ -60,7 +62,7 @@ class CreateEventViewModel @Inject constructor(
     val playgId: LiveData<Int> = _playgId
     private val _maps = MutableLiveData<MapsResponse>()
     val maps: LiveData<MapsResponse> = _maps
-    private val _selectedUsers = MutableLiveData<ArrayList<User>>()
+    private val _selectedUsers = MutableLiveData<ArrayList<User>?>()
     val selectedUsers: LiveData<ArrayList<User>> = _selectedUsers
     private val list = arrayListOf<User>()
     private val _teams = MutableLiveData<List<Team>>()
@@ -112,6 +114,8 @@ class CreateEventViewModel @Inject constructor(
 
     private val _eventSuccessCreated = MutableLiveData<Boolean>()
     val eventSuccessCreated: LiveData<Boolean> = _eventSuccessCreated
+
+    private val _friendList = MutableLiveData<>
 
     fun int(value: Int) {
         changeGameLevelRedes(value)
@@ -338,10 +342,11 @@ class CreateEventViewModel @Inject constructor(
         }
     }
 
-    fun listTeams(id: Int) {
+    fun listTeams() {
         viewModelScope.launch {
+            Log.e("tokenId", sessionManager.fetchAuthToken())
             try {
-                val response = repository.listTeams(id)
+                val response = repository.listTeams(sessionManager.fetchToken())
                 if (response.isSuccessful) {
                     _teams.value = response.body()?.list
                 }
@@ -382,6 +387,56 @@ class CreateEventViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun addFriendToInviteList(user: User) {
+        viewModelScope.launch {
+            runCatching {
+                val response = eventRepository.addFriendToInviteList(FriendMapper.mapInFriendEntity(user))
+                response.collect{
+                    when (it.status){
+                        Status.SUCCESS -> {}
+                        Status.ERROR -> {}
+                        Status.LOADING -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    fun removeFriendToInviteList(user: User) {
+        viewModelScope.launch {
+            runCatching {
+                val response = eventRepository.removeFriendToInviteList(FriendMapper.mapInFriendEntity(user))
+                response.collect{
+                    when (it.status){
+                        Status.SUCCESS -> {}
+                        Status.ERROR -> {}
+                        Status.LOADING -> {}
+                    }
+                }
+            }
+        }
+
+    }
+
+    fun fetchFriendList() {
+
+        viewModelScope.launch {
+            runCatching {
+                val response = eventRepository.fetchFriendToInviteList()
+                response.collect{
+                    when (it.status){
+                        Status.SUCCESS -> {
+                            TODO()
+                        }
+                        Status.ERROR -> {}
+                        Status.LOADING -> {}
+                    }
+                }
+            }
+        }
+
     }
 
     fun savePlaygId(playgId: Int) {

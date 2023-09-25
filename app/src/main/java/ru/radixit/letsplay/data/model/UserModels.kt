@@ -25,3 +25,14 @@ data class UserEntity (
     val userType: String? = null,
     val username: String? = null
     )
+@Entity(tableName = "friend_table")
+data class FriendEntity (
+    @PrimaryKey(autoGenerate = false)
+    val id_user: Int,
+    val name: String? = null,
+    val photo_id: Int? = null,
+    val photo_url : String? = null,
+    val surname: String? = null,
+    val userType: String? = null,
+    val username: String? = null
+    )

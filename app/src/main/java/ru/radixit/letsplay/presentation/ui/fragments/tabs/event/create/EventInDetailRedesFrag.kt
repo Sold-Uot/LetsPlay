@@ -7,7 +7,10 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.TextView
@@ -36,11 +39,12 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputLayout
 import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.custom_pointer.*
+import kotlinx.android.synthetic.main.custom_pointer.distance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.radixit.letsplay.R
+import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.FragEventInDetailRedesBinding
@@ -83,7 +87,8 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             if (it.isNotEmpty()) {
                 Glide.with(binding.root).load(it[it.lastIndex]).into(binding.photoImg)
             }
-        }    }
+        }
+    }
 
     private var myLatLng: LatLng? = null
 
@@ -206,7 +211,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                         lifecycleScope.launch(Dispatchers.IO) {
                             withContext(Dispatchers.Main) {
                                 dialogCustom?.dismiss()
-                                Log.v(this.javaClass.name,isResult.toString())
+                                Log.v(this.javaClass.name, isResult.toString())
                                 if (isResult) {
                                     context?.showToast("Событие успешно создано")
                                     if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
@@ -475,12 +480,18 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         })
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
 
         val adapter = TeamSelectAdapter()
-        binding.teamsEventRv.layoutManager = LinearLayoutManager(context ,LinearLayoutManager.HORIZONTAL , false)
+        binding.teamsEventRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        adapter.setData(listOf(Team(2,1,false , null , "123")))
+        viewModel.listTeams()
+        viewModel.teams.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+            binding.teamsEventRv.adapter = adapter
+        }
+
 
         adapter.onClick {
 
