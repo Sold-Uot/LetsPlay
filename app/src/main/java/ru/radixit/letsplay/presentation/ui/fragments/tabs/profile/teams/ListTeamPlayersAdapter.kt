@@ -1,8 +1,12 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.UserEntity
 import ru.radixit.letsplay.data.network.response.UserForTeamPlayers
 import ru.radixit.letsplay.databinding.ItemPlayerForTeamBinding
@@ -25,6 +29,22 @@ class ListTeamPlayersAdapter(val myTeam: Boolean) :
             with(binding) {
                 playerName.text = user.name
                 playerPosition.text = user.position
+                if (user.photo == null) {
+                    binding.photo.visibility = View.GONE
+                    binding.nameOnAvatar.visibility = View.VISIBLE
+                    binding.nameOnAvatar.text = "${user.name.toString().uppercase()[0]}"
+                    val cardColor = ContextCompat.getColor(
+                        itemView.context,
+                        R.color.violet
+                    )
+                    binding.cardView10.setCardBackgroundColor(cardColor)
+                } else {
+
+                    binding.photo.visibility = View.VISIBLE
+                    binding.nameOnAvatar.visibility = View.GONE
+                    Glide.with(binding.root).load(user.photo.url).into(binding.photo)
+                }
+
 
                 if (myTeam) {
                     checkBox5.visible()

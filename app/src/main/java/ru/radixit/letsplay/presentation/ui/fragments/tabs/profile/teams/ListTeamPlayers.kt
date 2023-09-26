@@ -15,6 +15,7 @@ import ru.radixit.letsplay.data.model.Member
 import ru.radixit.letsplay.data.model.MemberList
 import ru.radixit.letsplay.data.network.request.DeletePlayerRequest
 import ru.radixit.letsplay.databinding.FragmentListTeamPlayersBinding
+import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
 
@@ -70,6 +71,7 @@ class ListTeamPlayers : Fragment() {
 
                 viewModel.deletePLayer(args.id, DeletePlayerRequest(listOf(Member(it.id))))
             }
+            recyclerView.addItemDecoration(SpaceItemDecoration(50))
 
 
             recyclerView.adapter = adapter
