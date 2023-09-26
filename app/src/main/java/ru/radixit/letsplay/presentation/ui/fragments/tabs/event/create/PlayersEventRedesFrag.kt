@@ -110,6 +110,8 @@ class PlayersEventRedesFrag : DialogFragment() {
         adapter.selectItem {
             viewModel.addFriendToInviteList(it)
         }
+
+
         adapter.removeItem {
             viewModel.removeFriendToInviteList(it)
         }

@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ru.radixit.letsplay.data.local.dao.FriendDao
 import ru.radixit.letsplay.data.local.dao.UserDao
+import ru.radixit.letsplay.data.model.FriendEntity
 import ru.radixit.letsplay.data.model.UserEntity
 
 @Database(
-    version = 1,
-    entities = [UserEntity::class ],
+    version = 2,
+    entities = [UserEntity::class , FriendEntity::class ],
     exportSchema = true
 )
 abstract class AppDatabase :RoomDatabase() {

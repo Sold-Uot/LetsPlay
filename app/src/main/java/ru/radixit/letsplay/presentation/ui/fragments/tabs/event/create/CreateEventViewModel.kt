@@ -62,7 +62,7 @@ class CreateEventViewModel @Inject constructor(
     val playgId: LiveData<Int> = _playgId
     private val _maps = MutableLiveData<MapsResponse>()
     val maps: LiveData<MapsResponse> = _maps
-    private val _selectedUsers = MutableLiveData<ArrayList<User>?>()
+    private val _selectedUsers = MutableLiveData<ArrayList<User>>()
     val selectedUsers: LiveData<ArrayList<User>> = _selectedUsers
     private val list = arrayListOf<User>()
     private val _teams = MutableLiveData<List<Team>>()
@@ -115,7 +115,7 @@ class CreateEventViewModel @Inject constructor(
     private val _eventSuccessCreated = MutableLiveData<Boolean>()
     val eventSuccessCreated: LiveData<Boolean> = _eventSuccessCreated
 
-    private val _friendList = MutableLiveData<>
+
 
     fun int(value: Int) {
         changeGameLevelRedes(value)
@@ -428,7 +428,7 @@ class CreateEventViewModel @Inject constructor(
                 response.collect{
                     when (it.status){
                         Status.SUCCESS -> {
-                            TODO()
+
                         }
                         Status.ERROR -> {}
                         Status.LOADING -> {}

@@ -25,7 +25,7 @@ data class UserEntity (
     val userType: String? = null,
     val username: String? = null
     )
-@Entity(tableName = "friend_table")
+@Entity()
 data class FriendEntity (
     @PrimaryKey(autoGenerate = false)
     val id_user: Int,

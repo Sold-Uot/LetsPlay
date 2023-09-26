@@ -63,6 +63,7 @@ class ListEventsProfRedesFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settingView()
+        switchBtn()
     }
 
     private fun settingView() {
@@ -70,10 +71,11 @@ class ListEventsProfRedesFrag : Fragment() {
             LinearLayoutManager(requireContext())
         recyclerViewCurrent.adapter = adapterCurrent
         recyclerViewCurrent.setHasFixedSize(true)
+
+
         currentAdapter()
-        completedAdapter()
         binding.emptyEventsLinLay.gone()
-        switchBtn()
+
         binding.swipeToRefresh.setOnRefreshListener {
             currentAdapter()
             completedAdapter()

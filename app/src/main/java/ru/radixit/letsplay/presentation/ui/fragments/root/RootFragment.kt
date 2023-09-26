@@ -67,7 +67,7 @@ class RootFragment : BaseFragment() {
             when (navController.currentDestination?.id) {
                 R.id.listPlaygroundsFragment -> navView.visibility = View.VISIBLE
                 R.id.listEventsRedesFrag -> navView.visibility = View.VISIBLE
-                R.id.fragChatRedes -> navView.visibility = View.VISIBLE
+                R.id.chatFragment -> navView.visibility = View.VISIBLE
                 R.id.profileRedesignFrag -> navView.visibility = View.VISIBLE
                 else -> navView.visibility = View.GONE
             }
