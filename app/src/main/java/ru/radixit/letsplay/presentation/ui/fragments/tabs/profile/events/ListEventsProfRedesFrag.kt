@@ -49,6 +49,7 @@ class ListEventsProfRedesFrag : Fragment() {
             )
         }
     }
+    private var eventStatus = EventStatus.NONE
     private val args by navArgs<ListEventsProfRedesFragArgs>()
 
     override fun onCreateView(
@@ -62,6 +63,7 @@ class ListEventsProfRedesFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        eventStatus = EventStatus.ACTIVE
         settingView()
         switchBtn()
     }
@@ -77,8 +79,7 @@ class ListEventsProfRedesFrag : Fragment() {
         binding.emptyEventsLinLay.gone()
 
         binding.swipeToRefresh.setOnRefreshListener {
-            currentAdapter()
-            completedAdapter()
+            if (eventStatus == EventStatus.ACTIVE) currentAdapter() else completedAdapter()
             binding.emptyEventsLinLay.gone()
         }
 
@@ -137,6 +138,7 @@ class ListEventsProfRedesFrag : Fragment() {
                 findNavController().popBackStack()
             }
             currentEvent.setOnClickListener {
+                binding.recyclerViewCurrent.gone()
                 currentEvent.tag = "1"
                 completeEvent.tag = "0"
                 currentEvent.setTextColor(
@@ -159,9 +161,12 @@ class ListEventsProfRedesFrag : Fragment() {
                         R.color.background_for_edittext
                     )
                 )
+                eventStatus = EventStatus.ACTIVE
                 currentAdapter()
+                binding.recyclerViewCurrent.visible()
             }
             completeEvent.setOnClickListener {
+                binding.recyclerViewCurrent.gone()
                 currentEvent.tag = "0"
                 completeEvent.tag = "1"
                 currentEvent.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
@@ -184,7 +189,9 @@ class ListEventsProfRedesFrag : Fragment() {
                         R.color.back_color
                     )
                 )
+                eventStatus = EventStatus.ARCHIVE
                 completedAdapter()
+                binding.recyclerViewCurrent.visible()
             }
         }
     }
@@ -202,16 +209,16 @@ class ListEventsProfRedesFrag : Fragment() {
             }
             lifecycleScope.launch {
                 adapterCurrent.loadStateFlow.collect { loadState ->
-                    val str = "Завершенные ${adapterCurrent.itemCount}"
-                    val str1 = SpannableString(str)
-                    str1.setSpan(
-                        StyleSpan(Typeface.BOLD),
-                        str.length - "${adapterCurrent.itemCount}".length,
-                        str.length,
-                        0
-                    )
-                    builder.append(str1)
-                    completeEvent.text = str1
+//                    val str = "Завершенные ${adapterCurrent.itemCount}"
+//                    val str1 = SpannableString(str)
+//                    str1.setSpan(
+//                        StyleSpan(Typeface.BOLD),
+//                        str.length - "${adapterCurrent.itemCount}".length,
+//                        str.length,
+//                        0
+//                    )
+//                    builder.append(str1)
+                    completeEvent.text = "Завершенные"
                     val isListEmpty =
                         loadState.source.refresh is LoadState.NotLoading && adapterCurrent.itemCount == 0
                     if (isListEmpty) {
@@ -226,48 +233,58 @@ class ListEventsProfRedesFrag : Fragment() {
     }
 
     private fun currentAdapter() {
-        with(binding) {
-            if (swipeToRefresh.isRefreshing) {
-                swipeToRefresh.isRefreshing = false
-            }
-            emptyEventsCompleteLinLay.gone()
-            lifecycleScope.launch {
-                viewModel.events(args.id).collectLatest { list ->
-                    adapterCurrent.submitData(list)
+
+
+            with(binding) {
+
+                if (swipeToRefresh.isRefreshing) {
+                    swipeToRefresh.isRefreshing = false
+                }
+                emptyEventsCompleteLinLay.gone()
+                lifecycleScope.launch {
+                    viewModel.events(args.id).collectLatest { list ->
+                        adapterCurrent.submitData(list)
+                    }
+                }
+                lifecycleScope.launch {
+                    adapterCurrent.loadStateFlow.onEach { loadState ->
+                       /* val str = "Текущие ${adapterCurrent.itemCount}"
+                        val str1 = SpannableString(str)
+                        str1.setSpan(
+                            StyleSpan(Typeface.BOLD),
+                            str.length - "${adapterCurrent.itemCount}".length,
+                            str.length,
+                            0
+                        )
+                        builder.append(str1)*/
+                        currentEvent.text = "Текущие"
+                        val isListEmpty =
+                            loadState.source.refresh is LoadState.NotLoading && adapterCurrent.itemCount == 0
+                        if (isListEmpty) {
+                            if (binding.currentEvent.tag.equals("1") && binding.completeEvent.tag.equals(
+                                    "0"
+                                )
+                            ) {
+                                emptyEventsLinLay.visible()
+                                emptyEventsCompleteLinLay.gone()
+                            }
+                        }
+                        recyclerViewCurrent.isVisible =
+                            loadState.source.refresh is LoadState.NotLoading
+                    }.launchWhenStartedTest(lifecycleScope)
                 }
             }
-            lifecycleScope.launch {
-                adapterCurrent.loadStateFlow.onEach { loadState ->
-                    val str = "Текущие ${adapterCurrent.itemCount}"
-                    val str1 = SpannableString(str)
-                    str1.setSpan(
-                        StyleSpan(Typeface.BOLD),
-                        str.length - "${adapterCurrent.itemCount}".length,
-                        str.length,
-                        0
-                    )
-                    builder.append(str1)
-                    currentEvent.text = str1
-                    val isListEmpty =
-                        loadState.source.refresh is LoadState.NotLoading && adapterCurrent.itemCount == 0
-                    if (isListEmpty) {
-                        if (binding.currentEvent.tag.equals("1") && binding.completeEvent.tag.equals(
-                                "0"
-                            )
-                        ) {
-                            emptyEventsLinLay.visible()
-                            emptyEventsCompleteLinLay.gone()
-                        }
-                    }
-                    recyclerViewCurrent.isVisible =
-                        loadState.source.refresh is LoadState.NotLoading
-                }.launchWhenStartedTest(lifecycleScope)
-            }
         }
-    }
+
 
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }
+}
+
+enum class EventStatus {
+    ARCHIVE,
+    ACTIVE,
+    NONE
 }

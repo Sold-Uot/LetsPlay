@@ -10,5 +10,5 @@ data class CreateTeamRequest(
 )
 
 data class DeletePlayerRequest(
-    val member : List<Member>
+    val members : List<Int>
 )

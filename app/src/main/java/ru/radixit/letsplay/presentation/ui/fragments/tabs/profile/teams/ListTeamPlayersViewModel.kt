@@ -42,11 +42,11 @@ class ListTeamPlayersViewModel @Inject constructor(private val teamRepository: T
         }
     }
 
-    fun deletePLayer(id:Int,request: DeletePlayerRequest) {
+    fun deletePLayer(id:Int,members : List<Int>) {
         viewModelScope.launch {
 
 
-                val response = teamRepository.deletePlayer(id , request)
+                val response = teamRepository.deletePlayer(id , members)
             Log.e("wqwe" ,"123331" )
 
             response.collect{

@@ -1,5 +1,6 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import ru.radixit.letsplay.utils.visible
 
 typealias SelectTeamPlayerOnClick = ((UserForTeamPlayers) -> Unit)
 
-class ListTeamPlayersAdapter(val myTeam: Boolean) :
+class ListTeamPlayersAdapter(val myTeam: Boolean , val myId : Int) :
     RecyclerView.Adapter<ListTeamPlayersAdapter.ListPlayersViewHolder>() {
     private var list = emptyList<UserForTeamPlayers>()
 
@@ -45,13 +46,15 @@ class ListTeamPlayersAdapter(val myTeam: Boolean) :
                     Glide.with(binding.root).load(user.photo.url).into(binding.photo)
                 }
 
-
-                if (myTeam) {
+                if (myTeam ) {
                     checkBox5.visible()
                     checkBox5.isChecked = true
-                } else {
-                    checkBox5.gone()
                 }
+                else checkBox5.gone()
+
+                if(user.id == myId) checkBox5.gone()
+
+
 
                 checkBox5.setOnCheckedChangeListener { compoundButton, b ->
                     when (b) {

@@ -50,7 +50,8 @@ class ListTeamPlayers : Fragment() {
     private fun setupRecyclerView() {
         with(binding) {
 
-            val adapter = ListTeamPlayersAdapter(args.myTeam)
+            Log.e("iddd" , args.userId.toString())
+            val adapter = ListTeamPlayersAdapter(args.myTeam ,args.userId)
             recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -69,7 +70,7 @@ class ListTeamPlayers : Fragment() {
             }
             adapter.onClick {
 
-                viewModel.deletePLayer(args.id, DeletePlayerRequest(listOf(Member(it.id))))
+                viewModel.deletePLayer(args.id, listOf(it.id))
             }
             recyclerView.addItemDecoration(SpaceItemDecoration(50))
 

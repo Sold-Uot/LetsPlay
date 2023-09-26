@@ -333,6 +333,9 @@
             app:argType="integer" />
         <argument android:name="myTeam"
             app:argType="boolean" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +55,8 @@ class ListTeamsRedesFrag : BaseFragment() {
         val teamRecyclerView = binding.recyclerView
         teamRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val adapter = ListTeamRedesAdapter()
+        val adapter =  ListTeamRedesAdapter()
+
         viewModel.listTeams(args.id)
         viewModel.teams.observe(viewLifecycleOwner) {
             adapter.setData(it)
@@ -76,7 +78,7 @@ class ListTeamsRedesFrag : BaseFragment() {
         }
 
         adapter.onClick {
-            findNavController().navigate(ListTeamsRedesFragDirections.actionListTeamsRedesFragToListTeamPlayers(it.id!! ,it.my))
+            findNavController().navigate(ListTeamsRedesFragDirections.actionListTeamsRedesFragToListTeamPlayers(it.id!! ,it.my,args.id))
 
         }
         teamRecyclerView.adapter = adapter

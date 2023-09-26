@@ -19,9 +19,9 @@ class TeamRepositoryImpl @Inject constructor(private val teamApi: TeamApi) : Tea
         emit(teamApi.fetchPlayersForTeam(id))
     }.flowOn(Dispatchers.IO)
 
-    override fun deletePlayer(id:Int, request: DeletePlayerRequest) : Flow<Response<ReportResponse>> = flow {
+    override fun deletePlayer(id:Int, members : List<Int>) : Flow<Response<ReportResponse>> = flow {
 
-        emit(teamApi.deletePlayer(id, request))
+        emit(teamApi.deletePlayer(id, DeletePlayerRequest(members)))
     }.flowOn(Dispatchers.IO)
 
 }
