@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ru.radixit.letsplay.data.local.dao.FriendDao
 import ru.radixit.letsplay.data.local.database.AppDatabase
 import ru.radixit.letsplay.data.local.dao.UserDao
 
@@ -25,5 +26,10 @@ object DataBaseModule {
     fun provideUserDao(@ApplicationContext appContext: Context,database: AppDatabase): UserDao {
         return database.getDatabase(appContext).userDao
 
+    }
+
+    @Provides
+    fun provideFriendDao(@ApplicationContext appContext: Context , database: AppDatabase) :FriendDao{
+        return database.getDatabase(appContext).friendDao
     }
 }

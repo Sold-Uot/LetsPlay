@@ -21,8 +21,8 @@
             android:id="@+id/photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
@@ -47,6 +47,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/my_team_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/team_star"
+                tools:layout_editor_absoluteX="43dp"
+                tools:layout_editor_absoluteY="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,6 +88,7 @@
             android:fontFamily="@font/noah_regular"
             android:text="24 участника"
             android:textColor="@color/secondary_text_color" />
+
     </LinearLayout>
 
     <ImageView
@@ -92,4 +101,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow_end_orange" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,10 +108,10 @@ class PlayersEventRedesFrag : DialogFragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(SpaceItemDecoration(40))
         adapter.selectItem {
-            viewModel.add(it)
+            viewModel.addFriendToInviteList(it)
         }
         adapter.removeItem {
-            viewModel.remove(it)
+            viewModel.removeFriendToInviteList(it)
         }
         adapter.addLoadStateListener {
             binding.selectedCountTv.text = "${adapter.itemCount}"

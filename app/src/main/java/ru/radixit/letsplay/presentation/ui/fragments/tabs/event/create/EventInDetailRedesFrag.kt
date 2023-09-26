@@ -7,25 +7,25 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.applandeo.materialcalendarview.utils.calendar
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -39,20 +39,19 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputLayout
 import com.google.maps.android.ui.IconGenerator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.custom_pointer.*
-import kotlinx.android.synthetic.main.frag_event_in_detail_redes.*
-import kotlinx.android.synthetic.main.item_notifications.view.*
+import kotlinx.android.synthetic.main.custom_pointer.distance
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.radixit.letsplay.R
+import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
+import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.FragEventInDetailRedesBinding
 import ru.radixit.letsplay.databinding.ProgressDialogBinding
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.TeamSelectAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.DropDownRvRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.SpinnerCreatePlaygAdapter
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.friends.RemoveFromFriendsFragmentArgs
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.showToast
 import ru.tinkoff.decoro.MaskImpl
@@ -88,7 +87,8 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             if (it.isNotEmpty()) {
                 Glide.with(binding.root).load(it[it.lastIndex]).into(binding.photoImg)
             }
-        }    }
+        }
+    }
 
     private var myLatLng: LatLng? = null
 
@@ -128,6 +128,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         viewModel.int(0)
         changeGameStatus()
         changeGameLevel()
+        setupRecyclerView()
 
         viewModel.playgId.observe(viewLifecycleOwner) {
             playgId = it
@@ -210,7 +211,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                         lifecycleScope.launch(Dispatchers.IO) {
                             withContext(Dispatchers.Main) {
                                 dialogCustom?.dismiss()
-                                Log.v(this.javaClass.name,isResult.toString())
+                                Log.v(this.javaClass.name, isResult.toString())
                                 if (isResult) {
                                     context?.showToast("Событие успешно создано")
                                     if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
@@ -477,6 +478,28 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         })
+    }
+
+    private fun setupRecyclerView() {
+
+        val adapter = TeamSelectAdapter()
+        binding.teamsEventRv.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        viewModel.listTeams()
+        viewModel.teams.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+            binding.teamsEventRv.adapter = adapter
+        }
+
+
+        adapter.onClick {
+
+        }
+
+        binding.teamsEventRv.adapter = adapter
+
+
     }
 
     private fun onBack() {
