@@ -17,6 +17,7 @@ import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.tab_layout_frags.FragEventsChatRedes
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.tab_layout_frags.FragPlayersChatRedes
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.tab_layout_frags.FragTeamsChatRedes
+import ru.radixit.letsplay.utils.visible
 
 /**
  * Адаптер для списка чатов
@@ -49,6 +50,7 @@ class ChatAdapter :
 
 
         fun bind(chat: Chat) {
+            Log.e("chate" , chat.toString())
             binding.name.text = chat.name
             binding.message.text = chat.messageText ?: ""
             binding.messageDate.text = chat.updatedAt!!.split(" ")[1]
@@ -74,6 +76,7 @@ class ChatAdapter :
                             chat.receiverId,
                         )
                     )
+
                 }
             }
             if (chat.photo == null) {
@@ -87,6 +90,7 @@ class ChatAdapter :
                 )
             } else {
                 binding.nameOnAvatar.visibility = View.GONE
+                binding.photo.visible()
                 Glide.with(binding.root).load(chat.photo.url).into(binding.photo)
             }
         }
@@ -100,6 +104,7 @@ class ChatAdapter :
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         holder.bind(getItem(position)!!)
+
     }
 
     fun updateItem(id: Int){

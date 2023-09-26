@@ -47,6 +47,9 @@
         <argument
             android:name="receiverId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_userChatFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
         <!--        <deepLink-->
 <!--            android:id="@+id/deepLink"-->
 <!--            android:autoVerify="true"-->
@@ -68,6 +71,9 @@
         <argument
             android:name="receiverId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_groupChatFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </dialog>
     <dialog
         android:id="@+id/createChatFragment"

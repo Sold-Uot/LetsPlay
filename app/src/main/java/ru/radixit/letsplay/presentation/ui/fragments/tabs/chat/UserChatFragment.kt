@@ -73,7 +73,7 @@ class UserChatFragment : DialogFragment() {
             adapter!!.setData(it)
         }
         viewModel.fetchMessage().observe(viewLifecycleOwner) {
-            adapter!!.addItem(
+            adapter?.addItem(
                 UserMessage(
                     userId = it.data.userId,
                     messageText = it.data.messageText,

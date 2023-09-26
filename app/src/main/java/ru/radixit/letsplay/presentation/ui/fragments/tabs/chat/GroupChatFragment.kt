@@ -102,7 +102,11 @@ class GroupChatFragment : DialogFragment() {
 
     private fun onBack() {
         binding.backArrow.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(GroupChatFragmentDirections.actionGroupChatFragmentToChatFragment())
         }
+
+
     }
+
+
 }
