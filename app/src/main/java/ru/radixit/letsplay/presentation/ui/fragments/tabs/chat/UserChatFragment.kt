@@ -1,6 +1,7 @@
 package ru.radixit.letsplay.presentation.ui.fragments.tabs.chat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +17,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.UserMessage
 import ru.radixit.letsplay.databinding.FragmentUserChatBinding
+import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.utils.SpaceItemDecoration
 
 @AndroidEntryPoint
-class UserChatFragment : DialogFragment() {
+class UserChatFragment : BaseFragment() {
 
     private var _binding: FragmentUserChatBinding? = null
     private val binding get() = _binding!!
@@ -29,10 +31,7 @@ class UserChatFragment : DialogFragment() {
     private var userName : String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(
-            STYLE_NORMAL,
-            R.style.FullScreenDialogStyle
-        )
+
     }
 
     override fun onCreateView(
@@ -73,11 +72,14 @@ class UserChatFragment : DialogFragment() {
             adapter!!.setData(it)
         }
         viewModel.fetchMessage().observe(viewLifecycleOwner) {
+            Log.e("message" , it.toString())
             adapter?.addItem(
                 UserMessage(
                     userId = it.data.userId,
                     messageText = it.data.messageText,
-                    createdAt = it.data.createdAt
+                    createdAt = it.data.createdAt,
+                    name = it.data.name,
+
                 )
             )
             binding.recyclerView.smoothScrollToPosition(adapter?.itemCount!! - 1)

@@ -1,6 +1,7 @@
 ﻿package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.databinding.ItemListPlayersRedesEventBinding
@@ -40,23 +42,27 @@ class PlayersForEventRedesAdapter :
             selectItemOnClickListener: SelectUserRedesOnClickListener,
             removeItemOnClickListener: RemoveUserRedesOnClickListener
         ) {
+            Log.e("friend" , friend.toString())
             binding.namePlayersTv.text = friend.name ?: "Не указано"
             binding.positionPlayersTv.text = (friend.userType ?: "Не указано").toString()
             if (friend.photo == null) {
-                binding.playersImg.visibility = View.GONE
+                binding.playersImg.visibility = View.VISIBLE
                 binding.namePlayersTv.visibility = View.VISIBLE
-                binding.namePlayersTv.text =
-                    "${friend.name.toString()[0]}${friend.surname.toString()[0]}"
-                binding.playersMatCard.setBackgroundColor(
+                Glide.with(binding.root).load(R.color.clicked_text_color).circleCrop().into(binding.playersImg)
+                binding.nameOnAvatar.text =
+                    "${friend.name.toString()[0]}"
+
+               /* binding.playersMatCard.setBackgroundColor(
                     ContextCompat.getColor(
                         itemView.context,
                         R.color.violet
                     )
-                )
+                )*/
             } else {
                 binding.playersImg.visibility = View.VISIBLE
-                binding.namePlayersTv.visibility = View.GONE
-                Glide.with(binding.root).load(friend.photo.url).into(binding.playersImg)
+                binding.namePlayersTv.visibility = View.VISIBLE
+                Glide.with(binding.root).load(friend.photo.url).circleCrop(). into(binding.playersImg)
+
             }
 
             binding.checkAdd.setOnClickListener {

@@ -78,6 +78,8 @@ class UserChatViewModel @Inject constructor(
         return myWebSocket.liveData
     }
 
+
+
     fun fetchToken(): Int {
         return sessionManager.fetchToken()
     }

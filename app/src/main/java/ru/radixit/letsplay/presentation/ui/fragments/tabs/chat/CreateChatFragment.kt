@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.databinding.FragmentCreateChatBinding
+import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.CreateEventViewModel
 import ru.radixit.letsplay.utils.hideKeyboardOnScroll
 
@@ -25,7 +26,7 @@ import ru.radixit.letsplay.utils.hideKeyboardOnScroll
  * Экран создание чата
  */
 @AndroidEntryPoint
-class CreateChatFragment : DialogFragment() {
+class CreateChatFragment : BaseFragment() {
 
     private var _binding: FragmentCreateChatBinding? = null
     private val binding get() = _binding!!
@@ -38,10 +39,7 @@ class CreateChatFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(
-            STYLE_NORMAL,
-            R.style.FullScreenDialogStyle
-        )
+
     }
 
     @SuppressLint("ClickableViewAccessibility")

@@ -16,13 +16,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.UserMessage
 import ru.radixit.letsplay.databinding.FragmentGroupChatBinding
+import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.utils.SpaceItemDecoration
 
 /**
  * Экран группового чата
  */
 @AndroidEntryPoint
-class GroupChatFragment : DialogFragment() {
+class GroupChatFragment : BaseFragment() {
 
     private var _binding: FragmentGroupChatBinding? = null
     private val binding get() = _binding!!
@@ -32,10 +33,7 @@ class GroupChatFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(
-            STYLE_NORMAL,
-            R.style.FullScreenDialogStyle
-        )
+
     }
 
     override fun onCreateView(

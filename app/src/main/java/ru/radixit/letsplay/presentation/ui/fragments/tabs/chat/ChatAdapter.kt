@@ -22,11 +22,14 @@ import ru.radixit.letsplay.utils.visible
 /**
  * Адаптер для списка чатов
  */
+
+typealias ClickItem = (Chat) -> Unit
 class ChatAdapter :
     PagingDataAdapter<Chat, ChatAdapter.ChatViewHolder>(CHAT_COMPARATOR) {
     private var fragment: BaseFragment? = null
 
 
+    private var clickItem : ClickItem? = null
     fun setFragment(fragmentArgs: BaseFragment) {
         fragment = fragmentArgs
     }
@@ -45,7 +48,7 @@ class ChatAdapter :
         }
         return false
     }
-    inner class ChatViewHolder(private val binding: ItemChatPlayersBinding) :
+    inner class ChatViewHolder(private val binding: ItemChatPlayersBinding, private val clickItem: ClickItem) :
         RecyclerView.ViewHolder(binding.root) {
 
 
@@ -99,12 +102,15 @@ class ChatAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemChatPlayersBinding.inflate(layoutInflater, parent, false)
-        return ChatViewHolder(binding)
+        return ChatViewHolder(binding , clickItem!!)
     }
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         holder.bind(getItem(position)!!)
 
+    }
+    fun clickItem(listener : ClickItem){
+        clickItem = listener
     }
 
     fun updateItem(id: Int){

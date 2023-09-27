@@ -53,6 +53,7 @@ import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.T
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.DropDownRvRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.SpinnerCreatePlaygAdapter
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.showToast
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
@@ -146,21 +147,23 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                 }
             }
         }
-        binding.timeInputEd.setOnClickListener {
+        binding.timeInputEd.setOnSingleClickListener {
             if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
                 createEventCalendar()
             } else {
                 createEventCalendarPlayg()
             }
         }
-        binding.birthYearInputEd.setOnClickListener {
+        binding.birthYearInputEd.setOnSingleClickListener {
             if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
                 createEventCalendar()
             } else {
                 createEventCalendarPlayg()
             }
         }
-        binding.createEventMatBtn.setOnClickListener {
+
+
+        binding.createEventMatBtn.setOnSingleClickListener {
             var gameLevel = 0
             var gameStatus = 0
             viewModel.gameLevel.observe(viewLifecycleOwner) {
@@ -241,22 +244,23 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                 binding.timeInputEd.setText("${it.first.value}")
             }
         }
-        binding.editAddressMapTv.setOnClickListener {
+        binding.editAddressMapTv.setOnSingleClickListener {
             findNavController().navigate(
                 EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListMapsRedesFrag(
                 )
             )
         }
-        binding.shirtsIs.setOnClickListener {
+        binding.shirtsIs.setOnSingleClickListener {
             findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToPlayersEventRedesFrag())
         }
-        binding.ballsIs.setOnClickListener {
+        binding.ballsIs.setOnSingleClickListener {
+
         }
         viewModel.startString.observe(viewLifecycleOwner) {
             binding.birthYearInputEd.setText(it)
         }
 
-        binding.addPhoto.setOnClickListener {
+        binding.addPhoto.setOnSingleClickListener {
             selectImageFromGallery()
         }
         val slots = UnderscoreDigitSlotsParser().parseSlots("__-__-____")
@@ -494,6 +498,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
 
 
         adapter.onClick {
+            findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListTeamPlayers2())
 
         }
 

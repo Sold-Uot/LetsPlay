@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import okio.ByteString
@@ -21,6 +23,7 @@ class MyWebSocket @Inject constructor(
     private fun outputData(message: ChatMessage) {
         _liveData.postValue(message)
     }
+
 
     init {
         val client = retrofitInstance.client

@@ -75,6 +75,8 @@ class FragEventsChatRedes : BaseFragment() {
             adapter.refresh()
         }
 
+        adapter.clickItem {  }
+
 
         lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->

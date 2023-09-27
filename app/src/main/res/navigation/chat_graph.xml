@@ -36,7 +36,7 @@
             android:id="@+id/action_chatFragment_to_createChatFragment"
             app:destination="@id/createChatFragment" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/userChatFragment"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.UserChatFragment"
         android:label="fragment_user_chat"
@@ -56,8 +56,8 @@
 <!--            app:action="ACTION_SEND_MULTIPLE"-->
 <!--            app:mimeType="*/*"-->
 <!--            app:uri="www.letsplay.com/user_chat/{chatType}/{receiverId}" />-->
-    </dialog>
-    <dialog
+    </fragment>
+    <fragment
         android:id="@+id/groupChatFragment"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.GroupChatFragment"
         android:label="fragment_group_chat"
@@ -74,8 +74,8 @@
         <action
             android:id="@+id/action_groupChatFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
-    </dialog>
-    <dialog
+    </fragment>
+    <fragment
         android:id="@+id/createChatFragment"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.chat.CreateChatFragment"
         android:label="fragment_create_chat"
@@ -83,7 +83,7 @@
         <action
             android:id="@+id/action_createChatFragment_to_choiceUsersForEventFragment2"
             app:destination="@id/choiceUsersForEventFragment2" />
-    </dialog>
+    </fragment>
     <dialog
         android:id="@+id/choiceUsersForEventFragment2"
         android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.ChoiceUsersForEventFragment"

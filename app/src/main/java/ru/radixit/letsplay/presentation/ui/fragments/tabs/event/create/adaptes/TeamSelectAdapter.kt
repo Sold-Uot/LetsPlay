@@ -55,7 +55,7 @@ class TeamSelectAdapter() : RecyclerView.Adapter<TeamSelectAdapter.TeamSelectVie
 
             binding.teamsTitleTv.text = team.title
 
-            binding.teamsArrowImg.setOnSingleClickListener{
+            binding.root.setOnSingleClickListener{
                 selectTeamListMembers.invoke(team)
             }
 

@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.data.model.Calendar
+import ru.radixit.letsplay.data.model.FriendEntity
 import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
 import ru.radixit.letsplay.data.network.request.ListRequest
@@ -57,6 +58,9 @@ class CreateEventViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val resourceManager: ResourceManager
 ) : ViewModel() {
+
+    private val _listSelectFriends = MutableLiveData<List<FriendEntity>>()
+     val listSelectFriends : LiveData<List<FriendEntity>> get() = _listSelectFriends
 
     private val _playgId = MutableLiveData<Int>()
     val playgId: LiveData<Int> = _playgId
@@ -395,8 +399,8 @@ class CreateEventViewModel @Inject constructor(
                 val response = eventRepository.addFriendToInviteList(FriendMapper.mapInFriendEntity(user))
                 response.collect{
                     when (it.status){
-                        Status.SUCCESS -> {}
-                        Status.ERROR -> {}
+                        Status.SUCCESS -> {context.showToast("Пользователь добавлен")}
+                        Status.ERROR -> {context.showToast("Неудалось добавить пользователя ")}
                         Status.LOADING -> {}
                     }
                 }
@@ -410,8 +414,10 @@ class CreateEventViewModel @Inject constructor(
                 val response = eventRepository.removeFriendToInviteList(FriendMapper.mapInFriendEntity(user))
                 response.collect{
                     when (it.status){
-                        Status.SUCCESS -> {}
-                        Status.ERROR -> {}
+                        Status.SUCCESS -> {
+                            context.showToast("Пользователь удалён")
+                        }
+                        Status.ERROR -> {context.showToast("Неудалось добавить пользователя ")}
                         Status.LOADING -> {}
                     }
                 }
@@ -428,6 +434,8 @@ class CreateEventViewModel @Inject constructor(
                 response.collect{
                     when (it.status){
                         Status.SUCCESS -> {
+
+                                _listSelectFriends.value = it.data ?: emptyList()
 
                         }
                         Status.ERROR -> {}

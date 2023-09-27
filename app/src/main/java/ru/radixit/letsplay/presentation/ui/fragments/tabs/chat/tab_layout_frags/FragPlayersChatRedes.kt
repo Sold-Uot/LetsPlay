@@ -70,6 +70,7 @@ class FragPlayersChatRedes : BaseFragment() {
         binding.retryButton.setOnClickListener {
             adapter.refresh()
         }
+        adapter.clickItem {  }
 
         lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
