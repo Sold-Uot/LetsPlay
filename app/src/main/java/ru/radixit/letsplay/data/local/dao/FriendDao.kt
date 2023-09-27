@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.radixit.letsplay.data.model.FriendEntity
-import ru.radixit.letsplay.data.model.UserEntity
+
 @Dao
 interface FriendDao {
 
@@ -18,5 +18,8 @@ interface FriendDao {
 
     @Query("SELECT * FROM FriendEntity")
     suspend fun getALlUser(): List<FriendEntity>
+
+    @Query("SELECT COUNT(*) FROM FriendEntity")
+    suspend fun getRowCount(): Int
 
 }

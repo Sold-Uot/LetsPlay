@@ -612,7 +612,7 @@
                         android:clickable="true"
                         android:focusable="false"
                         android:fontFamily="@font/noah_regular"
-                        android:hint="@string/zero_players"
+
                         android:paddingStart="90dp"
                         android:textColorHint="@color/main_gray"
                         android:textSize="@dimen/button_textsize"

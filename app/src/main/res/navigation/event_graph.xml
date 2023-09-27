@@ -32,6 +32,9 @@
             android:id="@+id/action_eventInDetailRedesFrag_to_createEventRedesFrag"
             app:destination="@id/createEventRedesFrag" />
         <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_listTeamPlayers22"
+            app:destination="@id/listTeamPlayers2" />
+        <action
             android:id="@+id/action_eventInDetailRedesFrag2_to_eventDescRedesignFrag"
             app:destination="@id/eventDescRedesignFrag"
             app:popUpTo="@id/eventInDetailRedesFrag2"
@@ -39,6 +42,10 @@
         <action
             android:id="@+id/action_eventInDetailRedesFrag2_to_listEventsRedesFrag"
             app:destination="@id/listEventsRedesFrag" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag2_to_listInviteFriendFragment2"
+            app:destination="@id/listInviteFriendFragment2" />
+
     </fragment>
     <dialog
         android:id="@+id/playersEventRedesFrag"
@@ -165,4 +172,14 @@
             app:popUpTo="@id/listEventsRedesFrag"
             app:popUpToInclusive="true" />
     </dialog>
+    <dialog
+        android:id="@+id/listInviteFriendFragment2"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.ListInviteFriendFragment"
+        android:label="ListInviteFriendFragment"
+        tools:layout=""
+        />
+    <fragment
+        android:id="@+id/listTeamPlayers2"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.ListTeamPlayers"
+        android:label="ListTeamPlayers" />
 </navigation>

@@ -76,8 +76,12 @@ class EventRepositoryImpl @Inject constructor(
                 }
         }
 
+    override fun getCountFriendInDB(): Flow<Int> = flow  {
+        emit(friendDao.getRowCount())
+    }
+
     override fun fetchFriendToInviteList(): Flow<LoadState<List<FriendEntity>>> =
-        flow {
+        flow<LoadState<List<FriendEntity>>> {
             emit(LoadState.loading())
             runCatching { friendDao.getALlUser() }
                 .onSuccess { this.emit(LoadState.success(friendDao.getALlUser())) }
@@ -86,7 +90,7 @@ class EventRepositoryImpl @Inject constructor(
                         LoadState.error(it.message.toString())
                     )
                 }
-        }
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun listEventsMembers(id: String): Response<EventMembersResp> {
         return service.listEventsMembers(id)

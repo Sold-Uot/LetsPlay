@@ -22,6 +22,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
@@ -58,6 +59,9 @@ class CreateEventViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val resourceManager: ResourceManager
 ) : ViewModel() {
+
+    private val _countFriendAddInInviteList = MutableLiveData<Int>()
+    val countFriendAddInInviteList: LiveData<Int> = _countFriendAddInInviteList
 
     private val _listSelectFriends = MutableLiveData<List<FriendEntity>>()
      val listSelectFriends : LiveData<List<FriendEntity>> get() = _listSelectFriends
@@ -426,6 +430,22 @@ class CreateEventViewModel @Inject constructor(
 
     }
 
+    fun getCountFriendAddInInviteList(){
+        viewModelScope.launch {
+            try {
+                val res  = eventRepository.getCountFriendInDB()
+                res.collect{
+                    Log.e("323" , it.toString())
+                    _countFriendAddInInviteList.value = it
+                }
+
+            }
+            catch (ex:Exception){
+
+            }
+        }
+    }
+
     fun fetchFriendList() {
 
         viewModelScope.launch {
@@ -435,7 +455,8 @@ class CreateEventViewModel @Inject constructor(
                     when (it.status){
                         Status.SUCCESS -> {
 
-                                _listSelectFriends.value = it.data ?: emptyList()
+                                _listSelectFriends.value = it.data!!
+                            Log.e("list" , it.data.toString())
 
                         }
                         Status.ERROR -> {}

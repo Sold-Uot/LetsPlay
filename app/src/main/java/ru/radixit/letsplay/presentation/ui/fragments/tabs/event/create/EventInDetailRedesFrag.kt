@@ -163,6 +163,8 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         }
 
 
+
+
         binding.createEventMatBtn.setOnSingleClickListener {
             var gameLevel = 0
             var gameStatus = 0
@@ -254,11 +256,24 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToPlayersEventRedesFrag())
         }
         binding.ballsIs.setOnSingleClickListener {
+            if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
+                findNavController().navigate(R.id.action_eventInDetailRedesFrag2_to_listInviteFriendFragment2)}
+            else{
+                findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListInviteFriendFragment4())
+            }
 
         }
         viewModel.startString.observe(viewLifecycleOwner) {
             binding.birthYearInputEd.setText(it)
         }
+        viewModel.getCountFriendAddInInviteList()
+        viewModel.countFriendAddInInviteList.observe(viewLifecycleOwner){
+            Log.e("32333", it.toString())
+
+            binding.ballsIs.setText("${it} игроков")
+
+        }
+
 
         binding.addPhoto.setOnSingleClickListener {
             selectImageFromGallery()
@@ -300,7 +315,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
     private fun createEventCalendarPlayg() {
         if (binding.addressMapTv.text.toString() != "") {
             findNavController().navigate(
-                EventInDetailRedesFragDirections.actionEventInDetailRedesFragToCreateEventRedesFrag2(
+                EventInDetailRedesFragDirections.actionEventInDetailRedesFragToCreateEventRedesFrag4(
                     playgId.toString()
                 )
             )
@@ -498,7 +513,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
 
 
         adapter.onClick {
-            findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListTeamPlayers2())
+            findNavController().navigate(R.id.action_eventInDetailRedesFrag_to_listTeamPlayers22)
 
         }
 

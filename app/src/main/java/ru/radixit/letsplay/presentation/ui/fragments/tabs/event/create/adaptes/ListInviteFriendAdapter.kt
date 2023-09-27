@@ -67,6 +67,7 @@ class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.L
     }
     fun setData(list :List<FriendEntity>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int  = list.size

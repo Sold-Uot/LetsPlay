@@ -57,6 +57,7 @@ class TeamSelectAdapter() : RecyclerView.Adapter<TeamSelectAdapter.TeamSelectVie
 
             binding.root.setOnSingleClickListener{
                 selectTeamListMembers.invoke(team)
+
             }
 
 

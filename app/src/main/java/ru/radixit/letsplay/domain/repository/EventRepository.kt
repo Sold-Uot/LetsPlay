@@ -26,6 +26,8 @@ interface EventRepository {
 
     fun fetchFriendToInviteList() : Flow<LoadState<List<FriendEntity>>>
 
+    fun getCountFriendInDB():Flow<Int>
+
     fun listEvents(request: ListRequest): Flow<PagingData<Event>>
 
     suspend fun creatEvent(request: CreateEventRequest):Response<CreateEventResponse>
