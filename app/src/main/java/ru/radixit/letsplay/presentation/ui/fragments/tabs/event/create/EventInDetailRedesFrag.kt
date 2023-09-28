@@ -3,6 +3,7 @@ package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
+import androidx.navigation.ui.NavigationUI
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -259,7 +260,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
                 findNavController().navigate(R.id.action_eventInDetailRedesFrag2_to_listInviteFriendFragment2)}
             else{
-                findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListInviteFriendFragment4())
+                findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListInviteFriendFragment())
             }
 
         }
@@ -513,7 +514,16 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
 
 
         adapter.onClick {
-            findNavController().navigate(R.id.action_eventInDetailRedesFrag_to_listTeamPlayers22)
+            val bundle = Bundle()
+            bundle.putInt("team_id", it.id!!)
+
+            if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
+                findNavController().navigate(R.id.action_eventInDetailRedesFrag2_to_listInviteTeamPlayersFrag2, bundle)
+
+            }
+            else{
+                findNavController().navigate(EventInDetailRedesFragDirections.actionEventInDetailRedesFragToListInviteTeamPlayersFrag(it.id))
+            }
 
         }
 

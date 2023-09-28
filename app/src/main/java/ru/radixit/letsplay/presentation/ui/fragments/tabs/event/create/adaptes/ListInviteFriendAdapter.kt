@@ -11,22 +11,25 @@ import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.FriendEntity
 import ru.radixit.letsplay.databinding.FragmentListInviteFriendBinding
 import ru.radixit.letsplay.databinding.ItemFriendForCreateEventBinding
+import ru.radixit.letsplay.databinding.ItemSelectPlayersForCreateEventBinding
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.visible
 
-
+typealias DeleteFriendOnClick =  (FriendEntity) -> Unit
 class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.ListInviteFriendViewHolder>() {
 
     private var list = emptyList<FriendEntity>()
-    class ListInviteFriendViewHolder(private val binding: ItemFriendForCreateEventBinding) : RecyclerView.ViewHolder(binding.root) {
+    private var deleteFriendOnClick :DeleteFriendOnClick? = null
+    class ListInviteFriendViewHolder(private val binding: ItemSelectPlayersForCreateEventBinding ) : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bind(user :FriendEntity){
+         fun bind(user :FriendEntity,  deleteFriendOnClick: DeleteFriendOnClick){
 
 
             with(binding) {
-                friendName.text = user.name
-                friendPosition.text = user.userType
+                binding.playerName.text = user.name
+                playerPosition.text = user.userType
                 if (user.photo_id == null || user.photo_url.isNullOrEmpty()) {
                     binding.photo.visibility = android.view.View.GONE
                     binding.nameOnAvatar.visibility = android.view.View.VISIBLE
@@ -36,6 +39,7 @@ class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.L
                         ru.radixit.letsplay.R.color.violet
                     )
                     binding.cardView10.setCardBackgroundColor(cardColor)
+                    Glide.with(binding.root).load(R.color.violet).into(photo)
                 } else {
 
                     binding.photo.visibility = android.view.View.VISIBLE
@@ -43,6 +47,9 @@ class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.L
                     Glide.with(binding.root).load(user.photo_url).into(binding.photo)
                 }
 
+                deletePlayer.setOnSingleClickListener{
+                    deleteFriendOnClick.invoke(user)
+                }
 
 
             }
@@ -55,7 +62,7 @@ class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.L
         viewType: Int
     ): ListInviteFriendAdapter.ListInviteFriendViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemFriendForCreateEventBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemSelectPlayersForCreateEventBinding.inflate(layoutInflater, parent, false)
         return ListInviteFriendViewHolder(binding)
     }
 
@@ -63,7 +70,11 @@ class ListInviteFriendAdapter (): RecyclerView.Adapter<ListInviteFriendAdapter.L
         holder: ListInviteFriendAdapter.ListInviteFriendViewHolder,
         position: Int
     ) {
-        holder.bind(list[position])
+        holder.bind(list[position], deleteFriendOnClick!!)
+    }
+    fun deleteClick(listener : DeleteFriendOnClick){
+        deleteFriendOnClick = listener
+        notifyDataSetChanged()
     }
     fun setData(list :List<FriendEntity>){
         this.list = list

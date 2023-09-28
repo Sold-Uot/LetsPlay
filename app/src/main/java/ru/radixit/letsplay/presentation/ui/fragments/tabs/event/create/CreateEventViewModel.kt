@@ -20,12 +20,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.global.SessionManager
 import ru.radixit.letsplay.data.model.Calendar
@@ -36,10 +38,12 @@ import ru.radixit.letsplay.data.network.request.ListRequest
 import ru.radixit.letsplay.data.network.response.CreateEventResponse
 import ru.radixit.letsplay.data.network.response.MapsResponse
 import ru.radixit.letsplay.data.network.response.Team
+import ru.radixit.letsplay.data.network.response.UserForTeamPlayers
 import ru.radixit.letsplay.domain.global.ResourceManager
 import ru.radixit.letsplay.domain.repository.EventRepository
 import ru.radixit.letsplay.domain.repository.PlaygroundRepository
 import ru.radixit.letsplay.domain.repository.ProfileRepository
+import ru.radixit.letsplay.domain.repository.TeamRepository
 import ru.radixit.letsplay.presentation.global.ErrorHandler
 import ru.radixit.letsplay.utils.FriendMapper
 import ru.radixit.letsplay.utils.Status
@@ -53,6 +57,7 @@ import javax.inject.Inject
 class CreateEventViewModel @Inject constructor(
     private val repository: ProfileRepository,
     private val playgroundRepository: PlaygroundRepository,
+    private val teamRepository: TeamRepository,
     private val errorHandler: ErrorHandler,
     private val sessionManager: SessionManager,
     private val eventRepository: EventRepository,
@@ -65,6 +70,9 @@ class CreateEventViewModel @Inject constructor(
 
     private val _listSelectFriends = MutableLiveData<List<FriendEntity>>()
      val listSelectFriends : LiveData<List<FriendEntity>> get() = _listSelectFriends
+
+    private val _listTeamPlayers = MutableLiveData<List<UserForTeamPlayers>>()
+    val listTeamPlayers : LiveData<List<UserForTeamPlayers>> get() =  _listTeamPlayers
 
     private val _playgId = MutableLiveData<Int>()
     val playgId: LiveData<Int> = _playgId
@@ -443,6 +451,19 @@ class CreateEventViewModel @Inject constructor(
             catch (ex:Exception){
 
             }
+        }
+    }
+
+    fun fetchTeamPlayers(id : Int){
+        viewModelScope.launch {
+           runCatching {
+               val response = teamRepository.fetchListTeamPlayers(id)
+               response.collect{
+                   if(it.isSuccessful){
+                       _listTeamPlayers.value = it.body()?.list ?: emptyList()
+                   }
+               }
+           }
         }
     }
 

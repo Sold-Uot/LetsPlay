@@ -19,29 +19,23 @@
         app:navigationIcon="@drawable/ic_back_arrow">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="14dp">
 
             <TextView
                 android:id="@+id/title_list_teams_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noah_medium"
+                android:gravity="center"
                 android:text="@string/list_players"
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/name_teams_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noah_regular"
-                android:textColor="@color/main_gray"
-                app:layout_constraintTop_toBottomOf="@+id/title_list_teams_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Магомед Вердиев" />
 
             <!--            <androidx.appcompat.widget.SearchView-->
             <!--                android:id="@+id/search_players"-->
@@ -104,7 +98,7 @@
             android:paddingTop="12dp"
             android:paddingBottom="15dp"
             android:visibility="visible"
-            tools:listitem="@layout/item_player_for_team" />
+            tools:listitem="@layout/item_select_players_for_create_event" />
 
         <TextView
             android:id="@+id/empty_list_tv"

@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.model.FriendEntity
+import ru.radixit.letsplay.data.model.Photo
+import ru.radixit.letsplay.data.model.User
 import ru.radixit.letsplay.databinding.FragmentListInviteFriendBinding
 import ru.radixit.letsplay.databinding.FragmentListTeamPlayersBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.ListInviteFriendAdapter
@@ -44,20 +47,35 @@ class ListInviteFriendFragment : DialogFragment() {
         return binding.root
     }
 
-    private fun setupRecycler(){
+    private fun onBack(){
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        binding.toolbar2.setNavigationOnClickListener { findNavController().popBackStack() }
+    }
 
+    private fun setDataRecycler(){
         vm.fetchFriendList()
         vm.listSelectFriends.observe(viewLifecycleOwner){
             Log.e("31" , it.toString())
             adapter.setData(it)
         }
-        binding.recyclerView.addItemDecoration(SpaceItemDecoration(40))
+    }
+
+    private fun setupRecycler(){
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+
+        setDataRecycler()
 
         binding.swipeToRefresh.setOnRefreshListener {
-            binding.recyclerView.adapter = adapter
+
             binding.swipeToRefresh.isRefreshing =false
+        }
+
+        adapter.deleteClick {
+            vm.removeFriendToInviteList(User(id = it.id_user, name = it.name, Photo(it.photo_id,it.photo_url),it.surname, userType = it.userType,username = it.username))
+            setDataRecycler()
+
         }
         binding.recyclerView.adapter = adapter
 
