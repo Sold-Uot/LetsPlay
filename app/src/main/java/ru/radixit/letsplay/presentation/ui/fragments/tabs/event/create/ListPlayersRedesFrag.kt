@@ -56,7 +56,6 @@ class ListPlayersRedesFrag : DialogFragment() {
             }
         }
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(SpaceItemDecoration(40))
         adapter.selectItem {
             viewModel.add(it)
         }

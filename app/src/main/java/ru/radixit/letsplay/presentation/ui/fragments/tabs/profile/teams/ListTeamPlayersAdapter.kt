@@ -13,6 +13,7 @@ import ru.radixit.letsplay.data.network.response.UserForTeamPlayers
 import ru.radixit.letsplay.databinding.ItemPlayerForTeamBinding
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.visible
+import javax.inject.Inject
 
 typealias SelectTeamPlayerOnClick = ((UserForTeamPlayers) -> Unit)
 
@@ -25,8 +26,10 @@ class ListTeamPlayersAdapter(val myTeam: Boolean , val myId : Int) :
         RecyclerView.ViewHolder(binding.root) {
 
 
+
         fun bind(user: UserForTeamPlayers) {
 
+            Log.e("eme" , user.toString())
             with(binding) {
                 playerName.text = user.name
                 playerPosition.text = user.position

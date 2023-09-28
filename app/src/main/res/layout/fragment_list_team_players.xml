@@ -81,7 +81,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/found_tv"
         app:layout_constraintStart_toEndOf="@+id/found_tv"
-        tools:text="59" />
+        tools:text="9" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefresh"
@@ -94,7 +94,6 @@
         app:layout_constraintTop_toBottomOf="@+id/found_tv" >
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -103,7 +102,6 @@
             android:clipToPadding="false"
             android:paddingTop="12dp"
             android:paddingBottom="15dp"
-            android:visibility="visible"
             tools:listitem="@layout/item_player_for_team" />
 
         <TextView

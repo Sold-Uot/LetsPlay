@@ -95,6 +95,12 @@
         <action
             android:id="@+id/action_eventInDetailRedesFrag_to_createEventRedesFrag4"
             app:destination="@id/createEventRedesFrag" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_listInviteFriendFragment"
+            app:destination="@id/listInviteFriendFragment" />
+        <action
+            android:id="@+id/action_eventInDetailRedesFrag_to_listInviteTeamPlayersFrag"
+            app:destination="@id/listInviteTeamPlayersFrag" />
     </fragment>
     <dialog
         android:id="@+id/playersEventRedesFrag"
@@ -216,4 +222,13 @@
         android:label="ListTeamPlayers"
         tools:layout="@layout/fragment_list_team_players"
         />
+    <dialog
+        android:id="@+id/listInviteTeamPlayersFrag"
+        android:name="ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.ListInviteTeamPlayersFrag"
+        android:label="fragment_list_invite_team_players"
+        tools:layout="@layout/fragment_list_invite_team_players" >
+        <argument
+            android:name="teamId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
