@@ -42,6 +42,7 @@ class ListInviteFriendFragment : DialogFragment() {
 
 
 
+        onBack()
         setupRecycler()
 
         return binding.root
@@ -55,7 +56,7 @@ class ListInviteFriendFragment : DialogFragment() {
     private fun setDataRecycler(){
         vm.fetchFriendList()
         vm.listSelectFriends.observe(viewLifecycleOwner){
-            Log.e("31" , it.toString())
+            binding.foundCountTv.text = it.size.toString()
             adapter.setData(it)
         }
     }

@@ -3,7 +3,6 @@ package ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
-import androidx.navigation.ui.NavigationUI
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -45,14 +44,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.radixit.letsplay.R
-import ru.radixit.letsplay.data.model.Photo
 import ru.radixit.letsplay.data.network.request.CreateEventRequest
-import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.FragEventInDetailRedesBinding
 import ru.radixit.letsplay.databinding.ProgressDialogBinding
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.event.create.adaptes.TeamSelectAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.DropDownRvRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.playgrounds.info.adapter.SpinnerCreatePlaygAdapter
+import ru.radixit.letsplay.utils.FriendMapper
 import ru.radixit.letsplay.utils.gone
 import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.showToast
@@ -74,6 +72,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
     private lateinit var viewModel: CreateEventViewModel
     private lateinit var mapFragment: SupportMapFragment
     private lateinit var client: FusedLocationProviderClient
+    private var memberList = listOf<Int>()
     private var googleMapMain: GoogleMap? = null
     private var dialogCustom: Dialog? = null
     private var playgId: Int? = null
@@ -163,12 +162,18 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
             }
         }
 
+        viewModel.fetchFriendList()
+        viewModel.listSelectFriends.observe(viewLifecycleOwner){
+           memberList =  FriendMapper.mapListWithFriendInMember(it)
+        }
+
 
 
 
         binding.createEventMatBtn.setOnSingleClickListener {
             var gameLevel = 0
             var gameStatus = 0
+
             viewModel.gameLevel.observe(viewLifecycleOwner) {
                 gameLevel = it
             }
@@ -195,46 +200,50 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
 //                    dialogProgress {
 //                        it.show()
 //                    }
-                    viewModel.createEvent(
-                        CreateEventRequest(
-                            id = playgId,
-                            startKey = viewModel.startAndEnd.value?.first?.key.toString().toInt(),
-                            endKey = viewModel.startAndEnd.value?.second?.key.toString().toInt(),
-                            gameLevel = gameLevel,
-                            offlinePlayers = binding.playerWithoutApp.text.toString().toInt(),
-                            comment = binding.commentEventPlaceTv.text.toString(),
-                            players = binding.allCountPlayers.text.toString().toInt(),
-                            status = gameStatus,
-                            title = binding.nameField.text.toString(),
-                            date = viewModel.date.value.toString(),
-                            privacy = false
 
-                        )
-                    ) { isResult, eventId ->
+                        viewModel.createEvent(
+                            CreateEventRequest(
+                                id = playgId,
+                                startKey = viewModel.startAndEnd.value?.first?.key.toString().toInt(),
+                                endKey = viewModel.startAndEnd.value?.second?.key.toString().toInt(),
+                                gameLevel = gameLevel,
+                                offlinePlayers = binding.playerWithoutApp.text.toString().toInt(),
+                                comment = binding.commentEventPlaceTv.text.toString(),
+                                players = binding.allCountPlayers.text.toString().toInt(),
+                                status = gameStatus,
+                                title = binding.nameField.text.toString(),
+                                date = viewModel.date.value.toString(),
+                                privacy = false,
+                                members = memberList
+
+                            )
+                        ) { isResult, eventId ->
 //                        if (isResult) {
 //                            findNavController().popBackStack()
 //                        }
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            withContext(Dispatchers.Main) {
-                                dialogCustom?.dismiss()
-                                Log.v(this.javaClass.name, isResult.toString())
-                                if (isResult) {
-                                    context?.showToast("Событие успешно создано")
-                                    if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
-                                        val bundle = Bundle()
-                                        bundle.putString("event", null)
-                                        bundle.putString("id", eventId.toString())
-                                        findNavController().navigate(
-                                            R.id.action_eventInDetailRedesFrag2_to_listEventsRedesFrag,
-                                            bundle
-                                        )
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                withContext(Dispatchers.Main) {
+                                    dialogCustom?.dismiss()
+                                    Log.v(this.javaClass.name, isResult.toString())
+                                    if (isResult) {
+                                        context?.showToast("Событие успешно создано")
+                                        if (findNavController().currentDestination?.id == R.id.eventInDetailRedesFrag2) {
+                                            val bundle = Bundle()
+                                            bundle.putString("event", null)
+                                            bundle.putString("id", eventId.toString())
+                                            findNavController().navigate(
+                                                R.id.action_eventInDetailRedesFrag2_to_listEventsRedesFrag,
+                                                bundle
+                                            )
+                                        }
+                                    } else {
+                                        context?.showToast("Empty response")
                                     }
-                                } else {
-                                    context?.showToast("Empty response")
                                 }
                             }
                         }
-                    }
+
+
                 }
 
             }
@@ -269,9 +278,9 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         }
         viewModel.getCountFriendAddInInviteList()
         viewModel.countFriendAddInInviteList.observe(viewLifecycleOwner){
-            Log.e("32333", it.toString())
 
-            binding.ballsIs.setText("${it} игроков")
+            binding.selectedTv.setHint("Выбрано  •  ${it} играков")
+
 
         }
 

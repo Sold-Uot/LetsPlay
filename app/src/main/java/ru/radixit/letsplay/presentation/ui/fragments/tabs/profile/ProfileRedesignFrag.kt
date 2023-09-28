@@ -25,6 +25,7 @@ import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.Events
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.FriendsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
 import ru.radixit.letsplay.utils.SpaceItemDecoration
+import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.visible
 import javax.inject.Inject
 
@@ -142,7 +143,7 @@ class ProfileRedesignFrag : BaseFragment() {
     }
 
     private fun setupTeams(id: Int) {
-        binding.teamsArrowEndImg.setOnClickListener {
+        binding.teamsArrowEndImg.setOnSingleClickListener {
             findNavController().navigate(
                 ProfileRedesignFragDirections.actionProfileRedesignFragToListTeamsRedesFrag(
                     id

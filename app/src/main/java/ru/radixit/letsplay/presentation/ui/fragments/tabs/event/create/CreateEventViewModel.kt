@@ -477,7 +477,7 @@ class CreateEventViewModel @Inject constructor(
                         Status.SUCCESS -> {
 
                                 _listSelectFriends.value = it.data!!
-                            Log.e("list" , it.data.toString())
+
 
                         }
                         Status.ERROR -> {}

@@ -25,6 +25,7 @@ class PlayersForEventRedesAdapter :
     private var selectItemOnClickListener: SelectUserRedesOnClickListener? = null
     private var removeItemOnClickListener: RemoveUserRedesOnClickListener? = null
 
+    private var isSelectedAll = false
     class FriendsForEventRedesViewHolder(private val binding: ItemListPlayersRedesEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -40,7 +41,8 @@ class PlayersForEventRedesAdapter :
         fun bind(
             friend: User,
             selectItemOnClickListener: SelectUserRedesOnClickListener,
-            removeItemOnClickListener: RemoveUserRedesOnClickListener
+            removeItemOnClickListener: RemoveUserRedesOnClickListener,
+            isSelect : Boolean
         ) {
             Log.e("friend" , friend.toString())
             binding.namePlayersTv.text = friend.name ?: "Не указано"
@@ -65,6 +67,11 @@ class PlayersForEventRedesAdapter :
 
             }
 
+            if (isSelect){
+                binding.checkAdd.isChecked = isSelect
+            }
+
+
             binding.checkAdd.setOnClickListener {
                 if (binding.checkAdd.isChecked) {
                     selectItemOnClickListener.invoke(friend)
@@ -83,12 +90,18 @@ class PlayersForEventRedesAdapter :
         removeItemOnClickListener = listener
     }
 
+    fun selectAll(i : Boolean){
+        isSelectedAll = i
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsForEventRedesViewHolder {
         return FriendsForEventRedesViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: FriendsForEventRedesViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, selectItemOnClickListener!!, removeItemOnClickListener!!)
+        holder.bind(getItem(position)!!, selectItemOnClickListener!!, removeItemOnClickListener!!, isSelectedAll)
+
     }
 
 

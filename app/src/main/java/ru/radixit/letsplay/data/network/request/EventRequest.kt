@@ -11,7 +11,8 @@ data class CreateEventRequest(
     val players: Int,
     val privacy : Boolean,
     val status: Int,
-    val title: String
+    val title: String,
+    val members: List<Int>
 )
 
 data class JoinEventRequest(

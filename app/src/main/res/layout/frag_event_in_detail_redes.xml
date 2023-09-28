@@ -612,7 +612,6 @@
                         android:clickable="true"
                         android:focusable="false"
                         android:fontFamily="@font/noah_regular"
-
                         android:paddingStart="90dp"
                         android:textColorHint="@color/main_gray"
                         android:textSize="@dimen/button_textsize"
@@ -656,7 +655,6 @@
                         android:clickable="true"
                         android:focusable="false"
                         android:fontFamily="@font/noah_regular"
-                        android:hint="@string/zero_players"
                         android:paddingStart="112dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/main_gray"
@@ -669,22 +667,10 @@
                     android:id="@+id/friends_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
+                    android:layout_marginStart="14dp"
                     android:fontFamily="@font/noah_medium"
                     android:text="Друзья  •"
                     android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/selected_friends_input_lay"
-                    app:layout_constraintStart_toStartOf="@+id/selected_friends_input_lay"
-                    app:layout_constraintTop_toTopOf="@+id/selected_friends_input_lay" />
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/check_friends"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:buttonTint="@color/main_orange"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
                     app:layout_constraintBottom_toBottomOf="@+id/selected_friends_input_lay"
                     app:layout_constraintStart_toStartOf="@+id/selected_friends_input_lay"
                     app:layout_constraintTop_toTopOf="@+id/selected_friends_input_lay" />
