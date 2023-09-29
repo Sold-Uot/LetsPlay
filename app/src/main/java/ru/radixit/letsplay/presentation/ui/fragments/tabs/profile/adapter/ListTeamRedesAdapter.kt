@@ -43,7 +43,7 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
             if (team.photo == null) {
                 binding.photo.visibility = View.GONE
                 binding.nameOnAvatar.visibility = View.VISIBLE
-                binding.nameOnAvatar.text = "${team.title.toString()[0]}"
+                binding.nameOnAvatar.text = "${team.title.toString().uppercase()[0]}"
                 binding.constraint.visibility = View.VISIBLE
                 binding.constraint.setBackgroundColor(
                     ContextCompat.getColor(

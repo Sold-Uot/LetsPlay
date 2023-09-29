@@ -201,9 +201,16 @@ class EventDescRedesignFrag : DialogFragment(), OnMapReadyCallback {
 
             viewModel.eventDescription.observe(viewLifecycleOwner){
 
-                it.createdBy?.photo?.let {
-                    Log.w("photo",it.url.toString())
-                    Glide.with(root).load(it.url).into(avatarEvent)
+//                it.createdBy?.photo?.let {
+//                    Log.w("photo",it.url.toString())
+//                    Glide.with(root).load(it.url).into(avatarEvent)
+//                }
+                if(it.createdBy?.photo != null){
+                    Glide.with(root).load(it.createdBy.photo.url).into(avatarEvent)
+                }
+
+                else {
+                    nameAvatarInImage.text = "${it.createdBy?.name.toString().uppercase()[0]}"
                 }
 
                 it.createdBy?.surname?.let { surname ->

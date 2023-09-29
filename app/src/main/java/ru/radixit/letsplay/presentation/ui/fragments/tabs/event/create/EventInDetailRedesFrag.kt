@@ -173,6 +173,11 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
         binding.createEventMatBtn.setOnSingleClickListener {
             var gameLevel = 0
             var gameStatus = 0
+            var privateStatus = false
+
+            viewModel.privateStatus.observe(viewLifecycleOwner){
+                privateStatus = it
+            }
 
             viewModel.gameLevel.observe(viewLifecycleOwner) {
                 gameLevel = it
@@ -213,7 +218,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                                 status = gameStatus,
                                 title = binding.nameField.text.toString(),
                                 date = viewModel.date.value.toString(),
-                                privacy = false,
+                                privacy = privateStatus,
                                 members = memberList
 
                             )
@@ -488,6 +493,7 @@ class EventInDetailRedesFrag : Fragment(), OnMapReadyCallback {
                 hideKeyboard()
             }
             viewModel.changeGameStatusRedes(pos)
+            viewModel.changeGameStatus(pos)
             obj.updateData()
             binding.statusGameSpinner.setSelection(pos)
             binding.statusGameRv.gone()

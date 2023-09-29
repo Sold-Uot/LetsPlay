@@ -123,6 +123,9 @@
         <action
             android:id="@+id/action_profileRedesignFrag_to_createTeamFragment2"
             app:destination="@id/createTeamFragment" />
+        <action
+            android:id="@+id/action_profileRedesignFrag_to_listTeamPlayers"
+            app:destination="@id/listTeamPlayers" />
     </fragment>
     <dialog
         android:id="@+id/settingsRedesignFrag"
@@ -181,6 +184,9 @@
         <action
             android:id="@+id/action_friendProfileInfoFragment_to_eventDescRedesignFrag2"
             app:destination="@id/eventDescRedesignFrag" />
+        <action
+            android:id="@+id/action_friendProfileInfoFragment_to_listTeamPlayers"
+            app:destination="@id/listTeamPlayers" />
     </fragment>
     <fragment
         android:id="@+id/listFriendsRedesFrag"

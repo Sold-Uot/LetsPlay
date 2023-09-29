@@ -32,32 +32,28 @@
 
             <TextView
                 android:id="@+id/name_on_avatar"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="СИ"
+                android:text="С"
                 android:textColor="@color/white"
-                android:textSize="21sp"
+                android:textSize="26sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
+                tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/my_team_star"
-                android:layout_width="8dp"
-                android:layout_height="11dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/team_star"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:visibility="gone"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,8 +74,8 @@
             android:id="@+id/teamName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Barcelona_Lenina"
             android:fontFamily="@font/noah_bold"
+            android:text="Barcelona_Lenina"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

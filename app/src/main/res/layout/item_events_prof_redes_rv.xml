@@ -25,7 +25,7 @@
             android:background="@color/background_black"
             android:visibility="visible"
             app:srcCompat="@drawable/not_found_event_preview_image"
-            tools:srcCompat="@drawable/not_found_preview_event" />
+           />
 
         <ImageView
             android:id="@+id/item_avatar_img2"
@@ -34,8 +34,7 @@
             android:layout_gravity="center"
             android:background="@color/background_black"
             android:visibility="gone"
-            app:srcCompat="@drawable/not_found_event_preview_image"
-            tools:srcCompat="@drawable/not_found_preview_event" />
+            app:srcCompat="@drawable/not_found_event_preview_image" />
 
     </com.google.android.material.card.MaterialCardView>
 

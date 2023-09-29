@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingVertical="6dp"
     android:layout_height="wrap_content"
     android:background="@color/background_black">
 
@@ -26,7 +27,7 @@
             android:id="@+id/constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_black">
+            >
 
             <TextView
                 android:id="@+id/name_on_avatar"

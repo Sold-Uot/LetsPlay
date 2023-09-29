@@ -68,6 +68,7 @@ class ListEventsRedesAdapter(private val click:(Event)->Unit) :
                 else{
                      binding.avatarImg.gone()
                      binding.nameOnAvatar.visible()
+                     Glide.with(binding.root).load(R.color.violet).into(binding.avatarImg)
 
 
                      binding.nameOnAvatar.text = "${event.createdBy?.name.toString().uppercase()[0]}"

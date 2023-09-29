@@ -114,8 +114,11 @@ class CreateEventViewModel @Inject constructor(
     private val _textGameLevel = MutableLiveData<String>()
     val textGameLevel: LiveData<String> = _textGameLevel
 
-    private val _gameStatus = MutableLiveData(0)
+    private val _gameStatus = MutableLiveData<Int>()
     val gameStatus: LiveData<Int> = _gameStatus
+
+    private val _privateStatus  = MutableLiveData<Boolean>()
+    val privateStatus :LiveData<Boolean> = _privateStatus
 
     private val _textGameStatus = MutableLiveData<String>()
     val textGameStatus: LiveData<String> = _textGameStatus
@@ -203,17 +206,16 @@ class CreateEventViewModel @Inject constructor(
         }
     }
 
-    fun changeGameStatus() {
-        when (_gameStatus.value) {
+    fun changeGameStatus(value : Int) {
+        when (value) {
             1 -> {
-                _textGameStatus.value =
-                    resourceManager.getString(R.string.game_status_private)
-                _gameStatus.value = 0
+
+                _privateStatus.value = true
             }
 
             0 -> {
-                _textGameStatus.value = resourceManager.getString(R.string.game_status)
-                _gameStatus.value = 1
+
+                _privateStatus.value = false
             }
         }
     }
@@ -267,10 +269,12 @@ class CreateEventViewModel @Inject constructor(
             if (response.isSuccessful) {
                 res.invoke(true, response.body()?.eventId)
                 _eventSuccessCreated.value = response.isSuccessful
+
+                if (_uri.value != null) {
                 eventRepository.upload(
                     response.body()?.eventId.toString(),
                     "data:image/png;base64,${_uri.value}"
-                )
+                ) }
                 /*if (_uri.value != null) {
                     if (_uri.value!!.size <= 10) {
                         for (base64Url in _uri.value!!) {

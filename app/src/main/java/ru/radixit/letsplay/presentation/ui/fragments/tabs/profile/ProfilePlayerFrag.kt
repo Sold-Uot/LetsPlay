@@ -285,6 +285,10 @@ class ProfilePlayerFrag : Fragment() {
                 binding.emptyListTeamsTv.visible()
             }
         }
+        adapter.onClick {
+            findNavController().navigate(ProfilePlayerFragDirections.actionFriendProfileInfoFragmentToListTeamPlayers(
+                it.id!!,it.my,sessionManager.fetchToken()))
+        }
         teamRecyclerView.adapter = adapter
     }
 

@@ -24,6 +24,8 @@ import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.EventsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.FriendsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.PlayerRedesAdapter
+import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.ListTeamsRedesFragDirections
 import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.visible
@@ -161,6 +163,10 @@ class ProfileRedesignFrag : BaseFragment() {
             if (it.size == 0) {
                 binding.emptyListTeamsTv.visible()
             }
+        }
+        adapter.onClick {
+            findNavController().navigate(ProfileRedesignFragDirections.actionProfileRedesignFragToListTeamPlayers(
+                it.id!!,it.my,sessionManager.fetchToken()))
         }
         teamRecyclerView.adapter = adapter
     }
