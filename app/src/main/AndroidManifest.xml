@@ -47,10 +47,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/black_total" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_lets_play_foreground" />
+            android:resource="@color/back_color" />
 
         <activity
             android:name=".presentation.ui.MainActivity"
