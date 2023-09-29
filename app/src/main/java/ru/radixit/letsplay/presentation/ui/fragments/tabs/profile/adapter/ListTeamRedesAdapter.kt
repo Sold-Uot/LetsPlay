@@ -12,6 +12,7 @@ import ru.radixit.letsplay.R
 import ru.radixit.letsplay.data.network.response.Team
 import ru.radixit.letsplay.databinding.ItemListTeamRedesRvBinding
 import ru.radixit.letsplay.utils.gone
+import ru.radixit.letsplay.utils.visible
 
 typealias SelectTeamListMembers = (Team) -> Unit
 
@@ -57,10 +58,8 @@ class ListTeamRedesAdapter() : RecyclerView.Adapter<ListTeamRedesAdapter.TeamVie
                 Glide.with(binding.root).load(team.photo.url).into(binding.photo)
             }
 
-            if (!team.my) {
-                binding.myTeamStar.gone()
+            if (team.my) binding.myTeamStar.visible() else binding.myTeamStar.gone()
 
-            }
             binding.root.setOnClickListener {
                 selectTeamListMembers.invoke(team)
             }

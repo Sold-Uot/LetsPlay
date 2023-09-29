@@ -40,4 +40,16 @@
         app:layout_constraintStart_toStartOf="@+id/item_playing_cv"
         app:layout_constraintTop_toBottomOf="@+id/item_playing_cv"
         tools:text="Team_Dagestan" />
+
+    <ImageView
+        android:id="@+id/my_team_star"
+        android:elevation="1dp"
+        android:layout_width="8dp"
+        android:layout_height="11dp"
+        android:src="@drawable/team_star"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_gravity="end|top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
