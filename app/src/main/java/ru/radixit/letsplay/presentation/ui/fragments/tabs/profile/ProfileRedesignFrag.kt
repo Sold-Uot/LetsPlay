@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,9 +23,6 @@ import ru.radixit.letsplay.presentation.global.BaseFragment
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.EventsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.FriendsRedesAdapter
 import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.ListTeamProfileRedesAdapter
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.adapter.PlayerRedesAdapter
-import ru.radixit.letsplay.presentation.ui.fragments.tabs.profile.teams.ListTeamsRedesFragDirections
-import ru.radixit.letsplay.utils.SpaceItemDecoration
 import ru.radixit.letsplay.utils.setOnSingleClickListener
 import ru.radixit.letsplay.utils.visible
 import javax.inject.Inject
@@ -115,7 +111,7 @@ class ProfileRedesignFrag : BaseFragment() {
                 }
 
 
-                sport.text = it.userType ?: "Неизв."
+                 
                 if (it.photo != null) {
                     nameOnAvatar.visibility = View.GONE
                     profileImage.isVisible = true

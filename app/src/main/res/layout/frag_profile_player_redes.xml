@@ -118,7 +118,7 @@
                         app:layout_constraintTop_toTopOf="@+id/profile_mat_card"
                         tools:text="Махмуд Гунашев" />
 
-                    <TextView
+                   <!-- <TextView
                         android:id="@+id/sport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -126,8 +126,7 @@
                         android:fontFamily="@font/noah_medium"
                         android:textColor="@color/main_gray"
                         app:layout_constraintStart_toStartOf="@+id/profile_name"
-                        app:layout_constraintTop_toBottomOf="@+id/profile_name"
-                        tools:text="был вчера в 20:41" />
+                        app:layout_constraintTop_toBottomOf="@+id/profile_name" />-->
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/add_friend_mat_btn"
@@ -201,7 +200,7 @@
                         android:id="@+id/pos_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="16dp"
                         android:drawableStart="@drawable/ic_pos_dask_icon"
                         android:drawablePadding="15dp"
                         android:fontFamily="@font/noah_regular"
@@ -229,7 +228,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="12dp"
-                        app:cardBackgroundColor="@color/violet"
+                        app:cardBackgroundColor="@color/green_check"
                         app:cardCornerRadius="40dp"
                         app:layout_constraintBottom_toBottomOf="@+id/matches_played_value_tv"
                         app:layout_constraintStart_toEndOf="@+id/matches_played_value_tv"
@@ -250,7 +249,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="8dp"
-                        app:cardBackgroundColor="@color/violet"
+                        app:cardBackgroundColor="@color/red"
                         app:cardCornerRadius="40dp"
                         app:layout_constraintStart_toEndOf="@+id/played_img_card"
                         app:layout_constraintTop_toTopOf="@+id/played_img_card">
@@ -269,7 +268,7 @@
                         android:id="@+id/matches_played_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginTop="16dp"
                         android:drawableStart="@drawable/ic_matches_played_icon"
                         android:drawablePadding="15dp"
                         android:fontFamily="@font/noah_regular"
@@ -296,7 +295,7 @@
                         android:id="@+id/all_inform_prof_play_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="24dp"
                         android:drawableStart="@drawable/ic_all_inform_icon"
                         android:drawablePadding="12dp"
                         android:fontFamily="@font/noah_bold"

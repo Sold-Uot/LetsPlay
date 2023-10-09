@@ -126,9 +126,9 @@ class ProfilePlayerFrag : Fragment() {
 
                 missedGamesCountTv.text =
                     if (it.wasNotPresentGame != null) it.wasNotPresentGame.toString() else "0"
-                playedCountTv.text =
+                /*playedCountTv.text =
                     if (it.matchesPlayed != null) it.matchesPlayed.toString() else "0"
-                sport.text = it.userType ?: "Неизв."
+                sport.text = it.userType ?: "Неизв."*/
                 if (it.photo != null) {
                     nameOnAvatar.visibility = View.GONE
                     profileImage.isVisible = true
